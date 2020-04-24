@@ -30,8 +30,15 @@ const Form = {
                   </div>
                   <div class="field">
                       <p class="control">
-                          <button class="button is-primary" id="register_submit_btn">
+                          <button class="button is-primary" id="submit_btn">
                           Save
+                          </button>
+                      </p>
+                  </div>
+                  <div class="field">
+                      <p class="control">
+                          <button class="button is-primary" id="cancel_btn">
+                          Cancel
                           </button>
                       </p>
                   </div>
@@ -43,18 +50,28 @@ const Form = {
   // This is a separate call as these can be registered only after the DOM has been painted
   after_render: async () => {
     document
-      .getElementById('register_submit_btn')
-      .addEventListener('click', (event) => {
+      .getElementById('submit_btn')
+      .addEventListener('click', async (event) => {
         event.preventDefault();
         let title = document.getElementById('title');
         let description = document.getElementById('description');
         if ((title.value == '') | (description.value == '')) {
           alert(`The fields cannot be empty`);
         } else {
-          alert(
-            `Title ${title.value} and Description ${description.value} was successfully submitted!`,
-          );
+          const data = {
+            title: title.value,
+            description: description.value,
+          };
+          const response = await DataService.createNote(data);
+          console.log('response', response);
+          window.location.replace('/#home');
         }
+      });
+    document
+      .getElementById('cancel_btn')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        window.location.replace('/#home');
       });
   },
 };
