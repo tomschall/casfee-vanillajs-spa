@@ -19,54 +19,42 @@ Router.prototype = {
   rootElem: undefined,
   constructor: function (routes) {
     this.routes = routes;
-    this.rootElem = document.getElementById('app');
+    this.rootElem = document.getElementById('root');
   },
   init: function () {
     const r = this.routes;
     (function (scope, r) {
       window.addEventListener('hashchange', function (e) {
-        scope.hasChanged(scope, r);
+        scope.detectChange(scope, r);
       });
     })(this, r);
-    this.hasChanged(this, r);
+    this.detectChange(this, r);
   },
-  hasChanged: function (scope, r) {
+  detectChange: function (scope, r) {
     if (window.location.hash.length > 0) {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
-        if (route.isActiveRoute(window.location.hash.substr(1))) {
-          scope.goToRoute(route.component);
+        let cleanUpLocationHash = window.location.hash.split('/');
+        if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
+          scope.navigateTo(route.component);
         }
       }
     } else {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.default) {
-          scope.goToRoute(route.component);
+          scope.navigateTo(route.component);
         }
       }
     }
   },
-  goToRoute: function (component) {
+  navigateTo: function (component) {
     (function (scope) {
       import('./components/' + component + '.js').then((Component) => {
-        console.log('name module', Component);
-        console.log('name path', './components/' + component + '.js');
-        Component.default.render().then(function (html) {
+        Component.default.render().then((html) => {
           scope.rootElem.innerHTML = html;
-          console.log('promise', html);
         });
       });
-
-      // let url = 'views/' + component,
-      //   xhttp = new XMLHttpRequest();
-      // xhttp.onreadystatechange = function () {
-      //   if (this.readyState === 4 && this.status === 200) {
-      //     scope.rootElem.innerHTML = this.responseText;
-      //   }
-      // };
-      // xhttp.open('GET', url, true);
-      // xhttp.send();
     })(this);
   },
   containsObject: function (list) {

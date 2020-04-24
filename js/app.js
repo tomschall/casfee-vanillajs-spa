@@ -5,5 +5,4 @@
     new Route('home', 'Home', true),
     new Route('detail', 'Detail'),
   ]);
-  console.log('router', router);
 })();
