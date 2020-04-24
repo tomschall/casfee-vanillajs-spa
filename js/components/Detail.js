@@ -1,9 +1,10 @@
-import RouterUtils from './../services/RouterUtils.js';
+import RouterUtils from '../utils/RouterUtils.js';
+import DataService from '../services/DataService.js';
 
 const Detail = {
   render: async () => {
     const params = RouterUtils.getParams();
-    const notes = await getData(params.id);
+    const notes = await DataService.getData(params.id);
 
     return `
         <section class="section">
@@ -17,26 +18,6 @@ const Detail = {
       `;
   },
   after_render: async () => {},
-};
-
-const getData = async (id) => {
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  try {
-    const response = await fetch(
-      `https://5ea2d434b9f5ca00166c324a.mockapi.io/notes/` + id,
-      options,
-    );
-    const json = await response.json();
-    // console.log(json)
-    return json;
-  } catch (err) {
-    console.log('Error getting documents', err);
-  }
 };
 
 export default Detail;
