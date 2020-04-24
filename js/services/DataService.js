@@ -1,3 +1,5 @@
+import CONFIG from '../../config.js';
+
 const DataService = {
   getData: async (id) => {
     const options = {
@@ -8,8 +10,9 @@ const DataService = {
     };
     try {
       let url = '';
-      if (!id) url = `https://5ea2d434b9f5ca00166c324a.mockapi.io/notes`;
-      else url = `https://5ea2d434b9f5ca00166c324a.mockapi.io/notes/` + id;
+      if (!id) url = CONFIG.apiHost;
+      else url = CONFIG.apiHost + id;
+      console.log(url);
       const response = await fetch(url, options);
       const json = await response.json();
       return json;
