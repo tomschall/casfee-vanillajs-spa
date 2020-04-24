@@ -1,11 +1,11 @@
 'use strict';
 
-function Route(name, template, defaultRoute) {
+function Route(name, component, defaultRoute) {
   try {
-    if (!name || !template) {
-      throw 'error: name and template params are mandatories';
+    if (!name || !component) {
+      throw 'error: name and component params are mandatories';
     }
-    this.constructor(name, template, defaultRoute);
+    this.constructor(name, component, defaultRoute);
   } catch (e) {
     console.error(e);
   }
@@ -13,11 +13,11 @@ function Route(name, template, defaultRoute) {
 
 Route.prototype = {
   name: undefined,
-  template: undefined,
+  component: undefined,
   default: undefined,
-  constructor: function (name, template, defaultRoute) {
+  constructor: function (name, component, defaultRoute) {
     this.name = name;
-    this.template = template;
+    this.component = component;
     this.default = defaultRoute;
   },
   isActiveRoute: function (path) {

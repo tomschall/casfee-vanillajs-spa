@@ -2,8 +2,8 @@
 
 (function () {
   const router = new Router([
-    new Route('home', 'home.html', true),
-    new Route('detail', 'detail.html'),
+    new Route('home', 'Home', true),
+    new Route('detail', 'Detail'),
   ]);
   console.log('router', router);
 })();

@@ -35,29 +35,38 @@ Router.prototype = {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.isActiveRoute(window.location.hash.substr(1))) {
-          scope.goToRoute(route.template);
+          scope.goToRoute(route.component);
         }
       }
     } else {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.default) {
-          scope.goToRoute(route.template);
+          scope.goToRoute(route.component);
         }
       }
     }
   },
-  goToRoute: function (template) {
+  goToRoute: function (component) {
     (function (scope) {
-      let url = 'views/' + template,
-        xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          scope.rootElem.innerHTML = this.responseText;
-        }
-      };
-      xhttp.open('GET', url, true);
-      xhttp.send();
+      import('./components/' + component + '.js').then((Component) => {
+        console.log('name module', Component);
+        console.log('name path', './components/' + component + '.js');
+        Component.default.render().then(function (html) {
+          scope.rootElem.innerHTML = html;
+          console.log('promise', html);
+        });
+      });
+
+      // let url = 'views/' + component,
+      //   xhttp = new XMLHttpRequest();
+      // xhttp.onreadystatechange = function () {
+      //   if (this.readyState === 4 && this.status === 200) {
+      //     scope.rootElem.innerHTML = this.responseText;
+      //   }
+      // };
+      // xhttp.open('GET', url, true);
+      // xhttp.send();
     })(this);
   },
   containsObject: function (list) {
