@@ -48,6 +48,7 @@ class Router {
       import('./components/' + component + '.js').then((Component) => {
         Component.default.render().then((html) => {
           scope.rootElem.innerHTML = html;
+          Component.default.after_render();
         });
       });
     })(this);
