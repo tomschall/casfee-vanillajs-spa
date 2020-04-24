@@ -1,14 +1,14 @@
-let Home = {
+const Home = {
   render: async () => {
-    let posts = await getData();
+    let notes = await getData();
     let view = `
         <section class="section">
             <h1> Home </h1>
             <ul>
-                ${posts
+                ${notes
                   .map(
-                    (post) =>
-                      `<li><a href="#detail/${post.id}">${post.title}</a></li>`,
+                    (note) =>
+                      `<li><a href="#detail/${note.id}">${note.title}</a></li>`,
                   )
                   .join('\n ')}
             </ul>
@@ -19,7 +19,7 @@ let Home = {
   after_render: async () => {},
 };
 
-let getData = async () => {
+const getData = async () => {
   const options = {
     method: 'GET',
     headers: {
@@ -28,7 +28,7 @@ let getData = async () => {
   };
   try {
     const response = await fetch(
-      `https://5bb634f6695f8d001496c082.mockapi.io/api/posts`,
+      `https://5ea2d434b9f5ca00166c324a.mockapi.io/notes`,
       options,
     );
     const json = await response.json();
