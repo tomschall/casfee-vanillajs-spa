@@ -1,36 +1,30 @@
-'use strict';
-
-function Router(routes) {
-  try {
-    if (!routes) {
-      throw 'error: routes param is missing';
-    } else if (!Array.isArray(routes) || !this.containsObject(routes)) {
-      throw 'error: param needs to be an array of objects';
+class Router {
+  constructor(routes) {
+    try {
+      if (!routes) {
+        throw 'error: routes param is missing';
+      } else if (!Array.isArray(routes) || !this.containsObject(routes)) {
+        throw 'error: param needs to be an array of objects';
+      }
+    } catch (e) {
+      console.error(e);
     }
-    this.constructor(routes);
-    this.init();
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-Router.prototype = {
-  routes: undefined,
-  rootElem: undefined,
-  constructor: function (routes) {
     this.routes = routes;
     this.rootElem = document.getElementById('root');
-  },
-  init: function () {
+    this.init();
+  }
+
+  init() {
     const r = this.routes;
-    (function (scope, r) {
-      window.addEventListener('hashchange', function (e) {
-        scope.detectChange(scope, r);
-      });
-    })(this, r);
+    const scope = this;
+    window.addEventListener('hashchange', function (e) {
+      scope.detectChange(scope, r);
+    });
+
     this.detectChange(this, r);
-  },
-  detectChange: function (scope, r) {
+  }
+
+  detectChange(scope, r) {
     if (window.location.hash.length > 0) {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
@@ -47,8 +41,9 @@ Router.prototype = {
         }
       }
     }
-  },
-  navigateTo: function (component) {
+  }
+
+  navigateTo(component) {
     (function (scope) {
       import('./components/' + component + '.js').then((Component) => {
         Component.default.render().then((html) => {
@@ -56,13 +51,14 @@ Router.prototype = {
         });
       });
     })(this);
-  },
-  containsObject: function (list) {
+  }
+
+  containsObject(list) {
     for (let i = 0; i < list.length; i++) {
       if (typeof list[i] === 'object') {
         return true;
       }
     }
     return false;
-  },
-};
+  }
+}
