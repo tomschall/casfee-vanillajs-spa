@@ -6,5 +6,6 @@
     new Route('detail', 'Detail'),
     new Route('new', 'Form'),
     new Route('edit', 'Edit'),
+    new Route('notFound', 'NotFound'),
   ]);
 })();

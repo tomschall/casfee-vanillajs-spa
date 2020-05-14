@@ -31,8 +31,10 @@ class Router {
         let cleanUpLocationHash = window.location.hash.split('/');
         if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
           scope.navigateTo(route.component);
+          return;
         }
       }
+      scope.navigateTo('NotFound');
     } else {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
