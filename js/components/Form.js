@@ -4,7 +4,7 @@ import DataService from '../services/DataService.js';
 const Form = {
   render: async () => {
     return `
-            <h1>New Form</h1>
+            <h1>New Note</h1>
             <section class="section">
               <form id="form">
                   <div class="field">

@@ -1,12 +1,12 @@
 const RouterUtils = {
   getParams: () => {
     let r = location.hash.toLowerCase().split('/');
-    const request = {
+    const res = {
       resource: r[0],
       id: r[1],
     };
 
-    return request;
+    return res;
   },
 };
 
