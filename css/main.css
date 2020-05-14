@@ -61,7 +61,7 @@ footer {
 
 @media screen and (max-width: 678px) {
   body {
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   .burger {
