@@ -8,11 +8,13 @@
     nav.classList.toggle('nav-active');
   };
 
-  burger.addEventListener('click', function () {
+  burger.addEventListener('click', function (e) {
+    e.stopPropagation();
     toggleNav();
   });
 
-  nav.addEventListener('click', function () {
+  nav.addEventListener('click', function (e) {
+    e.stopPropagation();
     toggleNav();
   });
 
