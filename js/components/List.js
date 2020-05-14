@@ -1,16 +1,16 @@
 import DataService from '../services/DataService.js';
 
-const Home = {
+const List = {
   render: async () => {
     let notes = await DataService.getData();
     let view = `
         <section class="section">
-            <h1> Home </h1>
-            <ul>
+            <h1>List of notes</h1>
+            <ul class="todo-list">
                 ${notes
                   .map(
                     (note) =>
-                      `<li><a href="#detail/${note.id}">${note.title}</a></li>`,
+                      `<li class="todo-item"><a href="#detail/${note.id}">${note.title}</a></li>`,
                   )
                   .join('\n ')}
             </ul>
@@ -21,4 +21,4 @@ const Home = {
   after_render: async () => {},
 };
 
-export default Home;
+export default List;

@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+header,
+aside,
+main,
+footer {
+  padding: 16px;
+  text-align: center;
+}
+
+header {
+  background: #1f1752;
+}
+
+aside,
+.filter-nav {
+  background: #3fe33f;
+}
+
+footer {
+  background: black;
+}
+
+.navigation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-item a {
+  text-decoration: none;
+  color: white;
+}
+
+.navigation-item a:hover,
+.navigation-item a:active {
+  color: #fa923f;
+}
+
+.filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-item a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.filter-item a:hover,
+.filter-item a:active {
+  color: #ffffff;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-item a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.todo-item a:hover,
+.todo-item a:active {
+  color: #3fe33f;
+}
