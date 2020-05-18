@@ -54,6 +54,11 @@ footer {
   font-size: 1.2em;
 }
 
+.navlink a:hover,
+.navlink a:active {
+  color: #808080;
+}
+
 .burger {
   font-size: 1.2em;
   display: none;

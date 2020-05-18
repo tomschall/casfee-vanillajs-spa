@@ -21,6 +21,7 @@ class Router {
       scope.detectChange(scope, r);
     });
 
+    this.initEventListeners();
     this.detectChange(this, r);
   }
 
@@ -45,15 +46,45 @@ class Router {
     }
   }
 
-  navigateTo(component) {
+  navigateTo(component, filterBy) {
     (function (scope) {
       import('./components/' + component + '.js').then((Component) => {
-        Component.default.render().then((html) => {
+        Component.default.render(filterBy).then((html) => {
           scope.rootElem.innerHTML = html;
           Component.default.after_render();
         });
       });
     })(this);
+  }
+
+  initEventListeners() {
+    document
+      .getElementById('finish_date')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        this.navigateTo('List', 'finishDate');
+      });
+
+    document
+      .getElementById('create_date')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        this.navigateTo('List', 'createDate');
+      });
+
+    document
+      .getElementById('importance')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        this.navigateTo('List', 'importance');
+      });
+
+    document
+      .getElementById('finished')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        this.navigateTo('List', 'finished');
+      });
   }
 
   containsObject(list) {
