@@ -58,33 +58,19 @@ class Router {
   }
 
   initEventListeners() {
-    document
-      .getElementById('finish_date')
-      .addEventListener('click', async (event) => {
-        event.preventDefault();
-        this.navigateTo('List', 'finishDate');
-      });
+    const map = {
+      finish_date: 'finishDate',
+      create_date: 'createDate',
+      importance: 'importance',
+      finished: 'finished',
+    };
 
-    document
-      .getElementById('create_date')
-      .addEventListener('click', async (event) => {
+    for (let [key, value] of Object.entries(map)) {
+      document.getElementById(key).addEventListener('click', async (event) => {
         event.preventDefault();
-        this.navigateTo('List', 'createDate');
+        this.navigateTo('List', value);
       });
-
-    document
-      .getElementById('importance')
-      .addEventListener('click', async (event) => {
-        event.preventDefault();
-        this.navigateTo('List', 'importance');
-      });
-
-    document
-      .getElementById('finished')
-      .addEventListener('click', async (event) => {
-        event.preventDefault();
-        this.navigateTo('List', 'finished');
-      });
+    }
   }
 
   containsObject(list) {

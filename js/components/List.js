@@ -6,7 +6,6 @@ const List = {
     if (typeof filterBy !== 'undefined') {
       notes = await List.filterNotes(notes, filterBy);
     }
-    console.log('notes', notes);
 
     let view = `
         <section class="section">
