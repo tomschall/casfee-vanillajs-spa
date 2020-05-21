@@ -1,4 +1,5 @@
 import DataService from '../services/DataService.js';
+import { messageService } from '../rxjs.js';
 
 const List = {
   render: async (filterBy) => {
@@ -6,6 +7,14 @@ const List = {
     if (typeof filterBy !== 'undefined') {
       notes = await List.filterNotes(notes, filterBy);
     }
+
+    let i = 1;
+    setInterval(function () {
+      messageService.sendMessage(
+        `Message ${i} from Home Page Component to App Component!`,
+      );
+      i++;
+    }, 2000);
 
     let view = `
         <section class="section">

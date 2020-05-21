@@ -1,4 +1,7 @@
-'use strict';
+import Route from './Route.js';
+import Router from './Router.js';
+
+('use strict');
 
 (function () {
   const router = new Router([

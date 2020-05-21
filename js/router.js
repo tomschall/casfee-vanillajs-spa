@@ -1,3 +1,5 @@
+import Detail from './components/Detail.js';
+
 class Router {
   constructor(routes) {
     try {
@@ -82,3 +84,5 @@ class Router {
     return false;
   }
 }
+
+export default Router;

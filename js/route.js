@@ -16,3 +16,5 @@ class Route {
     return path.replace('#', '') === this.name;
   }
 }
+
+export default Route;

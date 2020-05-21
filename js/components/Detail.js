@@ -1,8 +1,11 @@
 import RouterUtils from '../utils/RouterUtils.js';
 import DataService from '../services/DataService.js';
+import { messages } from '../messageService.js';
 
 const Detail = {
   render: async () => {
+    console.log(messages);
+
     const params = RouterUtils.getParams();
     const note = await DataService.getData(params.id);
 
