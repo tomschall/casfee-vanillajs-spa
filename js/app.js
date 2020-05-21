@@ -9,9 +9,9 @@ import NotFound from './components/NotFound.js';
 
 ('use strict');
 
-(function () {
+(async function () {
   const router = new Router([
-    new Route('list', new List(), true),
+    new Route('list', await List.create(), true),
     new Route('detail', Detail),
     new Route('new', Form),
     new Route('edit', Edit),

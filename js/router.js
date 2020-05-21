@@ -1,3 +1,6 @@
+import List from './components/List.js';
+import NotFound from './components/NotFound.js';
+
 class Router {
   constructor(routes) {
     try {
@@ -35,7 +38,7 @@ class Router {
           return;
         }
       }
-      scope.navigateTo('NotFound');
+      scope.navigateTo(NotFound);
     } else {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
@@ -47,7 +50,6 @@ class Router {
   }
 
   navigateTo(component, filterBy) {
-    console.log(component);
     (function (scope) {
       component.render(filterBy).then((html) => {
         scope.rootElem.innerHTML = html;
@@ -67,7 +69,7 @@ class Router {
     for (let [key, value] of Object.entries(map)) {
       document.getElementById(key).addEventListener('click', async (event) => {
         event.preventDefault();
-        this.navigateTo('List', value);
+        this.navigateTo(this.routes[0].component, value);
       });
     }
   }

@@ -2,21 +2,28 @@ import DataService from '../services/DataService.js';
 import { messageService } from '../rxjs.js';
 
 class List {
-  constructor() {
-    this.setMessageService();
+  async initData() {
+    this.notes = await DataService.getData();
+  }
+
+  static async create() {
+    const obj = new List();
+    await obj.initData();
+    return obj;
   }
 
   async render(filterBy) {
-    let notes = await DataService.getData();
     if (typeof filterBy !== 'undefined') {
-      notes = await List.filterNotes(notes, filterBy);
+      this.notes = await this.filterNotes(this.notes, filterBy);
     }
+
+    console.log(this.notes);
 
     let view = `
         <section class="section">
             <h1>List of notes</h1>
             <ul class="todo-list">
-                ${notes
+                ${this.notes
                   .map(
                     (note) =>
                       `<li class="todo-item"><a href="#detail/${note.id}">${note.title}</a></li>`,
