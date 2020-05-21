@@ -14,10 +14,18 @@ const Detail = {
             <p> Notes Importance : ${note.importance} </p>
             <p> Notes Date Created : ${note.createDate} </p>
             <p> Notes Date Finished : ${note.finishDate} </p>
+            <p><button class="button is-primary" id="back_btn">Back</button></p>           
         </section>
       `;
   },
-  after_render: async () => {},
+  after_render: async () => {
+    document
+      .getElementById('back_btn')
+      .addEventListener('click', async (event) => {
+        event.preventDefault();
+        window.location.replace('/#list');
+      });
+  },
 };
 
 export default Detail;

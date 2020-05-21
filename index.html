@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CSS Course</title>
-    <link rel="stylesheet" href="css/main.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <header>
@@ -30,16 +30,16 @@
     <main>
       <nav class="filter-nav">
         <ul class="filter-list">
-          <li class="filter-item">
+          <li class="filter-item child-one">
             <a id="finish_date" href="#">By finish date</a>
           </li>
-          <li class="filter-item">
+          <li class="filter-item child-two">
             <a id="create_date" href="#">By created date</a>
           </li>
-          <li class="filter-item">
+          <li class="filter-item child-three">
             <a id="importance" href="#">By Importance</a>
           </li>
-          <li class="filter-item">
+          <li class="filter-item child-four">
             <a id="finished" href="#">Show finished</a>
           </li>
         </ul>
@@ -57,5 +57,6 @@
     <script src="js/app.js"></script>
     <script src="js/nav.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+    <script type="module" src="js/rxjs.js"></script>
   </body>
 </html>
