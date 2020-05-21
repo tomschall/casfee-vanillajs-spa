@@ -1,20 +1,16 @@
 import DataService from '../services/DataService.js';
 import { messageService } from '../rxjs.js';
 
-const List = {
-  render: async (filterBy) => {
+class List {
+  constructor() {
+    this.setMessageService();
+  }
+
+  async render(filterBy) {
     let notes = await DataService.getData();
     if (typeof filterBy !== 'undefined') {
       notes = await List.filterNotes(notes, filterBy);
     }
-
-    let i = 1;
-    setInterval(function () {
-      messageService.sendMessage(
-        `Message ${i} from Home Page Component to App Component!`,
-      );
-      i++;
-    }, 2000);
 
     let view = `
         <section class="section">
@@ -30,9 +26,11 @@ const List = {
         </section>
         `;
     return view;
-  },
-  after_render: async () => {},
-  filterNotes: async (notes, filterBy) => {
+  }
+
+  after_render() {}
+
+  filterNotes(notes, filterBy) {
     console.log('filterBy', filterBy);
     return notes.sort((a, b) => {
       return (
@@ -40,7 +38,17 @@ const List = {
         new moment(a[filterBy]).format('YYYYMMDD')
       );
     });
-  },
-};
+  }
+
+  setMessageService() {
+    let i = 1;
+    setInterval(function () {
+      messageService.sendMessage(
+        `Message ${i} from Home Page Component to App Component!`,
+      );
+      i++;
+    }, 2000);
+  }
+}
 
 export default List;

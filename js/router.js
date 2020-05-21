@@ -1,5 +1,3 @@
-import Detail from './components/Detail.js';
-
 class Router {
   constructor(routes) {
     try {
@@ -49,12 +47,11 @@ class Router {
   }
 
   navigateTo(component, filterBy) {
+    console.log(component);
     (function (scope) {
-      import('./components/' + component + '.js').then((Component) => {
-        Component.default.render(filterBy).then((html) => {
-          scope.rootElem.innerHTML = html;
-          Component.default.after_render();
-        });
+      component.render(filterBy).then((html) => {
+        scope.rootElem.innerHTML = html;
+        component.after_render();
       });
     })(this);
   }
