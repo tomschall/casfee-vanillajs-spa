@@ -2,6 +2,10 @@ import DataService from '../services/DataService.js';
 import { messageService } from '../rxjs.js';
 
 class List {
+  constructor() {
+    this.setMessageService();
+  }
+
   async initData() {
     this.notes = await DataService.getData();
   }
