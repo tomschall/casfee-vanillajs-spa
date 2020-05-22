@@ -13,11 +13,13 @@ import DataService from './services/DataService.js';
 
 (async function () {
   const dataService = await DataService.create();
-  const router = new Router([
+  const router = await Router.create([
     new Route('list', await List.create(dataService), true),
     new Route('detail', await Detail.create(dataService)),
     new Route('new', await Form.create(dataService)),
     new Route('edit', await Edit.create(dataService)),
     new Route('notFound', NotFound),
   ]);
+  dataService.sendData(dataService.notes);
+  router.navigateTo(router.routes[0].component);
 })();

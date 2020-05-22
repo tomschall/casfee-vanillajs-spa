@@ -17,6 +17,14 @@ class Router {
     this.init();
   }
 
+  async initData() {}
+
+  static async create(routes) {
+    const obj = new Router(routes);
+    await obj.initData();
+    return obj;
+  }
+
   init() {
     const r = this.routes;
     const scope = this;

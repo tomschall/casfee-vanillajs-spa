@@ -2,11 +2,9 @@ class List {
   constructor() {}
 
   async initData() {
-    this.notes = this.dataService.notes;
     this.dataService.getData().subscribe((data) => {
       if (data) {
         // add message to local state if not empty
-        console.log('list data', data);
         this.notes = data;
       }
     });
@@ -20,6 +18,8 @@ class List {
   }
 
   async render(filterBy) {
+    if (this.notes === undefined) return '';
+
     if (typeof filterBy !== 'undefined') {
       this.notes = await this.filterNotes(this.notes, filterBy);
     }
