@@ -1,8 +1,16 @@
-import RouterUtils from '../utils/RouterUtils.js';
-import DataService from '../services/DataService.js';
+class Form {
+  constructor() {}
 
-const Form = {
-  render: async () => {
+  async initData() {}
+
+  static async create(dataService) {
+    const obj = new Form();
+    obj.dataService = dataService;
+    await obj.initData();
+    return obj;
+  }
+
+  async render() {
     return `
             <h1>New Note</h1>
             <section class="section">
@@ -58,10 +66,10 @@ const Form = {
               </form>
             </section>
         `;
-  },
+  }
   // All the code related to DOM interactions and controls go in here.
   // This is a separate call as these can be registered only after the DOM has been painted
-  after_render: async () => {
+  async after_render() {
     document
       .getElementById('submit_btn')
       .addEventListener('click', async (event) => {
@@ -80,8 +88,7 @@ const Form = {
             finishDate: finishDate.value,
             importance: importance.value,
           };
-          const response = await DataService.createNote(data);
-          console.log('response', response);
+          await this.dataService.createNote(data);
           window.location.replace('/#list');
         }
       });
@@ -91,7 +98,7 @@ const Form = {
         event.preventDefault();
         window.location.replace('/#list');
       });
-  },
-};
+  }
+}
 
 export default Form;

@@ -1,17 +1,20 @@
-import DataService from '../services/DataService.js';
-import { messageService } from '../rxjs.js';
-
 class List {
-  constructor() {
-    this.setMessageService();
-  }
+  constructor() {}
 
   async initData() {
-    this.notes = await DataService.getData();
+    this.notes = this.dataService.notes;
+    this.dataService.getData().subscribe((data) => {
+      if (data) {
+        // add message to local state if not empty
+        console.log('list data', data);
+        this.notes = data;
+      }
+    });
   }
 
-  static async create() {
+  static async create(dataService) {
     const obj = new List();
+    obj.dataService = dataService;
     await obj.initData();
     return obj;
   }
@@ -20,8 +23,6 @@ class List {
     if (typeof filterBy !== 'undefined') {
       this.notes = await this.filterNotes(this.notes, filterBy);
     }
-
-    console.log(this.notes);
 
     let view = `
         <section class="section">
@@ -49,16 +50,6 @@ class List {
         new moment(a[filterBy]).format('YYYYMMDD')
       );
     });
-  }
-
-  setMessageService() {
-    let i = 1;
-    setInterval(function () {
-      messageService.sendMessage(
-        `Message ${i} from Home Page Component to App Component!`,
-      );
-      i++;
-    }, 2000);
   }
 }
 

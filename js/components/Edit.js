@@ -1,28 +1,40 @@
 import RouterUtils from '../utils/RouterUtils.js';
-import DataService from '../services/DataService.js';
 
-const Form = {
-  render: async () => {
-    const params = RouterUtils.getParams();
-    let note = null;
-    if (params.id) note = await DataService.getData(params.id);
+class Edit {
+  constructor() {}
+
+  async initData() {}
+
+  static async create(dataService) {
+    const obj = new Edit();
+    obj.dataService = dataService;
+    await obj.initData();
+    return obj;
+  }
+
+  async render() {
+    this.params = RouterUtils.getParams();
+    if (this.params.id)
+      this.note = await this.dataService.getNote(this.params.id);
 
     return `
             <h1>Edit Form</h1>
             <section class="section">
               <form id="form">
-                  <input id="id" type="hidden" value="${note ? note.id : ''}"
+                  <input id="id" type="hidden" value="${
+                    this.note ? this.note.id : ''
+                  }"
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <input id="title" class="input" name="title" type="text" placeholder="Title" value="${
-                            note ? note.title : ''
+                            this.note ? this.note.title : ''
                           }">
                       </p>
                   </div>
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <input id="description" class="input" name="description" type="text" placeholder="Description" value="${
-                            note ? note.description : ''
+                            this.note ? this.note.description : ''
                           }">
                       </p>
                   </div>
@@ -30,7 +42,7 @@ const Form = {
                       <p class="control has-icons-left has-icons-right">
                           <label for="finishDate">Date for finishing</label>
                           <input id="finishDate" class="input" name="finishDate" type="date" placeholder="Date" value="${
-                            note ? note.finishDate : ''
+                            this.note ? this.note.finishDate : ''
                           }">
                       </p>
                   </div>
@@ -38,19 +50,29 @@ const Form = {
                       <label for="importance">Importance</label>
                       <select name="importance" id="importance">
                         <option value="1" ${
-                          note && note.importance == '1' ? 'selected' : ''
+                          this.note && this.note.importance == '1'
+                            ? 'selected'
+                            : ''
                         }>1</option>
                         <option value="2" ${
-                          note && note.importance == '2' ? 'selected' : ''
+                          this.note && this.note.importance == '2'
+                            ? 'selected'
+                            : ''
                         }>2</option>
                         <option value="3" ${
-                          note && note.importance == '3' ? 'selected' : ''
+                          this.note && this.note.importance == '3'
+                            ? 'selected'
+                            : ''
                         }>3</option>
                         <option value="4" ${
-                          note && note.importance == '4' ? 'selected' : ''
+                          this.note && this.note.importance == '4'
+                            ? 'selected'
+                            : ''
                         }>4</option>
                         <option value="5" ${
-                          note && note.importance == '5' ? 'selected' : ''
+                          this.note && this.note.importance == '5'
+                            ? 'selected'
+                            : ''
                         }>5</option>
                       </select>
                   </div>
@@ -77,10 +99,9 @@ const Form = {
               </form>
             </section>
         `;
-  },
-  // All the code related to DOM interactions and controls go in here.
-  // This is a separate call as these can be registered only after the DOM has been painted
-  after_render: async () => {
+  }
+
+  async after_render() {
     document
       .getElementById('submit_btn')
       .addEventListener('click', async (event) => {
@@ -100,7 +121,7 @@ const Form = {
             finishDate: finishDate.value,
             importance: importance.value,
           };
-          const response = await DataService.updateNote(id.value, data);
+          const response = await this.dataService.updateNote(id.value, data);
           console.log('response', response);
           window.location.replace('/#list');
         }
@@ -111,7 +132,7 @@ const Form = {
         event.preventDefault();
         window.location.replace('/#list');
       });
-  },
-};
+  }
+}
 
-export default Form;
+export default Edit;

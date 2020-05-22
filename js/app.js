@@ -7,14 +7,17 @@ import Form from './components/Form.js';
 import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
 
+import DataService from './services/DataService.js';
+
 ('use strict');
 
 (async function () {
+  const dataService = await DataService.create();
   const router = new Router([
-    new Route('list', await List.create(), true),
-    new Route('detail', Detail),
-    new Route('new', Form),
-    new Route('edit', Edit),
+    new Route('list', await List.create(dataService), true),
+    new Route('detail', await Detail.create(dataService)),
+    new Route('new', await Form.create(dataService)),
+    new Route('edit', await Edit.create(dataService)),
     new Route('notFound', NotFound),
   ]);
 })();
