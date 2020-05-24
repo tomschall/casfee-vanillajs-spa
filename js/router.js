@@ -96,11 +96,9 @@ class Router {
   }
 
   initDataStream(component) {
-    console.log('isInit', this.isInit);
     if (!this.isInit) return;
     component.dataService.sendData(component.dataService.notes);
     this.isInit = false;
-    console.log('isInit', this.isInit);
   }
 }
 

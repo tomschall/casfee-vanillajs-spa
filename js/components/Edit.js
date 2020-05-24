@@ -3,7 +3,14 @@ import RouterUtils from '../utils/RouterUtils.js';
 class Edit {
   constructor() {}
 
-  async initData() {}
+  async initData() {
+    this.dataService.getData().subscribe((data) => {
+      if (data) {
+        // add message to local state if not empty
+        this.notes = data;
+      }
+    });
+  }
 
   static async create(dataService) {
     const obj = new Edit();
@@ -14,27 +21,27 @@ class Edit {
 
   async render() {
     this.params = RouterUtils.getParams();
-    if (this.params.id)
-      this.note = await this.dataService.getNote(this.params.id);
+
+    const [
+      { id, title, description, importance, finishDate },
+    ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
             <h1>Edit Form</h1>
             <section class="section">
               <form id="form">
-                  <input id="id" type="hidden" value="${
-                    this.note ? this.note.id : ''
-                  }"
+                  <input id="id" type="hidden" value="${this.notes ? id : ''}"
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <input id="title" class="input" name="title" type="text" placeholder="Title" value="${
-                            this.note ? this.note.title : ''
+                            this.notes ? title : ''
                           }">
                       </p>
                   </div>
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <input id="description" class="input" name="description" type="text" placeholder="Description" value="${
-                            this.note ? this.note.description : ''
+                            this.notes ? description : ''
                           }">
                       </p>
                   </div>
@@ -42,7 +49,7 @@ class Edit {
                       <p class="control has-icons-left has-icons-right">
                           <label for="finishDate">Date for finishing</label>
                           <input id="finishDate" class="input" name="finishDate" type="date" placeholder="Date" value="${
-                            this.note ? this.note.finishDate : ''
+                            this.notes ? finishDate : ''
                           }">
                       </p>
                   </div>
@@ -50,29 +57,19 @@ class Edit {
                       <label for="importance">Importance</label>
                       <select name="importance" id="importance">
                         <option value="1" ${
-                          this.note && this.note.importance == '1'
-                            ? 'selected'
-                            : ''
+                          this.notes && importance == '1' ? 'selected' : ''
                         }>1</option>
                         <option value="2" ${
-                          this.note && this.note.importance == '2'
-                            ? 'selected'
-                            : ''
+                          this.notes && importance == '2' ? 'selected' : ''
                         }>2</option>
                         <option value="3" ${
-                          this.note && this.note.importance == '3'
-                            ? 'selected'
-                            : ''
+                          this.notes && importance == '3' ? 'selected' : ''
                         }>3</option>
                         <option value="4" ${
-                          this.note && this.note.importance == '4'
-                            ? 'selected'
-                            : ''
+                          this.notes && importance == '4' ? 'selected' : ''
                         }>4</option>
                         <option value="5" ${
-                          this.note && this.note.importance == '5'
-                            ? 'selected'
-                            : ''
+                          this.notes && importance == '5' ? 'selected' : ''
                         }>5</option>
                       </select>
                   </div>

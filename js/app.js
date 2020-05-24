@@ -1,14 +1,12 @@
 import Route from './Route.js';
 import Router from './Router.js';
+import DataService from './services/DataService.js';
 
 import List from './components/List.js';
 import Detail from './components/Detail.js';
 import Form from './components/Form.js';
 import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
-
-import DataService from './services/DataService.js';
-import RouterUtils from './utils/RouterUtils.js';
 
 ('use strict');
 

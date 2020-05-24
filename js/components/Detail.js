@@ -4,7 +4,6 @@ class Detail {
   constructor() {}
 
   async initData() {
-    console.log('dataService', this.dataService);
     this.dataService.getData().subscribe((data) => {
       if (data) {
         // add message to local state if not empty

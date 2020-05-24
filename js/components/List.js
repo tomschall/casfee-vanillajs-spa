@@ -43,7 +43,6 @@ class List {
   after_render() {}
 
   filterNotes(notes, filterBy) {
-    console.log('filterBy', filterBy);
     return notes.sort((a, b) => {
       return (
         new moment(b[filterBy]).format('YYYYMMDD') -
