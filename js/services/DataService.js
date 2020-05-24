@@ -94,13 +94,13 @@ class DataService {
       body: JSON.stringify(data),
     };
     try {
-      const notes = [...this.notes];
-      const index = notes.findIndex((x) => x.id === id);
-      notes[index] = data;
-      this.notes = notes;
       const url = CONFIG.apiHost + id;
       const response = await fetch(url, options);
       const note = await response.json();
+      const notes = [...this.notes];
+      const index = notes.findIndex((x) => x.id === id);
+      notes[index] = note;
+      this.notes = notes;
       this.sendData(this.notes);
       return note;
     } catch (err) {
