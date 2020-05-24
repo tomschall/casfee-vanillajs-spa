@@ -14,6 +14,7 @@ class Router {
     }
     this.routes = routes;
     this.rootElem = document.getElementById('root');
+    this.isInit = true;
     this.init();
   }
 
@@ -42,6 +43,7 @@ class Router {
         let route = r[i];
         let cleanUpLocationHash = window.location.hash.split('/');
         if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
+          this.initDataStream(route.component);
           scope.navigateTo(route.component);
           return;
         }
@@ -51,7 +53,9 @@ class Router {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.default) {
+          this.initDataStream(route.component);
           scope.navigateTo(route.component);
+          return;
         }
       }
     }
@@ -89,6 +93,14 @@ class Router {
       }
     }
     return false;
+  }
+
+  initDataStream(component) {
+    console.log('isInit', this.isInit);
+    if (!this.isInit) return;
+    component.dataService.sendData(component.dataService.notes);
+    this.isInit = false;
+    console.log('isInit', this.isInit);
   }
 }
 

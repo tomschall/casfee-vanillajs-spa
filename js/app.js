@@ -8,6 +8,7 @@ import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
 
 import DataService from './services/DataService.js';
+import RouterUtils from './utils/RouterUtils.js';
 
 ('use strict');
 
@@ -20,6 +21,4 @@ import DataService from './services/DataService.js';
     new Route('edit', await Edit.create(dataService)),
     new Route('notFound', NotFound),
   ]);
-  dataService.sendData(dataService.notes);
-  router.navigateTo(router.routes[0].component);
 })();
