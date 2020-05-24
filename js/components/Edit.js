@@ -113,13 +113,13 @@ class Edit {
           alert(`The fields cannot be empty`);
         } else {
           const data = {
+            id: id.value,
             title: title.value,
             description: description.value,
             finishDate: finishDate.value,
             importance: importance.value,
           };
-          const response = await this.dataService.updateNote(id.value, data);
-          console.log('response', response);
+          await this.dataService.updateNote(id.value, data);
           window.location.replace('/#list');
         }
       });
