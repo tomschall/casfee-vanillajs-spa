@@ -108,7 +108,27 @@ class DataService {
     }
   }
 
-  async deleteNote() {}
+  async deleteNote(id) {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const url = CONFIG.apiHost + id;
+      const response = await fetch(url, options);
+      const note = await response.json();
+      const notes = [...this.notes];
+      const index = notes.findIndex((x) => x.id === id);
+      notes.splice(index, 1);
+      this.notes = notes;
+      this.sendData(this.notes);
+      return note;
+    } catch (err) {
+      console.error('Error updating documents', err);
+    }
+  }
 
   sendData(data) {
     return this.subject.next(data);
