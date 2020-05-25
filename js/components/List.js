@@ -21,7 +21,8 @@ class List {
     if (this.notes === undefined) return '';
 
     if (typeof filterBy !== 'undefined') {
-      this.notes = await this.filterNotes(this.notes, filterBy);
+      console.log('filterBy', filterBy);
+      this.notes = await this.filterNotes(filterBy);
     }
 
     let view = `
@@ -42,13 +43,31 @@ class List {
 
   after_render() {}
 
-  filterNotes(notes, filterBy) {
-    return notes.sort((a, b) => {
+  filterNotes(filterBy) {
+    if (filterBy == 'createDate' || filterBy == 'finishDate') {
+      return this.filterByDate(filterBy);
+    } else if (filterBy == 'importance') {
+      return this.filterByImportance(filterBy);
+    } else if (filterBy == 'finished') {
+      return this.filterByFinished(filterBy);
+    }
+  }
+
+  filterByDate(filterBy) {
+    return this.notes.sort((a, b) => {
       return (
         new moment(b[filterBy]).format('YYYYMMDD') -
         new moment(a[filterBy]).format('YYYYMMDD')
       );
     });
+  }
+
+  filterByImportance(filterBy) {
+    return this.notes.filter((x) => x);
+  }
+
+  filterByFinished(filterBy) {
+    return this.notes.filter((x) => x);
   }
 }
 

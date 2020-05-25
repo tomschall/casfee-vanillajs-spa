@@ -72,10 +72,10 @@ class Router {
 
   initEventListeners() {
     const map = {
-      finish_date: 'finishDate',
-      create_date: 'createDate',
-      importance: 'importance',
-      finished: 'finished',
+      filter_finish_date: 'finishDate',
+      filter_create_date: 'createDate',
+      filter_importance: 'importance',
+      filter_finished: 'finished',
     };
 
     for (let [key, value] of Object.entries(map)) {

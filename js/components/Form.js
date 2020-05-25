@@ -78,6 +78,7 @@ class Form {
         let description = document.getElementById('description');
         let finishDate = document.getElementById('finishDate');
         let importance = document.getElementById('importance');
+        console.log(importance);
 
         if ((title.value == '') | (description.value == '')) {
           alert(`The fields cannot be empty`);
@@ -86,8 +87,9 @@ class Form {
             title: title.value,
             description: description.value,
             finishDate: finishDate.value,
-            importance: importance.value,
+            importance: importance.options[importance.selectedIndex].value,
           };
+          console.log('data', data);
           await this.dataService.createNote(data);
           window.location.replace('/#list');
         }
