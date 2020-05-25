@@ -6,6 +6,7 @@ class List {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
+        [...this.notesOrig] = data;
       }
     });
   }
@@ -20,16 +21,17 @@ class List {
   async render(filterBy) {
     if (this.notes === undefined) return '';
 
+    let [...notes] = this.notes;
+
     if (typeof filterBy !== 'undefined') {
-      console.log('filterBy', filterBy);
-      this.notes = await this.filterNotes(filterBy);
+      notes = await this.filterNotes(filterBy);
     }
 
     let view = `
         <section class="section">
             <h1>List of notes</h1>
             <ul class="todo-list">
-                ${this.notes
+                ${notes
                   .map(
                     (note) =>
                       `<li class="todo-item"><a href="#detail/${note.id}">${note.title}</a></li>`,
@@ -46,10 +48,10 @@ class List {
   filterNotes(filterBy) {
     if (filterBy == 'createDate' || filterBy == 'finishDate') {
       return this.filterByDate(filterBy);
-    } else if (filterBy == 'importance') {
-      return this.filterByImportance(filterBy);
+    } else if (filterBy == 'importance' || filterBy == 'id') {
+      return this.filterBy(filterBy);
     } else if (filterBy == 'finished') {
-      return this.filterByFinished(filterBy);
+      return this.filterByFinished();
     }
   }
 
@@ -62,12 +64,12 @@ class List {
     });
   }
 
-  filterByImportance(filterBy) {
-    return this.notes.filter((x) => x);
+  filterBy(prop) {
+    return this.notes.sort((a, b) => a[prop] - b[prop]);
   }
 
-  filterByFinished(filterBy) {
-    return this.notes.filter((x) => x);
+  filterByFinished() {
+    return this.notes.filter((x) => x.finished == true);
   }
 }
 

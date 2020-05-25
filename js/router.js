@@ -76,6 +76,7 @@ class Router {
       filter_create_date: 'createDate',
       filter_importance: 'importance',
       filter_finished: 'finished',
+      filter_reset: 'id',
     };
 
     for (let [key, value] of Object.entries(map)) {
