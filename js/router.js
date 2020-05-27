@@ -54,6 +54,7 @@ class Router {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.default) {
+          this.addRouterToComponent(route.component);
           this.initDataStream(route.component);
           scope.navigateTo(route.component);
           return;

@@ -36,7 +36,7 @@ class List {
                 ${notes
                   .map(
                     (note) =>
-                      `<li class="todo-item"><a href="#detail/${note.id}">${note.title}</a></li>`,
+                      `<li class="todo-item"><a href="#list/${note.id}">${note.title}</a> <a href="#detail/${note.id}">Show Detail</a></li>`,
                   )
                   .join('\n ')}
             </ul>
