@@ -27,7 +27,7 @@ class List {
     }
 
     const detailComponent = await this.router.routes[1].component.render();
-    console.log(detailComponent);
+    this.isDetail = detailComponent == '' ? false : true;
 
     let view = `
         <section class="section">
@@ -46,7 +46,9 @@ class List {
     return view;
   }
 
-  after_render() {}
+  after_render() {
+    if (this.isDetail) this.router.routes[1].component.after_render();
+  }
 
   filterNotes(filterBy) {
     if (filterBy == 'createDate' || filterBy == 'finishDate') {

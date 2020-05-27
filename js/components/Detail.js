@@ -25,13 +25,9 @@ class Detail {
     this.params = RouterUtils.getParams();
     if (!this.params.id) return '';
 
-    console.log('this.notes', this.notes);
-
     const [
       { id, title, description, importance, createDate, finishDate, finished },
     ] = this.notes.filter((note) => note.id == this.params.id);
-
-    console.log('id', id);
 
     return `
         <section class="section">
@@ -60,6 +56,7 @@ class Detail {
       .getElementById('edit_btn')
       .addEventListener('click', async (event) => {
         event.preventDefault();
+        console.log('/#edit/' + this.params.id);
         window.location.replace('/#edit/' + this.params.id);
       });
     document
