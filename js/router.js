@@ -43,6 +43,7 @@ class Router {
         let route = r[i];
         let cleanUpLocationHash = window.location.hash.split('/');
         if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
+          this.addRouterToComponent(route.component);
           this.initDataStream(route.component);
           scope.navigateTo(route.component);
           return;
@@ -100,6 +101,10 @@ class Router {
     if (!this.isInit) return;
     component.dataService.sendData(component.dataService.notes);
     this.isInit = false;
+  }
+
+  addRouterToComponent(component) {
+    component.router = this;
   }
 }
 

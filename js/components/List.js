@@ -6,7 +6,6 @@ class List {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
-        [...this.notesOrig] = data;
       }
     });
   }
@@ -27,6 +26,9 @@ class List {
       notes = await this.filterNotes(filterBy);
     }
 
+    const detailComponent = await this.router.routes[1].component.render();
+    console.log(detailComponent);
+
     let view = `
         <section class="section">
             <h1>List of notes</h1>
@@ -38,6 +40,7 @@ class List {
                   )
                   .join('\n ')}
             </ul>
+            ${detailComponent}
         </section>
         `;
     return view;
