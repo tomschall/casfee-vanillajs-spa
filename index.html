@@ -12,59 +12,61 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <header>
-      <h1 class="logo">LOGO</h1>
-      <ul class="nav">
-        <li class="navlink"><a href="#list">Notes List</a></li>
-        <li class="navlink"><a href="#new">New Note</a></li>
-        <li class="navlink"><a href="#about">About Us</a></li>
-        <li class="navlink"><a href="#switch">Switch Style</a></li>
-      </ul>
-      <div class="burger">
-        <i class="fas fa-bars"></i>
-      </div>
-    </header>
-    <aside>
-      <p>My super awesome sidebar</p>
-    </aside>
-    <main>
-      <nav class="filter-nav">
-        <ul class="filter-list">
-          <li class="filter-item child-one">
-            <button class="button is-primary" id="filter_finish_date">
-              finish
-            </button>
-          </li>
-          <li class="filter-item child-two">
-            <button class="button is-primary" id="filter_create_date">
-              created
-            </button>
-          </li>
-          <li class="filter-item child-three">
-            <button class="button is-primary" id="filter_importance">
-              importance
-            </button>
-          </li>
-          <li class="filter-item child-four">
-            <button class="button is-primary" id="filter_finished">
-              finished
-            </button>
-          </li>
-          <li class="filter-item child-four">
-            <button class="button is-primary" id="filter_reset">
-              reset
-            </button>
-          </li>
+    <div class="container">
+      <header>
+        <h1 class="logo">LOGO</h1>
+        <ul class="nav">
+          <li class="navlink"><a href="#list">Notes List</a></li>
+          <li class="navlink"><a href="#new">New Note</a></li>
+          <li class="navlink"><a href="#about">About Us</a></li>
+          <li class="navlink"><a href="#switch">Switch Style</a></li>
         </ul>
-      </nav>
-      <div id="root"></div>
-    </main>
-    <footer>
-      <ul class="navigation-list">
-        <li class="navigation-item"><a href="#">Terms of Use</a></li>
-        <li class="navigation-item"><a href="#">Support</a></li>
-      </ul>
-    </footer>
+        <div class="burger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </header>
+      <aside>
+        <p>My super awesome sidebar</p>
+      </aside>
+      <main>
+        <nav class="filter-nav">
+          <ul class="filter-list">
+            <li class="filter-item child-one">
+              <button class="button is-primary" id="filter_finish_date">
+                finish
+              </button>
+            </li>
+            <li class="filter-item child-two">
+              <button class="button is-primary" id="filter_create_date">
+                created
+              </button>
+            </li>
+            <li class="filter-item child-three">
+              <button class="button is-primary" id="filter_importance">
+                importance
+              </button>
+            </li>
+            <li class="filter-item child-four">
+              <button class="button is-primary" id="filter_finished">
+                finished
+              </button>
+            </li>
+            <li class="filter-item child-four">
+              <button class="button is-primary" id="filter_reset">
+                reset
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <div id="root"></div>
+      </main>
+      <footer>
+        <ul class="navigation-list">
+          <li class="navigation-item"><a href="#">Terms of Use</a></li>
+          <li class="navigation-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
 
     <script type="module" src="js/app.js"></script>
     <script src="js/nav.js"></script>
