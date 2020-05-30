@@ -69,19 +69,19 @@ class Router {
         let arr = scope.findComponentTags(html);
         if (arr.length) {
           let compArr = scope.fetchComponentClasses(arr);
-          console.log('html', html);
-          console.log('arr', arr);
-          console.log('compArr', compArr);
+          // console.log('html', html);
+          // console.log('arr', arr);
+          // console.log('compArr', compArr);
 
           compArr.forEach((comp, i) => {
             comp.render().then((compHtml) => {
               html = scope.findAndReplace(arr[i], html, compHtml);
               if (i == compArr.length - 1) {
-                console.log('html', html);
-                console.log('scope', scope);
                 scope.rootElem.innerHTML = html;
                 component.after_render();
-                return;
+                compArr.forEach((e) => {
+                  e.after_render();
+                });
               }
             });
           });

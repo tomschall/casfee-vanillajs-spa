@@ -45,7 +45,6 @@ class List {
                   .join('\n ')}
             </ul>
             <detail></detail>
-            <notFound></notFound>
         </section>
         `;
     return view;
