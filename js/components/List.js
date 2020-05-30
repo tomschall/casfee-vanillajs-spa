@@ -26,9 +26,6 @@ class List {
       notes = await this.filterNotes(filterBy);
     }
 
-    const detailComponent = await this.router.routes[1].component.render();
-    this.isDetail = detailComponent == '' ? false : true;
-
     let view = `
         <section class="section">
             <h1>List of notes</h1>
@@ -47,15 +44,14 @@ class List {
                   )
                   .join('\n ')}
             </ul>
-            ${detailComponent}
+            <detail></detail>
+            <notFound></notFound>
         </section>
         `;
     return view;
   }
 
-  after_render() {
-    if (this.isDetail) this.router.routes[1].component.after_render();
-  }
+  after_render() {}
 
   filterNotes(filterBy) {
     if (filterBy == 'createDate' || filterBy == 'finishDate') {

@@ -23,6 +23,7 @@ class Detail {
 
   async render() {
     this.params = RouterUtils.getParams();
+    console.log(this.params);
     if (!this.params.id) return '';
 
     const [

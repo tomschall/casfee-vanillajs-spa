@@ -43,7 +43,7 @@ class Router {
         let route = r[i];
         let cleanUpLocationHash = window.location.hash.split('/');
         if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
-          this.addRouterToComponent(route.component);
+          // this.addRouterToComponent(route.component);
           this.initDataStream(route.component);
           scope.navigateTo(route.component);
           return;
@@ -54,7 +54,7 @@ class Router {
       for (let i = 0, length = r.length; i < length; i++) {
         let route = r[i];
         if (route.default) {
-          this.addRouterToComponent(route.component);
+          // this.addRouterToComponent(route.component);
           this.initDataStream(route.component);
           scope.navigateTo(route.component);
           return;
@@ -66,6 +66,26 @@ class Router {
   navigateTo(component, filterBy) {
     (function (scope) {
       component.render(filterBy).then((html) => {
+        let arr = scope.findComponentTags(html);
+        if (arr.length) {
+          let compArr = scope.fetchComponentClasses(arr);
+          console.log('html', html);
+          console.log('arr', arr);
+          console.log('compArr', compArr);
+
+          compArr.forEach((comp, i) => {
+            comp.render().then((compHtml) => {
+              html = scope.findAndReplace(arr[i], html, compHtml);
+              if (i == compArr.length - 1) {
+                console.log('html', html);
+                console.log('scope', scope);
+                scope.rootElem.innerHTML = html;
+                component.after_render();
+                return;
+              }
+            });
+          });
+        }
         scope.rootElem.innerHTML = html;
         component.after_render();
       });
@@ -104,8 +124,35 @@ class Router {
     this.isInit = false;
   }
 
-  addRouterToComponent(component) {
-    component.router = this;
+  // addRouterToComponent(component) {
+  //   component.router = this;
+  // }
+
+  findComponentTags(html) {
+    let arr = [];
+    this.routes.forEach((e) => {
+      let match = html.match(new RegExp('<s*' + e.name + '*>'));
+      if (match) arr.push(match[0]);
+    });
+    return arr.map((e) => e.substr(1, e.length - 2));
+  }
+
+  fetchComponentClasses(arr) {
+    let compArr = [];
+    arr.forEach((e) => {
+      this.routes.forEach((r) => {
+        if (r.name == e) compArr.push(r.component);
+      });
+    });
+    return compArr;
+  }
+
+  findAndReplace(comp, html, compHtml) {
+    var newstr = html.replace(
+      new RegExp('<s*' + comp + '*></s*' + comp + '*>'),
+      compHtml,
+    );
+    return newstr;
   }
 }
 
