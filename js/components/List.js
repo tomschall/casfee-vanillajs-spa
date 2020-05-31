@@ -45,6 +45,8 @@ class List {
                   .join('\n ')}
             </ul>
             <detail></detail>
+            <detail></detail>
+            <detail></detail>
         </section>
         `;
     return view;

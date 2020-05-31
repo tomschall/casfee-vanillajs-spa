@@ -69,18 +69,14 @@ class Router {
         let arr = scope.findComponentTags(html);
         if (arr.length) {
           let compArr = scope.fetchComponentClasses(arr);
-          // console.log('html', html);
-          // console.log('arr', arr);
-          // console.log('compArr', compArr);
-
           compArr.forEach((comp, i) => {
             comp.render().then((compHtml) => {
               html = scope.findAndReplace(arr[i], html, compHtml);
               if (i == compArr.length - 1) {
                 scope.rootElem.innerHTML = html;
                 component.after_render();
-                compArr.forEach((e) => {
-                  e.after_render();
+                compArr.forEach((c) => {
+                  c.after_render();
                 });
               }
             });
@@ -124,10 +120,6 @@ class Router {
     this.isInit = false;
   }
 
-  // addRouterToComponent(component) {
-  //   component.router = this;
-  // }
-
   findComponentTags(html) {
     let arr = [];
     this.routes.forEach((e) => {
@@ -149,7 +141,7 @@ class Router {
 
   findAndReplace(comp, html, compHtml) {
     var newstr = html.replace(
-      new RegExp('<s*' + comp + '*></s*' + comp + '*>'),
+      new RegExp('<s*' + comp + '*></s*' + comp + '*>', 'g'),
       compHtml,
     );
     return newstr;
