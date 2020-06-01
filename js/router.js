@@ -69,6 +69,10 @@ class Router {
         let arr = scope.findComponentTags(html);
         if (arr.length) {
           let compArr = scope.fetchComponentClasses(arr);
+          console.log('html', html);
+          console.log('arr', arr);
+          console.log('compArr', compArr);
+
           compArr.forEach((comp, i) => {
             comp.render().then((compHtml) => {
               html = scope.findAndReplace(arr[i], html, compHtml);
@@ -140,11 +144,11 @@ class Router {
   }
 
   findAndReplace(comp, html, compHtml) {
-    var newstr = html.replace(
+    const newStr = html.replace(
       new RegExp('<s*' + comp + '*></s*' + comp + '*>', 'g'),
-      compHtml,
+      `<${comp}>${compHtml}</${comp}>`,
     );
-    return newstr;
+    return newStr;
   }
 }
 
