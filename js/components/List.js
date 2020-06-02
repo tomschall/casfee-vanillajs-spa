@@ -1,3 +1,5 @@
+import FilterUtils from '../utils/FilterUtils.js';
+
 class List {
   constructor() {}
 
@@ -21,9 +23,10 @@ class List {
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
+    const filterNotes = FilterUtils.filterNotes.bind(this);
 
     if (typeof filterBy !== 'undefined') {
-      notes = await this.filterNotes(filterBy);
+      notes = await filterNotes(filterBy);
     }
 
     let view = `
@@ -53,33 +56,6 @@ class List {
   }
 
   after_render() {}
-
-  filterNotes(filterBy) {
-    if (filterBy == 'createDate' || filterBy == 'finishDate') {
-      return this.filterByDate(filterBy);
-    } else if (filterBy == 'importance' || filterBy == 'id') {
-      return this.filterBy(filterBy);
-    } else if (filterBy == 'finished') {
-      return this.filterByFinished();
-    }
-  }
-
-  filterByDate(filterBy) {
-    return this.notes.sort((a, b) => {
-      return (
-        new moment(b[filterBy]).format('YYYYMMDD') -
-        new moment(a[filterBy]).format('YYYYMMDD')
-      );
-    });
-  }
-
-  filterBy(prop) {
-    return this.notes.sort((a, b) => a[prop] - b[prop]);
-  }
-
-  filterByFinished() {
-    return this.notes.filter((x) => x.finished == true);
-  }
 }
 
 export default List;
