@@ -30,92 +30,69 @@ class Router {
     const r = this.routes;
     const scope = this;
     window.addEventListener('hashchange', function (e) {
-      scope.detectChange(scope, r);
+      scope.detectChange(r);
     });
 
     this.initEventListeners();
-    this.detectChange(this, r);
+    this.detectChange(r);
   }
 
-  detectChange(scope, r) {
-    if (window.location.hash.length > 0) {
-      for (let i = 0, length = r.length; i < length; i++) {
-        let route = r[i];
-        let cleanUpLocationHash = window.location.hash.split('/');
-        if (route.isActiveRoute(cleanUpLocationHash[0].substr(1))) {
-          // this.addRouterToComponent(route.component);
-          this.initDataStream(route.component);
-          scope.navigateTo(route.component);
-          return;
-        }
-      }
-      scope.navigateTo(NotFound);
-    } else {
-      for (let i = 0, length = r.length; i < length; i++) {
-        let route = r[i];
-        if (route.default) {
-          // this.addRouterToComponent(route.component);
-          this.initDataStream(route.component);
-          scope.navigateTo(route.component);
-          return;
-        }
-      }
+  detectChange(r) {
+    if (!window.location.hash.length > 0) {
+      const defaultRouteTo = r.filter((r) => r.default === true);
+      this.initDataAndNavigate(defaultRouteTo[0]);
+      return;
     }
+    const locationHash = window.location.hash.split('/');
+    const routeTo = r.filter((r) => r.isActiveRoute(locationHash[0].substr(1)));
+    if (routeTo.length) {
+      this.initDataAndNavigate(routeTo[0]);
+      return;
+    }
+    this.navigateTo(NotFound);
+  }
+
+  initDataAndNavigate(route) {
+    this.initDataStream(route.component);
+    this.navigateTo(route.component);
   }
 
   navigateTo(component, filterBy) {
-    (function (scope) {
-      component.render(filterBy).then((html) => {
-        let arr = scope.findComponentTags(html);
-        if (arr.length) {
-          let compArr = scope.fetchComponentClasses(arr);
-          console.log('html', html);
-          console.log('arr', arr);
-          console.log('compArr', compArr);
+    component.render(filterBy).then((html) => {
+      this.render(component, html);
+    });
+  }
 
-          compArr.forEach((comp, i) => {
-            comp.render().then((compHtml) => {
-              html = scope.findAndReplace(arr[i], html, compHtml);
-              if (i == compArr.length - 1) {
-                scope.rootElem.innerHTML = html;
-                component.after_render();
-                compArr.forEach((c) => {
-                  c.after_render();
-                });
-              }
-            });
+  render(component, html) {
+    let arr = this.findComponentTags(html);
+    if (arr.length) {
+      this.renderMultipleComponents(component, html, arr);
+    }
+    this.renderSingleComponent(component, html);
+  }
+
+  renderSingleComponent(component, html) {
+    console.log('component render', component);
+    console.log('html', html);
+    this.rootElem.innerHTML = html;
+    component.after_render();
+  }
+
+  renderMultipleComponents(component, html, arr) {
+    let compArr = this.fetchComponentClasses(arr);
+    compArr.forEach((comp, i) => {
+      comp.render().then((compHtml) => {
+        html = this.findAndReplace(arr[i], html, compHtml);
+        if (i == compArr.length - 1) {
+          this.rootElem.innerHTML = html;
+          component.after_render();
+          compArr.forEach((c) => {
+            c.after_render();
           });
+          return;
         }
-        scope.rootElem.innerHTML = html;
-        component.after_render();
       });
-    })(this);
-  }
-
-  initEventListeners() {
-    const map = {
-      filter_finish_date: 'finishDate',
-      filter_create_date: 'createDate',
-      filter_importance: 'importance',
-      filter_finished: 'finished',
-      filter_reset: 'id',
-    };
-
-    for (let [key, value] of Object.entries(map)) {
-      document.getElementById(key).addEventListener('click', async (event) => {
-        event.preventDefault();
-        this.navigateTo(this.routes[0].component, value);
-      });
-    }
-  }
-
-  containsObject(list) {
-    for (let i = 0; i < list.length; i++) {
-      if (typeof list[i] === 'object') {
-        return true;
-      }
-    }
-    return false;
+    });
   }
 
   initDataStream(component) {
@@ -149,6 +126,32 @@ class Router {
       `<${comp}>${compHtml}</${comp}>`,
     );
     return newStr;
+  }
+
+  containsObject(list) {
+    for (let i = 0; i < list.length; i++) {
+      if (typeof list[i] === 'object') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  initEventListeners() {
+    const map = {
+      filter_finish_date: 'finishDate',
+      filter_create_date: 'createDate',
+      filter_importance: 'importance',
+      filter_finished: 'finished',
+      filter_reset: 'id',
+    };
+
+    for (let [key, value] of Object.entries(map)) {
+      document.getElementById(key).addEventListener('click', async (event) => {
+        event.preventDefault();
+        this.navigateTo(this.routes[0].component, value);
+      });
+    }
   }
 }
 
