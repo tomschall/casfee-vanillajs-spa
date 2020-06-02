@@ -1,4 +1,3 @@
-import List from './components/List.js';
 import NotFound from './components/NotFound.js';
 
 class Router {
@@ -18,11 +17,8 @@ class Router {
     this.init();
   }
 
-  async initData() {}
-
   static async create(routes) {
     const obj = new Router(routes);
-    await obj.initData();
     return obj;
   }
 
@@ -57,6 +53,12 @@ class Router {
     this.navigateTo(route.component);
   }
 
+  initDataStream(component) {
+    if (!this.isInit) return;
+    component.dataService.sendData(component.dataService.notes);
+    this.isInit = false;
+  }
+
   navigateTo(component, filterBy) {
     component.render(filterBy).then((html) => {
       this.render(component, html);
@@ -72,8 +74,6 @@ class Router {
   }
 
   renderSingleComponent(component, html) {
-    console.log('component render', component);
-    console.log('html', html);
     this.rootElem.innerHTML = html;
     component.after_render();
   }
@@ -93,12 +93,6 @@ class Router {
         }
       });
     });
-  }
-
-  initDataStream(component) {
-    if (!this.isInit) return;
-    component.dataService.sendData(component.dataService.notes);
-    this.isInit = false;
   }
 
   findComponentTags(html) {
