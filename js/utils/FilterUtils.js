@@ -1,5 +1,9 @@
-const FilterUtils = {
-  filterNotes: function (filterBy) {
+class FilterUtils {
+  constructor(notes) {
+    this.notes = notes;
+  }
+
+  async filterNotes(filterBy) {
     if (filterBy == 'createDate' || filterBy == 'finishDate') {
       return this.filterByDate(filterBy);
     } else if (filterBy == 'importance' || filterBy == 'id') {
@@ -7,21 +11,24 @@ const FilterUtils = {
     } else if (filterBy == 'finished') {
       return this.filterByFinished();
     }
-  },
-  filterByDate: function (filterBy) {
+  }
+
+  async filterByDate(filterBy) {
     return this.notes.sort((a, b) => {
       return (
         new moment(b[filterBy]).format('YYYYMMDD') -
         new moment(a[filterBy]).format('YYYYMMDD')
       );
     });
-  },
-  filterBy: function (prop) {
+  }
+
+  async filterBy(prop) {
     return this.notes.sort((a, b) => a[prop] - b[prop]);
-  },
-  filterByFinished: function () {
+  }
+
+  async filterByFinished() {
     return this.notes.filter((x) => x.finished == true);
-  },
-};
+  }
+}
 
 export default FilterUtils;

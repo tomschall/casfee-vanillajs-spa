@@ -8,6 +8,7 @@ class List {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
+        this.filterUtils = new FilterUtils(this.notes);
       }
     });
   }
@@ -23,10 +24,9 @@ class List {
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
-    const filterNotes = FilterUtils.filterNotes.bind(this);
 
     if (typeof filterBy !== 'undefined') {
-      notes = await filterNotes(filterBy);
+      notes = await this.filterUtils.filterNotes(filterBy);
     }
 
     let view = `
