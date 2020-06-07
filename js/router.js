@@ -34,6 +34,7 @@ class Router {
   }
 
   detectChange(r) {
+    console.log('window.location', window.location);
     if (!window.location.hash.length > 0) {
       const defaultRouteTo = r.filter((r) => r.default === true);
       this.initDataAndNavigate(defaultRouteTo[0]);

@@ -1,3 +1,9 @@
+@import './grid.css';
+@import './variables.css';
+@import './buttons.css';
+@import './layout.css';
+@import './filters.css';
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +12,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
+  color: var(--font-color);
   margin: 0;
+  background-color: var(--background-color);
 }
 
 h1,
@@ -16,45 +24,9 @@ h2 {
   margin: 0;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: auto 10%;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    'hd sidebar'
-    'main sidebar'
-    'footer sidebar';
-}
-
-header {
-  grid-area: hd;
-  display: flex;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  justify-content: space-around;
-  background: #292929;
-  color: #fff;
-}
-
 aside,
 main {
   text-align: center;
-}
-
-aside {
-  font-size: 1.3rem;
-  font-weight: 300;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #fff;
-  background: #292929;
-  grid-area: sidebar;
-}
-
-main {
-  grid-area: main;
 }
 
 section {
@@ -65,7 +37,7 @@ footer {
   font-size: 1.3rem;
   font-weight: 300;
   grid-area: footer;
-  background: #292929;
+  background: #080357;
   color: #fff;
   padding: 20px 0 20px 0;
 }
@@ -89,7 +61,7 @@ footer {
 }
 
 .navlink a {
-  color: #fff;
+  color: #065143;
   text-decoration: none;
   font-size: 1.2em;
 }
@@ -119,7 +91,7 @@ footer {
     top: 50px;
     width: 50%;
     height: calc(100% - 50px);
-    background: #454545;
+    background: #a0ca92;
     flex-direction: column;
     justify-content: space-around;
     padding: 0;
@@ -205,11 +177,9 @@ footer {
 }
 
 .todo-item > div {
-  background: tomato;
   padding: 5px;
   margin: 5px;
   line-height: 10px;
-  color: white;
   font-weight: bold;
   font-size: 1em;
   text-align: left;
@@ -221,7 +191,7 @@ footer {
 
 .todo-item a {
   text-decoration: none;
-  color: white;
+  color: #080357;
 }
 
 .todo-item a:hover,

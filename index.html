@@ -29,35 +29,36 @@
         <p>My super awesome sidebar</p>
       </aside>
       <main>
-        <nav class="filter-nav">
-          <ul class="filter-list">
-            <li class="filter-item child-one">
-              <button class="button is-primary" id="filter_finish_date">
-                finish
-              </button>
+        <div>
+          <ol class="filters">
+            <li>
+              <label for="All" id="filter_reset"
+                ><i class="fas fa-th-list"></i> All</label
+              >
             </li>
-            <li class="filter-item child-two">
-              <button class="button is-primary" id="filter_create_date">
-                created
-              </button>
+            <li>
+              <label for="Create Date" id="filter_create_date"
+                ><i class="fas fa-sort-amount-down"></i> Create Date</label
+              >
             </li>
-            <li class="filter-item child-three">
-              <button class="button is-primary" id="filter_importance">
-                importance
-              </button>
+            <li>
+              <label for="Finish Date" id="filter_finish_date"
+                ><i class="fas fa-th-list"></i> Finish Date</label
+              >
             </li>
-            <li class="filter-item child-four">
-              <button class="button is-primary" id="filter_finished">
-                finished
-              </button>
+            <li>
+              <label for="Importance" id="filter_importance"
+                ><i class="fas fa-star"></i> Importance</label
+              >
             </li>
-            <li class="filter-item child-four">
-              <button class="button is-primary" id="filter_reset">
-                reset
-              </button>
+            <li>
+              <label for="Is Finished" id="filter_finished"
+                ><i class="fas fa-check-circle"></i> Is Finished</label
+              >
             </li>
-          </ul>
-        </nav>
+          </ol>
+        </div>
+
         <div id="root"></div>
       </main>
       <footer>
