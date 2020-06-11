@@ -21,7 +21,6 @@ class List {
   }
 
   async render(filterBy) {
-    console.log('this.notes', this.notes);
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
@@ -35,7 +34,7 @@ class List {
           ${notes
             .map(
               (note) =>
-                `<li class="note" data-category="CSS JavaScript">
+                `<li class="note box" data-category="CSS JavaScript">
                   <article>
                     <figure>
                       <a
@@ -49,10 +48,16 @@ class List {
                       <figcaption>
                         <ol class="note-categories">
                           <li>
-                            <a href="">CSS</a>
+                            <a href="#detail/${note.id}">c: ${new moment(note.createDate).format('DD-MM-YYYY')}</a>
                           </li>
                           <li>
-                            <a href="">JavaScript</a>
+                            <a href="#detail/${note.id}">f: ${new moment(note.finishDate).format('DD-MM-YYYY')}</a>
+                          </li>
+                          <li>
+                            <a href="#detail/${note.id}">i: ${note.importance}</a>
+                          </li>
+                           <li>
+                            <a href="#detail/${note.id}">f:${note.finished}</a>
                           </li>
                         </ol>
                         <h2 class="note-title">
@@ -61,6 +66,12 @@ class List {
                             >${note.title}
                           </a>
                         </h2>
+                        <p>
+                          <a
+                            href="#detail/${note.id}"
+                            >${note.description}
+                          </a>
+                        </p>
                       </figcaption>
                     </figure>
                   </article>
