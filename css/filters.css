@@ -1,25 +1,106 @@
-/* UI-BUTTONS */
-.filter-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-
-  margin-bottom: 2rem;
-}
-
-.filter-buttons button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+/* FILTERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .filters {
-  background-color: #1e3888;
-  padding: 5px 0 1px 0;
-  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--font-color);
+  text-align: center;
+  margin: 34px;
 }
 
-section h1 {
-  color: #065143;
+.filters > li {
+  list-style-type: none;
+  margin: 0 5px;
+}
+
+.filters p {
+  padding: 0.3rem 1rem;
+  margin: 0;
+  border-radius: 2rem;
+  min-width: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filters p:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.filters p i {
+  padding: 0 6px 0 0;
+}
+
+
+
+/* FILTERED ELEMENTS (NOTES)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.notes {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.notes .note {
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.notes .note-title {
+  font-size: 1.3rem;
+}
+
+.notes .note-title:hover {
+  text-decoration: underline;
+}
+
+.notes figcaption {
+  padding: 1rem;
+}
+
+.notes .note-categories {
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.notes .note-categories * {
+  display: inline-block;
+}
+
+.notes .note-categories li {
+  margin-bottom: 0.2rem;
+}
+
+.notes .note-categories a {
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid;
+  line-height: normal;
+  transition: all 0.1s;
+}
+
+.notes .note-categories a:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+
+/* MQ
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (max-width: 900px) {
+  .posts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  html {
+    font-size: 14px;
+  }
+
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>CSS Course</title>
+    <title>My Notes App</title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -16,56 +16,60 @@
       <header>
         <h1 class="logo">LOGO</h1>
         <ul class="nav">
-          <li class="navlink"><a href="#list">Notes List</a></li>
-          <li class="navlink"><a href="#new">New Note</a></li>
-          <li class="navlink"><a href="#about">About Us</a></li>
-          <li class="navlink"><a href="#switch">Switch Style</a></li>
+          <li class="navlink">
+            <a href="#list"><i class="fas fa-th-list"></i></a>
+          </li>
+          <li class="navlink">
+            <a href="#new"><i class="fas fa-plus-square"></i></a>
+          </li>
+          <li class="navlink">
+            <a href="#about"><i class="fas fa-toggle-on"></i></a>
+          </li>
+          <li class="navlink"><a href="#switch">about us</a></li>
         </ul>
         <div class="burger">
           <i class="fas fa-bars"></i>
         </div>
       </header>
-      <aside>
-        <p>My super awesome sidebar</p>
-      </aside>
       <main>
         <div>
-          <ol class="filters">
+          <ul class="filters">
             <li>
-              <label for="All" id="filter_reset"
-                ><i class="fas fa-th-list"></i> All</label
-              >
+              <p id="filter_reset">All</p>
             </li>
             <li>
-              <label for="Create Date" id="filter_create_date"
-                ><i class="fas fa-sort-amount-down"></i> Create Date</label
-              >
+              <p id="filter_create_date">
+                Create Date
+              </p>
             </li>
             <li>
-              <label for="Finish Date" id="filter_finish_date"
-                ><i class="fas fa-th-list"></i> Finish Date</label
-              >
+              <p id="filter_finish_date">
+                Finish Date
+              </p>
             </li>
             <li>
-              <label for="Importance" id="filter_importance"
-                ><i class="fas fa-star"></i> Importance</label
-              >
+              <p id="filter_importance">
+                Importance
+              </p>
             </li>
             <li>
-              <label for="Is Finished" id="filter_finished"
-                ><i class="fas fa-check-circle"></i> Is Finished</label
-              >
+              <p id="filter_finished">
+                Is Finished
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
-
         <div id="root"></div>
       </main>
       <footer>
-        <ul class="navigation-list">
-          <li class="navigation-item"><a href="#">Terms of Use</a></li>
-          <li class="navigation-item"><a href="#">Support</a></li>
-        </ul>
+        <div class="footer">
+          <small
+            >Made with <span>❤</span> by
+            <a href="mailto:thomas.schallert@gmail.com" target="_blank"
+              >Thomas Schallert</a
+            >
+          </small>
+        </div>
       </footer>
     </div>
 

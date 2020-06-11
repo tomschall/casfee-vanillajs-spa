@@ -21,6 +21,7 @@ class List {
   }
 
   async render(filterBy) {
+    console.log('this.notes', this.notes);
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
@@ -30,28 +31,43 @@ class List {
     }
 
     let view = `
-        <section class="section">
-            <h1>List of notes</h1>
-            <ul class="todo-list">
-                ${notes
-                  .map(
-                    (note) =>
-                      `<li class="todo-item">
-                        <div class="todo-item-first">
-                          <a href="#list/${note.id}">${note.title}</a>
-                        </div>
-                        <div> 
-                          <a href="#detail/${note.id}">Show Detail</a>
-                        </div>
-                        </li>`,
-                  )
-                  .join('\n ')}
-            </ul>
-            <detail></detail>
-            <detail></detail>
-            <detail></detail>
-        </section>
-        `;
+        <ol class="notes">
+          ${notes
+            .map(
+              (note) =>
+                `<li class="note" data-category="CSS JavaScript">
+                  <article>
+                    <figure>
+                      <a
+                        href="#detail/${note.id}"
+                      >
+                        <img
+                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/parallax-pre.jpg"
+                          alt=""
+                        />
+                      </a>
+                      <figcaption>
+                        <ol class="note-categories">
+                          <li>
+                            <a href="">CSS</a>
+                          </li>
+                          <li>
+                            <a href="">JavaScript</a>
+                          </li>
+                        </ol>
+                        <h2 class="note-title">
+                          <a
+                            href="#detail/${note.id}"
+                            >${note.title}
+                          </a>
+                        </h2>
+                      </figcaption>
+                    </figure>
+                  </article>
+                </li>`,
+            )
+            .join('\n ')}
+          </ol>`;
     return view;
   }
 

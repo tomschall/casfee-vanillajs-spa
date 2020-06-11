@@ -79,20 +79,16 @@ class Edit {
                           <input id="finished" class="input" name="finished" value="1" type="checkbox" placeholder="Is finished">
                       </p>
                   </div>
-                  <div class="field">
-                      <p class="control">
-                          <button class="button is-primary" id="submit_btn">
-                          Save
-                          </button>
-                      </p>
-                  </div>
-                  <div class="field">
-                      <p class="control">
-                          <button class="button is-primary" id="cancel_btn">
-                          Cancel
-                          </button>
-                      </p>
-                  </div>
+                  <button class="button is-primary" id="submit_btn">
+                    <span>
+                      <span>Save</span>
+                    </span>
+                  </button>
+                  <button class="button is-primary" id="cancel_btn">
+                    <span>
+                      <span>Cancel</span>
+                    </span>
+                  </button>   
               </form>
             </section>
         `;

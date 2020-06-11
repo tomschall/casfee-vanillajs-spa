@@ -1,37 +1,31 @@
-/* CSS */
-/* --dark-cornflower-blue: hsla(225, 78%, 53%, 1);
---canary: hsla(65, 44%, 100%, 1);
---dark-sea-green: hsla(105, 28%, 79%, 1);
---green-sheen: hsla(160, 34%, 69%, 1);
---midnight-blue: hsla(244, 97%, 34%, 1); */
-
 :root {
-  --background-color: hsla(225, 78%, 53%, 1);
-  --font-color: #065143;
+  --black: #1a1a1a;
+  --grey: #353535;
+  --white: #fff;
+  --green: #a0ca92;
+
+  --background-color: #ffffff;
+  --background-color-2: #ffffff;
+  --font-color: #000;
   --font-lighter: #ded6a8;
 
   --contrast-color: #079bab;
 
-  --white-color: #fff;
   --light-grey: #f2f2f2;
 
-  --chromatic-light-color: #49735f;
-  --chromatic-light-color-2: #3e584b;
+  --chromatic-light-color: #dff2d8;
+  --chromatic-light-color-2: #4775ff;
   --chromatic-light-color-3: #244033;
 
   --success-color: #949e05;
 
-  --button-hover-color: #73614c;
+  --button-hover-color: #a0ca92;
 
   --importance-1: #62bb00;
   --importance-2: #96bb00;
   --importance-3: #bbac00;
   --importance-4: #bb3c00;
   --importance-5: #bb002f;
-
-  --black: #1a1a1a;
-  --white: #fff;
-  --green: #a0ca92;
 }
 
 body.theme__dark {
@@ -77,91 +71,4 @@ body.theme__dark {
 
 .note--importance-1 {
   background-color: var(--importance-1);
-}
-
-/* Filters and Posts */
-
-.filters {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.filters * {
-  display: inline-block;
-}
-
-.filters label {
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.25rem;
-  border-radius: 2rem;
-  min-width: 50px;
-  line-height: normal;
-  cursor: pointer;
-  transition: all 0.1s;
-}
-
-.filters label:hover {
-  background: var(--green);
-  color: var(--white);
-}
-
-.posts {
-  display: grid;
-  grid-gap: 1.5rem;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.posts .post {
-  background: #fafafa;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.posts .post-title {
-  font-size: 1.3rem;
-}
-
-.posts .post-title:hover {
-  text-decoration: underline;
-}
-
-.posts figcaption {
-  padding: 1rem;
-}
-
-.posts .post-categories {
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
-}
-
-.posts .post-categories * {
-  display: inline-block;
-}
-
-.posts .post-categories li {
-  margin-bottom: 0.2rem;
-}
-
-.posts .post-categories a {
-  padding: 0.2rem 0.5rem;
-  border-radius: 1rem;
-  border: 1px solid;
-  line-height: normal;
-  background: all 0.1s;
-}
-
-.posts .post-categories a:hover {
-  background: var(--green);
-  color: var(--white);
-}
-
-@media screen and (max-width: 900px) {
-  .posts {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .posts {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }

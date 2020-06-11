@@ -38,9 +38,9 @@ class Detail {
             <p> Notes Date Created : ${createDate} </p>
             <p> Notes Date Finished : ${finishDate} </p>
             <p> Is Finished : ${finished} </p>
-            <p><button class="button is-primary" id="edit_btn">Edit</button></p>
-            <p><button class="button is-primary" id="delete_btn">Delete</button></p>
-            <p><button class="button is-primary" id="back_btn">Back</button></p>        
+            <button class="button is-primary" id="edit_btn"><span><span>Edit</span></span></button>
+            <button class="button is-primary" id="delete_btn"><span><span>Delete</span></span></button>
+            <button class="button is-primary" id="back_btn"><span><span>Back</span></span></button>
         </section>
       `;
   }

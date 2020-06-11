@@ -1,3 +1,55 @@
 #root {
-  background-color: #dff2d8;
+  background-color: var(--background-color);
 }
+
+main {
+  background-color: var(--background-color-2);
+}
+
+/* NOTES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+}
+
+
+/* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer {
+  font-size: 1rem;
+  padding: 0 1.5rem;
+  text-align: right;
+}
+
+footer span {
+  color: #e31b23;
+}
+
+

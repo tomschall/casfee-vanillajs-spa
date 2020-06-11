@@ -144,6 +144,7 @@ class Router {
     for (let [key, value] of Object.entries(map)) {
       document.getElementById(key).addEventListener('click', async (event) => {
         event.preventDefault();
+        window.location.replace('/#list');
         this.navigateTo(this.routes[0].component, value);
       });
     }
