@@ -73,3 +73,50 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+## GraphQL Test Queries for Notes
+
+```
+mutation {
+  addNote(newNoteData: {
+  	title: "A Note",
+    description: "description",
+    finishDate: "08-12-2020",
+    importance: 5,
+    finished: false
+  }){
+    title,
+    description,
+    finishDate,
+    importance,
+    finished
+  }
+}
+
+query {
+  note(id: "1") 
+  {
+    title,
+    description,
+    finishDate,
+    importance,
+    finished
+  }
+}
+
+query {
+  notes 
+  {
+    title,
+    description,
+    finishDate,
+    importance,
+    finished
+  }
+}
+```
+
+
+
+
+

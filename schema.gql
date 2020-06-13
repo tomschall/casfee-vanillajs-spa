@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  addNote(newNoteData: NewNoteInput!): Note!
+  removeNote(id: String!): Boolean!
+}
+
+input NewNoteInput {
+  title: String!
+  description: String!
+  finishDate: DateTime!
+  importance: Float!
+  finished: Boolean!
+}
+
+type Note {
+  id: ID!
+  title: String!
+  description: String!
+  finishDate: DateTime!
+  importance: Float!
+  finished: Boolean!
+}
+
+type Query {
+  note(id: String!): Note!
+  notes: [Note!]!
+}
+
+type Subscription {
+  noteAdded: Note!
+}
