@@ -5,9 +5,10 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  color: var(--font-color);
+  font-size: 16px;
   text-align: center;
-  margin: 34px;
+  margin: 34px 0 20px;
+  letter-spacing: 1px;
 }
 
 .filters > li {
@@ -33,8 +34,6 @@
   padding: 0 6px 0 0;
 }
 
-
-
 /* FILTERED ELEMENTS (NOTES)
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .notes {
@@ -56,13 +55,21 @@
   text-decoration: underline;
 }
 
+.notes .note-desc {
+  font-size: 1.1rem;
+}
+
+.notes .note-desc:hover {
+  text-decoration: none;
+}
+
 .notes figcaption {
   padding: 1rem;
 }
 
 .notes .note-categories {
   margin-bottom: 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .notes .note-categories * {
@@ -85,7 +92,6 @@
   background: var(--green);
   color: var(--white);
 }
-
 
 /* MQ
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

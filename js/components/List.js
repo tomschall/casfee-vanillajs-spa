@@ -34,14 +34,14 @@ class List {
           ${notes
             .map(
               (note) =>
-                `<li class="note box" data-category="CSS JavaScript">
+                `<li class="note effect2" data-category="CSS JavaScript">
                   <article>
                     <figure>
                       <a
                         href="#detail/${note.id}"
                       >
                         <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/parallax-pre.jpg"
+                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/stars-pre.png"
                           alt=""
                         />
                       </a>
@@ -66,7 +66,7 @@ class List {
                             >${note.title}
                           </a>
                         </h2>
-                        <p>
+                        <p class="note-desc">
                           <a
                             href="#detail/${note.id}"
                             >${note.description}
