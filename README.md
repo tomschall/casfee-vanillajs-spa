@@ -6,7 +6,7 @@
 [travis-url]: https://travis-ci.org/nestjs/nest
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
-  
+
   <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -72,19 +72,45 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
-  Nest is [MIT licensed](LICENSE).
+Nest is [MIT licensed](LICENSE).
 
 ## GraphQL Test Queries for Notes
 
 ```
 mutation {
   addNote(newNoteData: {
-  	title: "A Note",
-    description: "description",
-    finishDate: "08-12-2020",
+  	title: "Neue Notiz",
+    description: "Ich muss heute noch viele Bücher lesen",
+    finishDate: "10-10-2020",
     importance: 5,
     finished: false
   }){
+    id,
+    title,
+    description,
+    finishDate,
+    createDate,
+    importance,
+    finished
+  }
+}
+
+query {
+  note(id: "5ee668915b92b0c2e0ba900f")
+  {
+    title,
+    description,
+    createDate,
+    finishDate,
+    importance,
+    finished
+  }
+}
+
+query {
+  notes
+  {
+    id,
     title,
     description,
     finishDate,
@@ -93,30 +119,26 @@ mutation {
   }
 }
 
-query {
-  note(id: "1") 
-  {
-    title,
-    description,
-    finishDate,
-    importance,
-    finished
-  }
+mutation {
+  removeNote(id: "5ee667eb2d2ee4c249288ed2")
 }
 
-query {
-  notes 
-  {
+mutation {
+  update(updateNoteData: {
+    id: "5ee668915b92b0c2e0ba900f"
+  	title: "Neue Notiz",
+    description: "Keine Schokolade mehr essen...",
+    finishDate: "11-10-2020",
+    importance: 4,
+    finished: true
+  }){
+    id,
     title,
     description,
     finishDate,
+    createDate,
     importance,
     finished
   }
 }
 ```
-
-
-
-
-

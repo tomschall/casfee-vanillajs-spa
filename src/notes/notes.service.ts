@@ -4,14 +4,12 @@ import { Note } from './models/note.model';
 import { timingSafeEqual } from 'crypto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Note as NoteModel } from './schemas/note.schema';
+import { Note as NoteObj } from './schemas/note.schema';
 import { UpdateNoteInput } from './dto/update-note.input';
 
 @Injectable()
 export class NotesService {
-  constructor(
-    @InjectModel(NoteModel.name) private noteModel: Model<NoteModel>,
-  ) {}
+  constructor(@InjectModel(NoteObj.name) private noteModel: Model<NoteObj>) {}
 
   async create(newNoteInput: NewNoteInput): Promise<Note> {
     const note = new this.noteModel(newNoteInput);

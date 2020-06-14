@@ -15,7 +15,9 @@ import { join } from 'path';
       autoSchemaFile: 'schema.gql',
     }),
     NotesModule,
-    MongooseModule.forRoot('mongodb://localhost/casfee-vanillajs-spa'),
+    MongooseModule.forRoot('mongodb://localhost/casfee-vanillajs-spa', {
+      useFindAndModify: false,
+    }),
   ],
 })
 export class AppModule {}
