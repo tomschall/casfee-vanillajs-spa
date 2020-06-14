@@ -4,6 +4,7 @@ import { PubSub } from 'apollo-server-express';
 import { NewNoteInput } from './dto/new-note.input';
 import { Note } from './models/note.model';
 import { NotesService } from './notes.service';
+import { UpdateNoteInput } from './dto/update-note.input';
 
 const pubSub = new PubSub();
 
@@ -30,6 +31,14 @@ export class NotesResolver {
     newNoteData.createDate = new Date();
     const note = await this.notesService.create(newNoteData);
     pubSub.publish('noteAdded', { noteAdded: note });
+    return note;
+  }
+
+  @Mutation((returns) => Note)
+  async update(
+    @Args('updateNoteData') updateNoteData: UpdateNoteInput,
+  ): Promise<Note> {
+    const note = await this.notesService.findOneAndUpdate(updateNoteData);
     return note;
   }
 

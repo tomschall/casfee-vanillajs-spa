@@ -9,6 +9,7 @@ scalar DateTime
 
 type Mutation {
   addNote(newNoteData: NewNoteInput!): Note!
+  update(updateNoteData: UpdateNoteInput!): Note!
   removeNote(id: String!): Boolean!
 }
 
@@ -38,4 +39,14 @@ type Query {
 
 type Subscription {
   noteAdded: Note!
+}
+
+input UpdateNoteInput {
+  id: String!
+  title: String!
+  description: String
+  createDate: DateTime
+  finishDate: DateTime!
+  importance: Float!
+  finished: Boolean!
 }
