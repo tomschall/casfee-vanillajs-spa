@@ -2,35 +2,28 @@ import { Injectable } from '@nestjs/common';
 import { NewNoteInput } from './dto/new-note.input';
 import { Note } from './models/note.model';
 import { timingSafeEqual } from 'crypto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Note as NoteModel } from './schemas/note.schema';
 
 @Injectable()
 export class NotesService {
-  constructor() {
-    this.notes = [];
-  }
+  constructor(
+    @InjectModel(NoteModel.name) private noteModel: Model<NoteModel>,
+  ) {}
 
-  notes = [];
-
-  async create(data: NewNoteInput): Promise<Note> {
-    console.log(data);
-    this.notes.push(data);
-    console.log('this.notes', this.notes);
-    return data as any;
+  async create(newNoteInput: NewNoteInput): Promise<Note> {
+    const note = new this.noteModel(newNoteInput);
+    const createdNote = await note.save();
+    return createdNote as any;
   }
 
   async findOneById(id: string): Promise<Note> {
-    const data = {
-      title: 'i Found a Note',
-      description: 'this is the note i found',
-      finishDate: new Date(),
-      importance: 5,
-      finished: 0,
-    };
-    return data as any;
+    return (await this.noteModel.findById(id).exec()) as Note;
   }
 
   async findAll(): Promise<Note[]> {
-    return this.notes as Note[];
+    return (await this.noteModel.find().exec()) as Note[];
   }
 
   async remove(id: string): Promise<boolean> {

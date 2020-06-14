@@ -20,6 +20,11 @@ export class NewNoteInput {
   @Length(30, 255)
   description?: string;
 
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsDate()
+  createDate?: Date;
+
   @Field()
   @IsDate()
   finishDate: Date;

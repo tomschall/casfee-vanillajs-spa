@@ -27,6 +27,7 @@ export class NotesResolver {
 
   @Mutation((returns) => Note)
   async addNote(@Args('newNoteData') newNoteData: NewNoteInput): Promise<Note> {
+    newNoteData.createDate = new Date();
     const note = await this.notesService.create(newNoteData);
     pubSub.publish('noteAdded', { noteAdded: note });
     return note;

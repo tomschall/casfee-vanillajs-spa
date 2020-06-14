@@ -11,6 +11,9 @@ export class Note {
   @Field({ nullable: true })
   description?: string;
 
+  @Field({ nullable: true })
+  createDate: Date;
+
   @Field()
   finishDate: Date;
 
