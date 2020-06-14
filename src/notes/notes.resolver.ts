@@ -21,7 +21,7 @@ export class NotesResolver {
   }
 
   @Query((returns) => [Note])
-  notes(): Promise<Note[]> {
+  async notes(): Promise<Note[]> {
     return this.notesService.findAll();
   }
 

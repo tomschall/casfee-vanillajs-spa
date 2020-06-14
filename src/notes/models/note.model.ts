@@ -8,8 +8,8 @@ export class Note {
   @Field()
   title: string;
 
-  @Field()
-  description: string;
+  @Field({ nullable: true })
+  description?: string;
 
   @Field()
   finishDate: Date;

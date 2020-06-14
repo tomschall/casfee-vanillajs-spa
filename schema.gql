@@ -14,7 +14,7 @@ type Mutation {
 
 input NewNoteInput {
   title: String!
-  description: String!
+  description: String
   finishDate: DateTime!
   importance: Float!
   finished: Boolean!
@@ -23,7 +23,7 @@ input NewNoteInput {
 type Note {
   id: ID!
   title: String!
-  description: String!
+  description: String
   finishDate: DateTime!
   importance: Float!
   finished: Boolean!

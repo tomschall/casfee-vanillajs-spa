@@ -1,25 +1,35 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsOptional, Length, MaxLength } from 'class-validator';
+import {
+  IsOptional,
+  Length,
+  MaxLength,
+  IsDate,
+  Min,
+  Max,
+  IsBoolean,
+} from 'class-validator';
 
 @InputType()
 export class NewNoteInput {
   @Field()
-  @MaxLength(30)
+  @MaxLength(40)
   title: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @Length(30, 255)
-  description: string;
+  description?: string;
 
   @Field()
-  @Length(30, 255)
+  @IsDate()
   finishDate: Date;
 
   @Field()
-  @Length(30, 255)
+  @Min(1)
+  @Max(5)
   importance: number;
 
   @Field()
-  @Length(30, 255)
+  @IsBoolean()
   finished: boolean;
 }
