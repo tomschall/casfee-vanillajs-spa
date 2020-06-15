@@ -23,7 +23,7 @@ class FilterUtils {
   }
 
   async filterBy(prop) {
-    return this.notes.sort((a, b) => a[prop] - b[prop]);
+    return this.notes.sort((a, b) => b[prop] - a[prop]);
   }
 
   async filterByFinished() {

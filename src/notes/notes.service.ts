@@ -23,7 +23,9 @@ export class NotesService {
 
   async findOneAndUpdate(updateNoteInput: UpdateNoteInput): Promise<Note> {
     return (await this.noteModel
-      .findOneAndUpdate({ _id: updateNoteInput.id }, updateNoteInput)
+      .findOneAndUpdate({ _id: updateNoteInput.id }, updateNoteInput, {
+        new: true,
+      })
       .exec()) as Note;
   }
 

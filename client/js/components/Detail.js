@@ -57,7 +57,6 @@ class Detail {
         .getElementById('edit_btn')
         .addEventListener('click', async (event) => {
           event.preventDefault();
-          console.log('/#edit/' + this.params.id);
           window.location.replace('/#edit/' + this.params.id);
         });
       document

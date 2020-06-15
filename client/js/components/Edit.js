@@ -49,7 +49,9 @@ class Edit {
                       <p class="control has-icons-left has-icons-right">
                           <label for="finishDate">Date for finishing</label>
                           <input id="finishDate" class="input" name="finishDate" type="date" placeholder="Date" value="${
-                            this.notes ? finishDate : ''
+                            this.notes
+                              ? new moment(finishDate).format('YYYY-MM-DD')
+                              : ''
                           }">
                       </p>
                   </div>

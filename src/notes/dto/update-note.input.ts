@@ -20,7 +20,7 @@ export class UpdateNoteInput {
 
   @Field({ nullable: true })
   @IsOptional()
-  @Length(30, 255)
+  @Length(0, 255)
   description?: string;
 
   @Field({ nullable: true })
