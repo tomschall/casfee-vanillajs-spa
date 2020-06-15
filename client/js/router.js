@@ -1,5 +1,3 @@
-import NotFound from './components/NotFound.js';
-
 class Router {
   constructor(routes) {
     try {
@@ -45,7 +43,9 @@ class Router {
       this.initDataAndNavigate(routeTo[0]);
       return;
     }
-    this.navigateTo(NotFound);
+
+    const routeNotFound = r.filter((r) => r.name === 'notFound');
+    this.initDataAndNavigate(routeNotFound[0]);
   }
 
   initDataAndNavigate(route) {

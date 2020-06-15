@@ -1,16 +1,20 @@
 import RouterUtils from '../utils/RouterUtils.js';
 
-const NotFound = {
-  render: async () => {
-    const params = RouterUtils.getParams();
+class NotFound {
+  constructor() {
+    this.params = [];
+  }
+
+  async render() {
+    this.params = RouterUtils.getParams();
 
     return `
         <section class="section">
             <h1>Not Found Component</h1>
         </section>
       `;
-  },
-  after_render: async () => {},
-};
+  }
+  async after_render() {}
+}
 
 export default NotFound;

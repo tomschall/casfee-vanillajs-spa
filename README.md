@@ -125,7 +125,7 @@ mutation {
 
 mutation {
   update(updateNoteData: {
-    id: "5ee668915b92b0c2e0ba900f"
+    id: "5ee668915b92b0c2e0ba900f",
   	title: "Neue Notiz",
     description: "Keine Schokolade mehr essen...",
     finishDate: "11-10-2020",

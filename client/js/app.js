@@ -8,8 +8,6 @@ import Form from './components/Form.js';
 import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
 
-('use strict');
-
 (async function () {
   const dataService = await DataService.create();
   const router = await Router.create([
@@ -17,6 +15,6 @@ import NotFound from './components/NotFound.js';
     new Route('detail', await Detail.create(dataService)),
     new Route('new', await Form.create(dataService)),
     new Route('edit', await Edit.create(dataService)),
-    new Route('notFound', NotFound),
+    new Route('notFound', new NotFound()),
   ]);
 })();
