@@ -26,7 +26,7 @@
 }
 
 .filters p:hover {
-  background: var(--black);
+  background: var(--light-black);
   color: var(--white);
 }
 
@@ -43,8 +43,29 @@
 }
 
 .notes .note {
-  background: #fafafa;
+  /* background: rgb(250, 250, 250, 1); */
+  background: rgb(250, 250, 250, 1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.notes .note.imp-1 {
+  border-bottom: 5px solid var(--importance-1);
+}
+
+.notes .note.imp-2 {
+  border-bottom: 5px solid var(--importance-2);
+}
+
+.notes .note.imp-3 {
+  border-bottom: 5px solid var(--importance-3);
+}
+
+.notes .note.imp-4 {
+  border-bottom: 5px solid var(--importance-4);
+}
+
+.notes .note.imp-5 {
+  border-bottom: 5px solid var(--importance-5);
 }
 
 .notes .note-title {

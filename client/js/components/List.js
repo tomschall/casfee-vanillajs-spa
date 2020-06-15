@@ -34,7 +34,7 @@ class List {
           ${notes
             .map(
               (note) =>
-                `<li class="note effect2" data-category="CSS JavaScript">
+                `<li class="note effect2 imp-${note.importance}" data-category="CSS JavaScript">
                   <article>
                     <figure>
                       <a

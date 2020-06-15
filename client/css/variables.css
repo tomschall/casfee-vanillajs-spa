@@ -12,6 +12,7 @@
   --contrast-color: #079bab;
 
   --light-grey: #f2f2f2;
+  --light-black: rgb(26, 26, 26, 0.75);
 
   --chromatic-light-color: #dff2d8;
   --chromatic-light-color-2: #4775ff;
@@ -21,11 +22,11 @@
 
   --button-hover-color: #a0ca92;
 
-  --importance-1: #62bb00;
-  --importance-2: #96bb00;
-  --importance-3: #bbac00;
-  --importance-4: #bb3c00;
-  --importance-5: #bb002f;
+  --importance-1: rgb(98, 187, 0, 0.55);
+  --importance-2: rgb(150, 187, 0, 0.55);
+  --importance-3: rgb(187, 172, 0, 0.55);
+  --importance-4: rgb(187, 60, 0, 0.55);
+  --importance-5: rgb(187, 0, 47, 0.55);
 }
 
 body.theme__dark {
