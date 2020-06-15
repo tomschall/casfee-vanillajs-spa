@@ -110,7 +110,7 @@
 }
 
 .notes .note-categories a:hover {
-  background: var(--green);
+  background: var(--light-black);
   color: var(--white);
 }
 

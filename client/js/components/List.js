@@ -37,14 +37,9 @@ class List {
                 `<li class="note effect2 imp-${note.importance}" data-category="CSS JavaScript">
                   <article>
                     <figure>
-                      <a
-                        href="#detail/${note.id}"
-                      >
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/stars-pre.png"
-                          alt=""
-                        />
-                      </a>
+                      <div class="note-image-container">
+                        <img src="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/1200px-133Eevee.png" alt="Eevee" class="card__image">   
+                      </div>
                       <figcaption>
                         <ol class="note-categories">
                           <li>
@@ -75,8 +70,7 @@ class List {
                       </figcaption>
                     </figure>
                   </article>
-                  <div class="details">
-                    
+                  <div class="details imp-${note.importance}">
                   </div>
                 </li>`,
             )
