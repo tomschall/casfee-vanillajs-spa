@@ -55,7 +55,7 @@ class DataService {
       });
       return response.data.data.notes;
     } catch (err) {
-      console.error('Error getting documents', err);
+      this.handleError(err);
     }
   }
 
@@ -93,10 +93,10 @@ class DataService {
         this.sendData(this.notes);
         return note;
       } else if (err) {
-        console.error('graphql error', err);
+        throw new Error(err[0].message);
       }
     } catch (err) {
-      console.error('Error getting documents', err);
+      this.handleError(err);
     }
   }
 
@@ -138,10 +138,10 @@ class DataService {
         this.sendData(this.notes);
         return note;
       } else if (err) {
-        console.error('graphql error', err);
+        throw new Error(err[0].message);
       }
     } catch (err) {
-      console.error('Error getting documents', err);
+      this.handleError(err);
     }
   }
 
@@ -171,10 +171,10 @@ class DataService {
         }
         return false;
       } else if (err) {
-        console.error('graphql error', err);
+        throw new Error(err[0].message);
       }
     } catch (err) {
-      console.error('Error getting documents', err);
+      this.handleError(err);
     }
   }
 
@@ -188,6 +188,21 @@ class DataService {
 
   getData() {
     return this.subject.asObservable();
+  }
+
+  handleError(err) {
+    let message = '';
+    if (err.response) {
+      // Status code out of the range of 2xx, format error message according
+      console.error('Error getting response', err.response);
+    } else if (err.request) {
+      // The request was made but no response was received, format message accordingly
+      console.error('Error getting request', err.request);
+    } else {
+      message = err.message;
+    }
+    // throw whatever error you have so it's included in your graphql response
+    throw new Error(message);
   }
 }
 
