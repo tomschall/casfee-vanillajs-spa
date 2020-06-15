@@ -75,6 +75,9 @@ class List {
                       </figcaption>
                     </figure>
                   </article>
+                  <div class="details">
+                    
+                  </div>
                 </li>`,
             )
             .join('\n ')}
