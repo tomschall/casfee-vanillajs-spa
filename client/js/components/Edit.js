@@ -23,7 +23,7 @@ class Edit {
     this.params = RouterUtils.getParams();
 
     const [
-      { id, title, description, importance, finishDate },
+      { id, title, description, importance, finishDate, finished },
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
@@ -78,7 +78,9 @@ class Edit {
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <label for="finished">Is finished</label>
-                          <input id="finished" class="input" name="finished" value="1" type="checkbox" placeholder="Is finished">
+                          <input id="finished" class="input" name="finished" type="checkbox" placeholder="Is finished" ${
+                            this.notes && finished == true ? 'checked="checked"' : ''
+                          }>
                       </p>
                   </div>
                   <button class="button is-primary" id="submit_btn">
@@ -106,6 +108,7 @@ class Edit {
         let description = document.getElementById('description');
         let finishDate = document.getElementById('finishDate');
         let importance = document.getElementById('importance');
+        let finished = document.getElementById('finished');
 
         if ((title.value == '') | (description.value == '')) {
           alert(`The fields cannot be empty`);
@@ -116,6 +119,7 @@ class Edit {
             description: description.value,
             finishDate: finishDate.value,
             importance: importance.value,
+            finished: finished.checked
           };
           await this.dataService.updateNote(id.value, data);
           window.location.replace('/#list');

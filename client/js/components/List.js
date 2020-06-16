@@ -29,6 +29,8 @@ class List {
       notes = await this.filterUtils.filterNotes(filterBy);
     }
 
+    const pic = this.getPictureNameArray();
+
     let view = `
         <div>
           <ul class="filters">
@@ -65,7 +67,7 @@ class List {
                   <article>
                     <figure>
                       <div class="note-image-container">
-                        <img src="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/1200px-133Eevee.png" alt="Eevee" class="card__image">   
+                        <img src="images/${pic[note.importance]}" alt="Eevee" class="card__image">   
                       </div>
                       <figcaption>
                         <ol class="note-categories">
@@ -82,7 +84,7 @@ class List {
                             </a>
                           </li>
                           <li>
-                            <a href="#detail/${note.id}">${this.renderStars(note.importance)}</a>
+                            <a>${this.renderStars(note)}</a>
                           </li>
                            <li>
                             <a data-finished="${note.id}" >${this.renderFinished(note)}</a>
@@ -114,13 +116,13 @@ class List {
     return view;
   }
 
-  renderStars(importance) {
+  renderStars(note) {
     let str = '';
     for (let i=1; i<=5; i++) {
-      if (i <= importance) {
-        str += '<i class="fas fa-star"></i>';
+      if (i <= note.importance) {
+        str += `<i class="fas fa-star" data-importance="${note.id},${i}"></i>`;
       } else {
-        str += '<i class="far fa-star"></i>';
+        str += `<i class="far fa-star" data-importance="${note.id},${i}"></i>`;
       }
     }
     return str;
@@ -136,6 +138,17 @@ class List {
     return note.finished === true
       ? `<i class="fa fa-flag-checkered green" aria-hidden="true"></i> `
       : `<i class="fa fa-flag-checkered red" aria-hidden="true"></i> `;
+  }
+
+  getPictureNameArray() {
+    return [
+      '',
+      '600px-471Glaceon.png',
+      '600px-470Leafeon.png',
+      '1200px-133Eevee.png',
+      '1200px-196Espeon.png',
+      '1200px-136Flareon.png',
+    ]
   }
 
   after_render() {}

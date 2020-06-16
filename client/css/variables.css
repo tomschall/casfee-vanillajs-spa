@@ -24,11 +24,11 @@
 
   --button-hover-color: #a0ca92;
 
-  --importance-1: rgb(98, 187, 0, 0.55);
-  --importance-2: rgb(150, 187, 0, 0.55);
-  --importance-3: rgb(187, 172, 0, 0.55);
-  --importance-4: rgb(187, 60, 0, 0.55);
-  --importance-5: rgb(187, 0, 47, 0.55);
+  --importance-1: rgb(181, 224, 221, 0.55);
+  --importance-2: rgb(249, 227, 170, 0.55);
+  --importance-3: rgb(195, 144, 92, 0.55);
+  --importance-4: rgb(169, 56, 86, 0.55);
+  --importance-5: rgb(240, 105, 43, 0.55);
 }
 
 body.theme__dark {

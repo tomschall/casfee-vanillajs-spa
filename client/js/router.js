@@ -152,12 +152,21 @@ class Router {
     }
 
     document.getElementById('notes').addEventListener('click', async (event) => {
-      if (event.target.dataset.finished != undefined) {
+      if (event.target.dataset.finished !== undefined) {
         const [note] = this.routes[0].component.dataService.notes.filter((el) => {
           return el.id === event.target.dataset.finished;
         });
         note.finished = note.finished === true ? false : true;
         await this.routes[0].component.dataService.updateNote(event.target.dataset.finished, note);
+        this.navigateTo(this.routes[0].component);
+      }
+      if (event.target.dataset.importance !== undefined) {
+        const data = event.target.dataset.importance.split(',');
+        const [note] = this.routes[0].component.dataService.notes.filter((el) => {
+          return el.id === data[0];
+        });
+        note.importance = data[1];
+        await this.routes[0].component.dataService.updateNote(data[0], note);
         this.navigateTo(this.routes[0].component);
       }
     });
