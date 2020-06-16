@@ -79,3 +79,11 @@
 .note-image-container {
   padding: 1em 1em 0;
 }
+
+.fa.fa-flag-checkered.red {
+  color: var(--light-red);
+}
+
+.fa.fa-flag-checkered.green {
+  color: var(--light-green);
+}

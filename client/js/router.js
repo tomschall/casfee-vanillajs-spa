@@ -26,8 +26,6 @@ class Router {
     window.addEventListener('hashchange', function (e) {
       scope.detectChange(r);
     });
-
-    this.initEventListeners();
     this.detectChange(r);
   }
 
@@ -65,10 +63,11 @@ class Router {
     });
   }
 
-  render(component, html) {
+  async render(component, html) {
     let arr = this.findComponentTags(html);
     if (arr.length) {
-      this.renderMultipleComponents(component, html, arr);
+      await this.renderMultipleComponents(component, html, arr);
+      return;
     }
     this.renderSingleComponent(component, html);
   }
@@ -76,9 +75,10 @@ class Router {
   renderSingleComponent(component, html) {
     this.rootElem.innerHTML = html;
     component.after_render();
+    this.initEventListeners();
   }
 
-  renderMultipleComponents(component, html, arr) {
+  async renderMultipleComponents(component, html, arr) {
     let compArr = this.fetchComponentClasses(arr);
     compArr.forEach((comp, i) => {
       comp.render().then((compHtml) => {
@@ -89,6 +89,7 @@ class Router {
           compArr.forEach((c) => {
             c.after_render();
           });
+          this.initEventListeners();
           return;
         }
       });
@@ -141,12 +142,26 @@ class Router {
     };
 
     for (let [key, value] of Object.entries(map)) {
+      if (document.getElementById(key) === null) return;
       document.getElementById(key).addEventListener('click', async (event) => {
+        console.log('filter', value);
         event.preventDefault();
         window.location.replace('/#list');
         this.navigateTo(this.routes[0].component, value);
       });
     }
+
+    document.getElementById('notes').addEventListener('click', async (event) => {
+      if (event.target.dataset.finished != undefined) {
+        const [note] = this.routes[0].component.dataService.notes.filter((el) => {
+          return el.id === event.target.dataset.finished;
+        });
+        note.finished = note.finished === true ? false : true;
+        await this.routes[0].component.dataService.updateNote(event.target.dataset.finished, note);
+        this.navigateTo(this.routes[0].component);
+      }
+    });
+
   }
 }
 

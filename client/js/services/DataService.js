@@ -31,6 +31,39 @@ class DataService {
     return obj;
   }
 
+  async getNote(id) {
+    try {
+      const response = await axios({
+        url: CONFIG.graphqlApiHost,
+        method: 'POST',
+        data: {
+          query: `
+            query {
+              note(id: "${id}") 
+              {
+                title,
+                description,
+                createDate,
+                finishDate,
+                importance,
+                finished
+              }
+            }
+          `,
+        },
+      });
+      const err = response.data.errors;
+      if (response.data.data !== null) {
+        const note = response.data.data.note;
+        return note;
+      } else if (err) {
+        throw new Error(err[0].message);
+      }
+    } catch (err) {
+      this.handleError(err);
+    }
+  }
+
   async getAllNotes() {
     try {
       const response = await axios({
@@ -114,7 +147,7 @@ class DataService {
                 description: "${data.description}",
                 finishDate: "${data.finishDate}",
                 importance: ${data.importance},
-                finished: false
+                finished: ${data.finished}
               }){
                 id,
                 title,

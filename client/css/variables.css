@@ -13,6 +13,8 @@
 
   --light-grey: #f2f2f2;
   --light-black: rgb(26, 26, 26, 0.75);
+  --light-red: rgb(227, 44, 44, 0.45);
+  --light-green: rgba(97, 211, 59, 0.45);
 
   --chromatic-light-color: #dff2d8;
   --chromatic-light-color-2: #4775ff;

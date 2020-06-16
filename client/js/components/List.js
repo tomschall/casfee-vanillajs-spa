@@ -30,7 +30,34 @@ class List {
     }
 
     let view = `
-        <ol class="notes">
+        <div>
+          <ul class="filters">
+            <li>
+              <p id="filter_reset">All</p>
+            </li>
+            <li>
+              <p id="filter_create_date">
+                Create Date
+              </p>
+            </li>
+            <li>
+              <p id="filter_finish_date">
+                Finish Date
+              </p>
+            </li>
+            <li>
+              <p id="filter_importance">
+                Importance
+              </p>
+            </li>
+            <li>
+              <p id="filter_finished">
+                Is Finished
+              </p>
+            </li>
+          </ul>
+        </div>
+        <ol id="notes" class="notes">
           ${notes
             .map(
               (note) =>
@@ -43,16 +70,22 @@ class List {
                       <figcaption>
                         <ol class="note-categories">
                           <li>
-                            <a href="#detail/${note.id}">c: ${new moment(note.createDate).format('DD-MM-YYYY')}</a>
+                            <a href="#detail/${note.id}">
+                              <i class="far fa-calendar-plus"></i>
+                              ${new moment(note.createDate).format('DD-MM-YYYY')}
+                            </a>
                           </li>
                           <li>
-                            <a href="#detail/${note.id}">f: ${new moment(note.finishDate).format('DD-MM-YYYY')}</a>
+                            <a href="#detail/${note.id}">
+                              ${this.renderFinishedFlag(note)} 
+                              ${new moment(note.finishDate).format('DD-MM-YYYY')}
+                            </a>
                           </li>
                           <li>
-                            <a href="#detail/${note.id}">i: ${note.importance}</a>
+                            <a href="#detail/${note.id}">${this.renderStars(note.importance)}</a>
                           </li>
                            <li>
-                            <a href="#detail/${note.id}">f:${note.finished}</a>
+                            <a data-finished="${note.id}" >${this.renderFinished(note)}</a>
                           </li>
                         </ol>
                         <h2 class="note-title">
@@ -63,7 +96,7 @@ class List {
                         </h2>
                         <p class="note-desc">
                           <a
-                            href="#detail/${note.id}"
+                            href="#list/${note.id}"
                             >${note.description}
                           </a>
                         </p>
@@ -71,12 +104,38 @@ class List {
                     </figure>
                   </article>
                   <div class="details imp-${note.importance}">
+                    
                   </div>
                 </li>`,
             )
             .join('\n ')}
-          </ol>`;
+          </ol>
+          `;
     return view;
+  }
+
+  renderStars(importance) {
+    let str = '';
+    for (let i=1; i<=5; i++) {
+      if (i <= importance) {
+        str += '<i class="fas fa-star"></i>';
+      } else {
+        str += '<i class="far fa-star"></i>';
+      }
+    }
+    return str;
+  }
+
+  renderFinished(note) {
+    return note.finished === true
+      ? `<i class="far fa-thumbs-up" data-finished="${note.id}"></i>`
+      : `<i class="far fa-thumbs-down" data-finished="${note.id}"></i>`;
+  }
+
+  renderFinishedFlag(note) {
+    return note.finished === true
+      ? `<i class="fa fa-flag-checkered green" aria-hidden="true"></i> `
+      : `<i class="fa fa-flag-checkered red" aria-hidden="true"></i> `;
   }
 
   after_render() {}
