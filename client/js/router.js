@@ -144,7 +144,6 @@ class Router {
     for (let [key, value] of Object.entries(map)) {
       if (document.getElementById(key) === null) return;
       document.getElementById(key).addEventListener('click', async (event) => {
-        console.log('filter', value);
         event.preventDefault();
         window.location.replace('/#list');
         this.navigateTo(this.routes[0].component, value);

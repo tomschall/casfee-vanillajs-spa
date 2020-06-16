@@ -25,7 +25,7 @@
   transition: all 0.3s;
 }
 
-.filters p:hover {
+.filters p:hover, .filters p.active {
   background: var(--light-black);
   color: var(--white);
 }

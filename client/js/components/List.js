@@ -35,25 +35,25 @@ class List {
         <div>
           <ul class="filters">
             <li>
-              <p id="filter_reset">All</p>
+              <p id="filter_reset" ${this.filterIsActive(filterBy, 'id')}>All</p>
             </li>
             <li>
-              <p id="filter_create_date">
+              <p id="filter_create_date" ${this.filterIsActive(filterBy, 'createDate')}>
                 Create Date
               </p>
             </li>
             <li>
-              <p id="filter_finish_date">
+              <p id="filter_finish_date" ${this.filterIsActive(filterBy, 'finishDate')}>
                 Finish Date
               </p>
             </li>
             <li>
-              <p id="filter_importance">
+              <p id="filter_importance" ${this.filterIsActive(filterBy, 'importance')}>
                 Importance
               </p>
             </li>
             <li>
-              <p id="filter_finished">
+              <p id="filter_finished" ${this.filterIsActive(filterBy, 'finished')}>
                 Is Finished
               </p>
             </li>
@@ -98,7 +98,7 @@ class List {
                         </h2>
                         <p class="note-desc">
                           <a
-                            href="#list/${note.id}"
+                            href="#detail/${note.id}"
                             >${note.description}
                           </a>
                         </p>
@@ -149,6 +149,10 @@ class List {
       '1200px-196Espeon.png',
       '1200px-136Flareon.png',
     ]
+  }
+
+  filterIsActive(filterBy, element) {
+    return filterBy === element ? 'class="active"' : '';
   }
 
   after_render() {}
