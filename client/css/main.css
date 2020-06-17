@@ -5,6 +5,7 @@
 @import './filters.css';
 @import './form.css';
 @import './card.css';
+@import './modal.css';
 
 * {
   box-sizing: border-box;

@@ -35,25 +35,40 @@ class List {
         <div>
           <ul class="filters">
             <li>
-              <p id="filter_reset" ${this.filterIsActive(filterBy, 'id')}>All</p>
+              <p id="filter_reset" ${this.filterIsActive(
+                filterBy,
+                'id',
+              )}>All</p>
             </li>
             <li>
-              <p id="filter_create_date" ${this.filterIsActive(filterBy, 'createDate')}>
+              <p id="filter_create_date" ${this.filterIsActive(
+                filterBy,
+                'createDate',
+              )}>
                 Create Date
               </p>
             </li>
             <li>
-              <p id="filter_finish_date" ${this.filterIsActive(filterBy, 'finishDate')}>
+              <p id="filter_finish_date" ${this.filterIsActive(
+                filterBy,
+                'finishDate',
+              )}>
                 Finish Date
               </p>
             </li>
             <li>
-              <p id="filter_importance" ${this.filterIsActive(filterBy, 'importance')}>
+              <p id="filter_importance" ${this.filterIsActive(
+                filterBy,
+                'importance',
+              )}>
                 Importance
               </p>
             </li>
             <li>
-              <p id="filter_finished" ${this.filterIsActive(filterBy, 'finished')}>
+              <p id="filter_finished" ${this.filterIsActive(
+                filterBy,
+                'finished',
+              )}>
                 Is Finished
               </p>
             </li>
@@ -63,31 +78,41 @@ class List {
           ${notes
             .map(
               (note) =>
-                `<li class="note effect2 imp-${note.importance}" data-category="CSS JavaScript">
+                `<li class="note effect2 imp-${
+                  note.importance
+                }" data-category="CSS JavaScript">
                   <article>
                     <figure>
                       <div class="note-image-container">
-                        <img src="images/${pic[note.importance]}" alt="Eevee" class="card__image">   
+                        <img src="images/${
+                          pic[note.importance]
+                        }" alt="Eevee" class="card__image">   
                       </div>
                       <figcaption>
                         <ol class="note-categories">
                           <li>
                             <a href="#detail/${note.id}">
                               <i class="far fa-calendar-plus"></i>
-                              ${new moment(note.createDate).format('DD-MM-YYYY')}
+                              ${new moment(note.createDate).format(
+                                'DD-MM-YYYY',
+                              )}
                             </a>
                           </li>
                           <li>
                             <a href="#detail/${note.id}">
                               ${this.renderFinishedFlag(note)} 
-                              ${new moment(note.finishDate).format('DD-MM-YYYY')}
+                              ${new moment(note.finishDate).format(
+                                'DD-MM-YYYY',
+                              )}
                             </a>
                           </li>
                           <li>
                             <a>${this.renderStars(note)}</a>
                           </li>
                            <li>
-                            <a data-finished="${note.id}" >${this.renderFinished(note)}</a>
+                            <a data-finished="${
+                              note.id
+                            }" >${this.renderFinished(note)}</a>
                           </li>
                         </ol>
                         <h2 class="note-title">
@@ -118,7 +143,7 @@ class List {
 
   renderStars(note) {
     let str = '';
-    for (let i=1; i<=5; i++) {
+    for (let i = 1; i <= 5; i++) {
       if (i <= note.importance) {
         str += `<i class="fas fa-star" data-importance="${note.id},${i}"></i>`;
       } else {
@@ -140,7 +165,7 @@ class List {
       : `<i class="fa fa-flag-checkered red" aria-hidden="true"></i> `;
   }
 
-  getPictureNameArray() {
+  getPictureNameArray() {
     return [
       '',
       '600px-471Glaceon.png',
@@ -148,7 +173,7 @@ class List {
       '1200px-133Eevee.png',
       '1200px-196Espeon.png',
       '1200px-136Flareon.png',
-    ]
+    ];
   }
 
   filterIsActive(filterBy, element) {

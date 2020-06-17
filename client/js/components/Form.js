@@ -56,17 +56,6 @@ class Form {
                     <option value="5">5</option>
                   </select>
                 </fieldset>
-                <fieldset>
-                  <label for="finished">Is finished</label>
-                  <input
-                    id="finished"
-                    class="input"
-                    name="finished"
-                    value="1"
-                    type="checkbox"
-                    placeholder="Is finished"
-                  />
-                </fieldset>
                 <button class="button is-primary" id="submit_btn">
                   <span>
                     <span>Save</span>
@@ -92,6 +81,7 @@ class Form {
         let description = document.getElementById('description');
         let finishDate = document.getElementById('finishDate');
         let importance = document.getElementById('importance');
+        const modal = document.getElementById('notesModal');
 
         if (
           (title.value == '') |
@@ -107,15 +97,23 @@ class Form {
             finishDate: finishDate.value,
             importance: importance.options[importance.selectedIndex].value,
           };
+
           await this.dataService.createNote(data);
+
+          if (modal !== null && modal.style.cssText != '') {
+            modal.style.display = 'none';
+            await this.dataService.sendNewFormData(data);
+            return;
+          }
           window.location.replace('/#list');
         }
       });
     document
       .getElementById('cancel_btn')
       .addEventListener('click', async (event) => {
+        const modal = document.getElementById('notesModal');
         event.preventDefault();
-        window.location.replace('/#list');
+        modal.style.display = 'none';
       });
   }
 }

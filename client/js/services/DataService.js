@@ -19,6 +19,7 @@ class DataService {
   constructor() {
     this.notes = [];
     this.subject = new Subject();
+    this.subjectNewForm = new Subject();
   }
 
   async initData() {
@@ -221,6 +222,18 @@ class DataService {
 
   getData() {
     return this.subject.asObservable();
+  }
+
+  sendNewFormData(data) {
+    return this.subjectNewForm.next(data);
+  }
+
+  clearNewFormData() {
+    return this.subjectNewForm.next();
+  }
+
+  getNewFormData() {
+    return this.subjectNewForm.asObservable();
   }
 
   handleError(err) {

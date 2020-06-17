@@ -142,34 +142,83 @@ class Router {
     };
 
     for (let [key, value] of Object.entries(map)) {
-      if (document.getElementById(key) === null) return;
-      document.getElementById(key).addEventListener('click', async (event) => {
-        event.preventDefault();
-        window.location.replace('/#list');
-        this.navigateTo(this.routes[0].component, value);
-      });
+      if (document.getElementById(key) !== null) {
+        document
+          .getElementById(key)
+          .addEventListener('click', async (event) => {
+            event.preventDefault();
+            window.location.replace('/#list');
+            this.navigateTo(this.routes[0].component, value);
+          });
+      }
     }
 
-    document.getElementById('notes').addEventListener('click', async (event) => {
-      if (event.target.dataset.finished !== undefined) {
-        const [note] = this.routes[0].component.dataService.notes.filter((el) => {
-          return el.id === event.target.dataset.finished;
+    if (document.getElementById('notes') !== null) {
+      document
+        .getElementById('notes')
+        .addEventListener('click', async (event) => {
+          if (event.target.dataset.finished !== undefined) {
+            const [note] = this.routes[0].component.dataService.notes.filter(
+              (el) => {
+                return el.id === event.target.dataset.finished;
+              },
+            );
+            note.finished = note.finished === true ? false : true;
+            await this.routes[0].component.dataService.updateNote(
+              event.target.dataset.finished,
+              note,
+            );
+            this.navigateTo(this.routes[0].component);
+          }
+          if (event.target.dataset.importance !== undefined) {
+            const data = event.target.dataset.importance.split(',');
+            const [note] = this.routes[0].component.dataService.notes.filter(
+              (el) => {
+                return el.id === data[0];
+              },
+            );
+            note.importance = data[1];
+            await this.routes[0].component.dataService.updateNote(
+              data[0],
+              note,
+            );
+            this.navigateTo(this.routes[0].component);
+          }
         });
-        note.finished = note.finished === true ? false : true;
-        await this.routes[0].component.dataService.updateNote(event.target.dataset.finished, note);
-        this.navigateTo(this.routes[0].component);
-      }
-      if (event.target.dataset.importance !== undefined) {
-        const data = event.target.dataset.importance.split(',');
-        const [note] = this.routes[0].component.dataService.notes.filter((el) => {
-          return el.id === data[0];
-        });
-        note.importance = data[1];
-        await this.routes[0].component.dataService.updateNote(data[0], note);
-        this.navigateTo(this.routes[0].component);
-      }
-    });
+    }
 
+    this.initModal();
+  }
+
+  initModal() {
+    const modal = document.getElementById('notesModal');
+    const btn = document.getElementById('newForm');
+    const span = document.getElementsByClassName('close')[0];
+    const form = document.getElementById('modalForm');
+
+    btn.onclick = async () => {
+      modal.style.display = 'block';
+      const route = this.routes.filter((r) => r.name === 'new');
+      if (route) {
+        route[0].component.dataService.getNewFormData().subscribe((data) => {
+          if (data) {
+            this.navigateTo(this.routes[0].component);
+          }
+        });
+        form.innerHTML = await route[0].component.render();
+        await route[0].component.after_render();
+      }
+    };
+
+    span.onclick = () => {
+      modal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
   }
 }
 
