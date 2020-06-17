@@ -54,6 +54,7 @@ class Router {
   initDataStream(component) {
     if (!this.isInit) return;
     component.dataService.sendData(component.dataService.notes);
+    this.initModal();
     this.isInit = false;
   }
 
@@ -170,6 +171,7 @@ class Router {
             );
             this.navigateTo(this.routes[0].component);
           }
+
           if (event.target.dataset.importance !== undefined) {
             const data = event.target.dataset.importance.split(',');
             const [note] = this.routes[0].component.dataService.notes.filter(
@@ -178,16 +180,28 @@ class Router {
               },
             );
             note.importance = data[1];
+
             await this.routes[0].component.dataService.updateNote(
               data[0],
               note,
             );
+
             this.navigateTo(this.routes[0].component);
           }
         });
     }
-
-    this.initModal();
+    if (document.getElementById('cancel_btn') !== null) {
+      document
+        .getElementById('cancel_btn')
+        .addEventListener('click', async (event) => {
+          event.preventDefault();
+          const modal = document.getElementById('notesModal');
+          const form = document.getElementById('modalForm');
+          modal.style.display = 'none';
+          form.innerHTML = '';
+          window.location.replace('/#list');
+        });
+    }
   }
 
   initModal() {
@@ -195,28 +209,33 @@ class Router {
     const btn = document.getElementById('newForm');
     const span = document.getElementsByClassName('close')[0];
     const form = document.getElementById('modalForm');
+    const route = this.routes.filter((r) => r.name === 'new');
+    route[0].component.dataService.getNewFormData().subscribe((data) => {
+      if (data) {
+        this.navigateTo(this.routes[0].component);
+      }
+    });
 
     btn.onclick = async () => {
       modal.style.display = 'block';
-      const route = this.routes.filter((r) => r.name === 'new');
       if (route) {
-        route[0].component.dataService.getNewFormData().subscribe((data) => {
-          if (data) {
-            this.navigateTo(this.routes[0].component);
-          }
-        });
         form.innerHTML = await route[0].component.render();
         await route[0].component.after_render();
+        this.initEventListeners();
       }
     };
 
-    span.onclick = () => {
+    span.onclick = async () => {
       modal.style.display = 'none';
+      form.innerHTML = '';
+      this.navigateTo(this.routes[0].component);
     };
 
-    window.onclick = (event) => {
+    window.onclick = async (event) => {
       if (event.target == modal) {
         modal.style.display = 'none';
+        form.innerHTML = '';
+        this.navigateTo(this.routes[0].component);
       }
     };
   }

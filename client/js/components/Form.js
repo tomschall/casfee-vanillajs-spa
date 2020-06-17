@@ -77,10 +77,11 @@ class Form {
       .getElementById('submit_btn')
       .addEventListener('click', async (event) => {
         event.preventDefault();
-        let title = document.getElementById('title');
-        let description = document.getElementById('description');
-        let finishDate = document.getElementById('finishDate');
-        let importance = document.getElementById('importance');
+
+        const title = document.getElementById('title');
+        const description = document.getElementById('description');
+        const finishDate = document.getElementById('finishDate');
+        const importance = document.getElementById('importance');
         const modal = document.getElementById('notesModal');
 
         if (
@@ -98,22 +99,21 @@ class Form {
             importance: importance.options[importance.selectedIndex].value,
           };
 
-          await this.dataService.createNote(data);
+          const note = await this.dataService.createNote(data);
 
-          if (modal !== null && modal.style.cssText != '') {
+          if (
+            modal !== null &&
+            modal.style.display &&
+            modal.style.display === 'block'
+          ) {
+            this.dataService.sendNewFormData(note);
             modal.style.display = 'none';
-            await this.dataService.sendNewFormData(data);
+            const form = document.getElementById('modalForm');
+            form.innerHTML = '';
             return;
           }
           window.location.replace('/#list');
         }
-      });
-    document
-      .getElementById('cancel_btn')
-      .addEventListener('click', async (event) => {
-        const modal = document.getElementById('notesModal');
-        event.preventDefault();
-        modal.style.display = 'none';
       });
   }
 }
