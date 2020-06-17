@@ -84,6 +84,11 @@ class List {
                   <article>
                     <figure>
                       <div class="note-image-container">
+                        <div class="note-delete-icon">
+                          <i data-delete="${
+                            note.id
+                          }" class="far fa-window-close"></i>
+                        </div>
                         <img src="images/${
                           pic[note.importance]
                         }" alt="Eevee" class="card__image">   
@@ -110,9 +115,9 @@ class List {
                             <a>${this.renderStars(note)}</a>
                           </li>
                            <li>
-                            <a data-finished="${
-                              note.id
-                            }" >${this.renderFinished(note)}</a>
+                            <a class="${
+                              note.finished === true ? 'green' : 'red'
+                            }" data-finished="${note.id}" >finished</a>
                           </li>
                         </ol>
                         <h2 class="note-title">
@@ -165,6 +170,10 @@ class List {
       : `<i class="fa fa-flag-checkered red" aria-hidden="true"></i> `;
   }
 
+  filterIsActive(filterBy, element) {
+    return filterBy === element ? 'class="active"' : '';
+  }
+
   getPictureNameArray() {
     return [
       '',
@@ -174,10 +183,6 @@ class List {
       '1200px-196Espeon.png',
       '1200px-136Flareon.png',
     ];
-  }
-
-  filterIsActive(filterBy, element) {
-    return filterBy === element ? 'class="active"' : '';
   }
 
   after_render() {}

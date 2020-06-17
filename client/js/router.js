@@ -48,14 +48,13 @@ class Router {
 
   initDataAndNavigate(route) {
     this.initDataStream(route.component);
+    this.initModal();
     this.navigateTo(route.component);
   }
 
   initDataStream(component) {
     if (!this.isInit) return;
     component.dataService.sendData(component.dataService.notes);
-    this.initModal();
-    this.isInit = false;
   }
 
   navigateTo(component, filterBy) {
@@ -188,6 +187,14 @@ class Router {
 
             this.navigateTo(this.routes[0].component);
           }
+
+          if (event.target.dataset.delete !== undefined) {
+            await this.routes[0].component.dataService.deleteNote(
+              event.target.dataset.delete,
+            );
+
+            this.navigateTo(this.routes[0].component);
+          }
         });
     }
     if (document.getElementById('cancel_btn') !== null) {
@@ -205,11 +212,15 @@ class Router {
   }
 
   initModal() {
+    if (!this.isInit) return;
+    this.isInit = false;
     const modal = document.getElementById('notesModal');
     const btn = document.getElementById('newForm');
-    const span = document.getElementsByClassName('close')[0];
     const form = document.getElementById('modalForm');
+    const span = document.getElementsByClassName('close')[0];
+
     const route = this.routes.filter((r) => r.name === 'new');
+
     route[0].component.dataService.getNewFormData().subscribe((data) => {
       if (data) {
         this.navigateTo(this.routes[0].component);

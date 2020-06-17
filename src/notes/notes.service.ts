@@ -13,8 +13,7 @@ export class NotesService {
 
   async create(newNoteInput: NewNoteInput): Promise<Note> {
     const note = new this.noteModel(newNoteInput);
-    const createdNote = await note.save();
-    return createdNote as any;
+    return (await note.save()) as Note;
   }
 
   async findOneById(id: string): Promise<Note> {
