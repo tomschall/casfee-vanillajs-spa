@@ -108,6 +108,7 @@
   border: 1px solid;
   line-height: normal;
   transition: all 0.1s;
+  cursor: pointer;
 }
 
 .notes .note-categories a:hover {
@@ -133,6 +134,10 @@
   position: absolute;
   right: 6px;
   top: 7px;
+}
+
+.note-delete-icon i {
+  cursor: pointer;
 }
 
 /* MQ
