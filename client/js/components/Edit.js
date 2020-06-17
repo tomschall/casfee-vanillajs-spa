@@ -19,18 +19,24 @@ class Edit {
     return obj;
   }
 
-  async render() {
-    this.params = RouterUtils.getParams();
+  async render(id) {
+    if (id === undefined) {
+      this.params = RouterUtils.getParams();
+    } else {
+      this.params.id = id;
+    }
 
     const [
-      { id, title, description, importance, finishDate, finished },
+      { title, description, importance, finishDate, finished },
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
             <h1>Edit Form</h1>
             <section class="section">
               <form id="form">
-                  <input id="id" type="hidden" value="${this.notes ? id : ''}"
+                  <input id="id" type="hidden" value="${
+                    this.notes ? this.params.id : ''
+                  }"
                   <div class="field">
                       <p class="control has-icons-left has-icons-right">
                           <input id="title" class="input" name="title" type="text" placeholder="Title" value="${
@@ -79,7 +85,9 @@ class Edit {
                       <p class="control has-icons-left has-icons-right">
                           <label for="finished">Is finished</label>
                           <input id="finished" class="input" name="finished" type="checkbox" placeholder="Is finished" ${
-                            this.notes && finished == true ? 'checked="checked"' : ''
+                            this.notes && finished == true
+                              ? 'checked="checked"'
+                              : ''
                           }>
                       </p>
                   </div>
@@ -103,12 +111,13 @@ class Edit {
       .getElementById('submit_btn')
       .addEventListener('click', async (event) => {
         event.preventDefault();
-        let id = document.getElementById('id');
-        let title = document.getElementById('title');
-        let description = document.getElementById('description');
-        let finishDate = document.getElementById('finishDate');
-        let importance = document.getElementById('importance');
-        let finished = document.getElementById('finished');
+        const id = document.getElementById('id');
+        const title = document.getElementById('title');
+        const description = document.getElementById('description');
+        const finishDate = document.getElementById('finishDate');
+        const importance = document.getElementById('importance');
+        const finished = document.getElementById('finished');
+        const modal = document.getElementById('notesModal');
 
         if ((title.value == '') | (description.value == '')) {
           alert(`The fields cannot be empty`);
@@ -119,18 +128,30 @@ class Edit {
             description: description.value,
             finishDate: finishDate.value,
             importance: importance.value,
-            finished: finished.checked
+            finished: finished.checked,
           };
-          await this.dataService.updateNote(id.value, data);
+          const note = await this.dataService.updateNote(id.value, data);
+
+          if (
+            modal !== null &&
+            modal.style.display &&
+            modal.style.display === 'block'
+          ) {
+            this.dataService.sendNewFormData(note);
+            modal.style.display = 'none';
+            const form = document.getElementById('modalForm');
+            form.innerHTML = '';
+            return;
+          }
           window.location.replace('/#list');
         }
       });
-    document
-      .getElementById('cancel_btn')
-      .addEventListener('click', async (event) => {
-        event.preventDefault();
-        window.location.replace('/#list');
-      });
+    // document
+    //   .getElementById('cancel_btn')
+    //   .addEventListener('click', async (event) => {
+    //     event.preventDefault();
+    //     window.location.replace('/#list');
+    //   });
   }
 }
 

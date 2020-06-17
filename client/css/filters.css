@@ -127,16 +127,21 @@
 }
 
 .notes .note-delete-icon {
-  color: var(--light-black);
-  /* padding: 10px; */
-  /* width: 20px; */
-  /* height: 20px; */
   position: absolute;
   right: 6px;
   top: 7px;
+  color: var(--light-black);
 }
 
-.note-delete-icon i {
+.notes .note-edit-icon {
+  position: absolute;
+  right: 24px;
+  top: 6px;
+  color: var(--light-black);
+}
+
+.note-delete-icon i,
+.note-edit-icon {
   cursor: pointer;
 }
 

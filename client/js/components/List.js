@@ -84,6 +84,9 @@ class List {
                   <article>
                     <figure>
                       <div class="note-image-container">
+                        <div class="note-edit-icon">
+                          <i data-edit="${note.id}" class="far fa-edit"></i>
+                        </div>
                         <div class="note-delete-icon">
                           <i data-delete="${
                             note.id

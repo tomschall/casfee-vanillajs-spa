@@ -195,6 +195,20 @@ class Router {
 
             this.navigateTo(this.routes[0].component);
           }
+
+          if (event.target.dataset.edit !== undefined) {
+            const routeEdit = this.routes.filter((r) => r.name === 'edit');
+            const modal = document.getElementById('notesModal');
+            const form = document.getElementById('modalForm');
+            modal.style.display = 'block';
+            if (routeEdit) {
+              form.innerHTML = await routeEdit[0].component.render(
+                event.target.dataset.edit,
+              );
+              await routeEdit[0].component.after_render();
+              this.initEventListeners();
+            }
+          }
         });
     }
     if (document.getElementById('cancel_btn') !== null) {
@@ -213,6 +227,7 @@ class Router {
 
   initModal() {
     if (!this.isInit) return;
+
     this.isInit = false;
     const modal = document.getElementById('notesModal');
     const btn = document.getElementById('newForm');
