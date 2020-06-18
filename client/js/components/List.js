@@ -80,7 +80,9 @@ class List {
               (note) =>
                 `<li class="note effect2 imp-${
                   note.importance
-                }" data-category="CSS JavaScript">
+                } draggable" draggable="true" data-category="CSS JavaScript" id="${
+                  note.id
+                }">
                   <article>
                     <figure>
                       <div class="note-image-container">
@@ -146,7 +148,7 @@ class List {
                 </li>`,
             )
             .join('\n ')}
-          </ol>
+          </ol><div class="dropzone"></div>
           `;
     return view;
   }

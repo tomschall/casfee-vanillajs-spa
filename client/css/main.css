@@ -6,6 +6,7 @@
 @import './form.css';
 @import './card.css';
 @import './modal.css';
+@import './draganddrop.css';
 
 * {
   box-sizing: border-box;
