@@ -20,9 +20,9 @@ class Edit {
   }
 
   async render(id) {
-    if (id === undefined) {
-      this.params = RouterUtils.getParams();
-    } else {
+    this.params = RouterUtils.getParams();
+
+    if (id !== undefined && this.params.id === undefined) {
       this.params.id = id;
     }
 

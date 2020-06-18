@@ -128,15 +128,15 @@
 
 .notes .note-delete-icon {
   position: absolute;
-  right: 6px;
-  top: 7px;
+  right: 8px;
+  top: 10px;
   color: var(--light-black);
 }
 
 .notes .note-edit-icon {
   position: absolute;
-  right: 24px;
-  top: 6px;
+  right: 30px;
+  top: 9px;
   color: var(--light-black);
 }
 

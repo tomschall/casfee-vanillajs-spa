@@ -85,12 +85,14 @@ class List {
                     <figure>
                       <div class="note-image-container">
                         <div class="note-edit-icon">
-                          <i data-edit="${note.id}" class="far fa-edit"></i>
+                          <i data-edit="${
+                            note.id
+                          }" class="far fa-edit fa-lg"></i>
                         </div>
                         <div class="note-delete-icon">
                           <i data-delete="${
                             note.id
-                          }" class="far fa-window-close"></i>
+                          }" class="far fa-window-close fa-lg"></i>
                         </div>
                         <img src="images/${
                           pic[note.importance]
