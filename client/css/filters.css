@@ -102,6 +102,10 @@
   margin-bottom: 0.2rem;
 }
 
+.notes .note-categories li:last-child a {
+  font-weight: 400;
+}
+
 .notes .note-categories a {
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
