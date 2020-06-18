@@ -269,76 +269,51 @@ class Router {
   }
 
   initDragAndDrop() {
-    // GET ALL THE PLAYERS - DRAGGABLE AND DROP ZONES
-    var draggable = document.getElementsByClassName('draggable'),
+    const draggable = document.getElementsByClassName('draggable'),
       dropzones = document.getElementsByClassName('dropzone');
 
-    console.log('draggable', draggable);
-    console.log('dropzones', dropzones);
-    // DRAG START - HIGHLIGHT DROP ZONES WITH CSS CLASS
     for (let i = 0; i < draggable.length; i++) {
-      // console.log('draggable[i]', draggable[i]);
       draggable[i].addEventListener('dragstart', function (event) {
         for (let a = 0; a < dropzones.length; a++) {
           dropzones[a].classList.add('active');
-          // console.log('dropzones[a]', dropzones[a]);
         }
-        console.log('dragstart', event.target.id);
-
-        event.target.classList.add('icon');
-        console.log('target', event.target);
         event.dataTransfer.setData('text/plain', event.target.id);
-        // const img = new Image(10, 10);
-        // img.src = '../images/pokeball.webp';
-        // event.dataTransfer.setDragImage(img, -100, -100);
       });
 
-      // DRAG END - REMOVE ALL ADDED ACTIVE & OVER CSS CLASS
       draggable[i].addEventListener('dragend', function (event) {
         for (let a = 0; a < dropzones.length; a++) {
           dropzones[a].classList.remove('active');
           dropzones[a].classList.remove('over');
         }
-        event.target.classList.remove('icon');
       });
 
-      // DRAG - AS YOU ARE DRAGGING
-      draggable[i].addEventListener('drag', function () {
-        //console.log('draggable', draggable[i]);
-      });
+      draggable[i].addEventListener('drag', function () {});
     }
 
     for (let i = 0; i < dropzones.length; i++) {
-      // DRAG ENTER - HIGHLIGHT THIS ZONE
       dropzones[i].addEventListener('dragenter', function () {
         dropzones[i].classList.add('over');
       });
 
-      // DRAG LEAVE - REMOVE HIGHLIGHT ON THIS ZONE
       dropzones[i].addEventListener('dragleave', function () {
         dropzones[i].classList.remove('over');
       });
 
-      // DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
       dropzones[i].addEventListener('dragover', function (evt) {
         evt.preventDefault();
       });
 
-      // ON DROP - MOVE THE DRAGGABLE ELEMENT
       dropzones[i].addEventListener('drop', async (evt) => {
         evt.preventDefault();
-        console.log('event', event.dataTransfer.getData('text'));
+
         const id = event.dataTransfer.getData('text');
 
-        // Will move the draggable element only if dropped into a different box
         for (let i = 0; i < draggable.length; i++) {
           if (
             evt.target != draggable[i].parentNode &&
             evt.target != draggable[i] &&
             draggable[i].getAttribute('id') == id
           ) {
-            // console.log('event target', evt.target);
-            console.log(draggable[i]);
             draggable[i].parentNode.removeChild(draggable[i]);
             await this.routes[0].component.dataService.deleteNote(id);
 
