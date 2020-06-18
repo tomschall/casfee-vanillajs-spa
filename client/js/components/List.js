@@ -148,7 +148,7 @@ class List {
                 </li>`,
             )
             .join('\n ')}
-          </ol><div class="dropzone"></div>
+          </ol>
           `;
     return view;
   }

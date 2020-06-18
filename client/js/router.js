@@ -284,15 +284,22 @@ class Router {
           // console.log('dropzones[a]', dropzones[a]);
         }
         console.log('dragstart', event.target.id);
+
+        event.target.classList.add('icon');
+        console.log('target', event.target);
         event.dataTransfer.setData('text/plain', event.target.id);
+        // const img = new Image(10, 10);
+        // img.src = '../images/pokeball.webp';
+        // event.dataTransfer.setDragImage(img, -100, -100);
       });
 
       // DRAG END - REMOVE ALL ADDED ACTIVE & OVER CSS CLASS
-      draggable[i].addEventListener('dragend', function () {
+      draggable[i].addEventListener('dragend', function (event) {
         for (let a = 0; a < dropzones.length; a++) {
           dropzones[a].classList.remove('active');
           dropzones[a].classList.remove('over');
         }
+        event.target.classList.remove('icon');
       });
 
       // DRAG - AS YOU ARE DRAGGING

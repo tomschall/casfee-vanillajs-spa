@@ -1,10 +1,10 @@
 /* [DROP ZONE HIGHLIGHTS] */
 .dropzone.active {
-  background: #fffad6;
-  border: 2px solid #aaa479;
+  background: rgb(250, 250, 250, 0.3);
+  border: 2px solid var(--light-red);
 }
 .dropzone.over {
-  background: #ffc6c6;
+  background: var(--light-red);
   border: 2px solid #931414;
 }
 
@@ -15,10 +15,10 @@
 }
 
 .dropzone {
-  width: 100%;
-  height: 300px;
+  position: absolute;
+  width: 5%;
+  height: 110%;
   padding: 0px;
-  margin: 20px 0 0 0;
-  background: var(--light-red);
-  border: 2px solid #000;
+  top: 0px;
+  right: 0px;
 }
