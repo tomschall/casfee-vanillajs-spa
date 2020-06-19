@@ -223,7 +223,6 @@ class Router {
           window.location.replace('/#list');
         });
     }
-
     this.initDragAndDrop();
   }
 
@@ -269,9 +268,12 @@ class Router {
   }
 
   initDragAndDrop() {
+    const dz = ['dz1', 'dz2'];
+    dz.forEach((el) => this.removeDropzones(el));
+    this.addDropzones();
+
     const draggable = document.getElementsByClassName('draggable'),
-      dropzones = document.getElementsByClassName('dropzone'),
-      notes = document.getElementById('notes');
+      dropzones = document.getElementsByClassName('dropzone');
 
     for (let i = 0; i < draggable.length; i++) {
       draggable[i].addEventListener('dragstart', function (event) {
@@ -310,17 +312,9 @@ class Router {
         const id = event.dataTransfer.getData('text');
 
         for (let i = 0; i < draggable.length; i++) {
-          if (
-            evt.target != draggable[i].parentNode &&
-            evt.target != draggable[i] &&
-            draggable[i].getAttribute('id') == id
-          ) {
-            console.log(draggable[i].attributes);
-            // draggable[i].classList.add('effect2-unset');
-            // draggable[i].classList.add('')
+          if (draggable[i].getAttribute('id') === id) {
             draggable[i].style.opacity = '0';
             // draggable[i].parentNode.removeChild(draggable[i]);
-            console.log(notes);
 
             await this.routes[0].component.dataService.deleteNote(id);
 
@@ -329,6 +323,36 @@ class Router {
         }
       });
     }
+  }
+
+  removeListeners(elements) {
+    for (let i = 0; i < elements.length; i++) {
+      if (elements[i].removeEventListener) {
+        elements[i].removeEventListener('dragenter', () => {});
+        elements[i].removeEventListener('dragleave', () => {});
+        elements[i].removeEventListener('dragover', () => {});
+        elements[i].removeEventListener('drop', () => {});
+      }
+    }
+    return;
+  }
+
+  removeDropzones(elementId) {
+    // Removes an element from the document
+    const element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+  }
+
+  addDropzones() {
+    const element = document.getElementById('container');
+    const before = document.createElement('div');
+    before.id = 'dz1';
+    before.classList.add('dropzone');
+    const after = document.createElement('div');
+    after.id = 'dz2';
+    after.classList.add('dropzone');
+    element.before(before);
+    element.after(after);
   }
 }
 

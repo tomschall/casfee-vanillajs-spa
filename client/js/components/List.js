@@ -21,7 +21,6 @@ class List {
   }
 
   async render(filterBy) {
-    console.log('render list');
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
