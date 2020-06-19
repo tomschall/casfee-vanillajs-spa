@@ -270,7 +270,8 @@ class Router {
 
   initDragAndDrop() {
     const draggable = document.getElementsByClassName('draggable'),
-      dropzones = document.getElementsByClassName('dropzone');
+      dropzones = document.getElementsByClassName('dropzone'),
+      notes = document.getElementById('notes');
 
     for (let i = 0; i < draggable.length; i++) {
       draggable[i].addEventListener('dragstart', function (event) {
@@ -314,10 +315,16 @@ class Router {
             evt.target != draggable[i] &&
             draggable[i].getAttribute('id') == id
           ) {
-            draggable[i].parentNode.removeChild(draggable[i]);
+            console.log(draggable[i].attributes);
+            // draggable[i].classList.add('effect2-unset');
+            // draggable[i].classList.add('')
+            draggable[i].style.opacity = '0';
+            // draggable[i].parentNode.removeChild(draggable[i]);
+            console.log(notes);
+
             await this.routes[0].component.dataService.deleteNote(id);
 
-            this.navigateTo(this.routes[0].component);
+            // this.navigateTo(this.routes[0].component);
           }
         }
       });

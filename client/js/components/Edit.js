@@ -146,12 +146,6 @@ class Edit {
           window.location.replace('/#list');
         }
       });
-    // document
-    //   .getElementById('cancel_btn')
-    //   .addEventListener('click', async (event) => {
-    //     event.preventDefault();
-    //     window.location.replace('/#list');
-    //   });
   }
 }
 

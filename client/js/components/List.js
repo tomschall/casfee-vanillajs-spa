@@ -21,6 +21,7 @@ class List {
   }
 
   async render(filterBy) {
+    console.log('render list');
     if (this.notes === undefined) return '';
 
     let [...notes] = this.notes;
@@ -86,6 +87,8 @@ class List {
                   <article>
                     <figure>
                       <div class="note-image-container">
+                        <div class="details imp-${note.importance}">
+                        </div>
                         <div class="note-edit-icon">
                           <i data-edit="${
                             note.id
@@ -142,9 +145,7 @@ class List {
                       </figcaption>
                     </figure>
                   </article>
-                  <div class="details imp-${note.importance}">
-                    
-                  </div>
+                  
                 </li>`,
             )
             .join('\n ')}

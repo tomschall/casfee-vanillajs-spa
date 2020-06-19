@@ -4,7 +4,7 @@
 @import './layout.css';
 @import './filters.css';
 @import './form.css';
-@import './card.css';
+@import './note.css';
 @import './modal.css';
 @import './draganddrop.css';
 
@@ -14,11 +14,19 @@
   padding: 0;
 }
 
+html,
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: rgba(0, 0, 0, 0.55);
+  color: var(--font-color);
   font-weight: 200;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: var(--lighter-grey);
   margin: 50px 0;
 }
 
@@ -50,12 +58,8 @@ h2 {
 }
 
 header h1 {
-  /* position: absolute; */
-  /* width: 100%; */
-  /* font-size: 100px; */
   font-weight: 100;
-  /* text-align: center; */
-  color: rgba(0, 0, 0, 0.55);
+  color: var(--font-color);
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
@@ -89,7 +93,7 @@ section {
 }
 
 .navlink a {
-  color: rgba(0, 0, 0, 0.55);
+  color: var(--font-color);
   text-decoration: none;
   font-size: 0.9em;
   font-weight: 100;
@@ -100,7 +104,7 @@ section {
 
 .navlink a:hover,
 .navlink a:active {
-  color: #b3b3b3;
+  color: var(--navlink-grey);
 }
 
 .navlink:last-child a {
@@ -127,7 +131,7 @@ section {
     top: 35px;
     width: 44%;
     height: 300px;
-    background: #000;
+    background: var(--black);
     flex-direction: column;
     justify-content: space-around;
     padding: 0;
