@@ -269,8 +269,10 @@ class Router {
 
   initDragAndDrop() {
     const dz = ['dz1', 'dz2'];
-    dz.forEach((el) => this.removeDropzones(el));
-    this.addDropzones();
+    dz.forEach((el) => {
+      this.removeDropzone(el);
+      this.addDropzone(el);
+    });
 
     const draggable = document.getElementsByClassName('draggable'),
       dropzones = document.getElementsByClassName('dropzone');
@@ -337,22 +339,19 @@ class Router {
     return;
   }
 
-  removeDropzones(elementId) {
+  removeDropzone(elementId) {
     // Removes an element from the document
     const element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
   }
 
-  addDropzones() {
+  addDropzone(dz) {
+    const position = dz === 'dz1' ? 'before' : 'after';
     const element = document.getElementById('container');
-    const before = document.createElement('div');
-    before.id = 'dz1';
-    before.classList.add('dropzone');
-    const after = document.createElement('div');
-    after.id = 'dz2';
-    after.classList.add('dropzone');
-    element.before(before);
-    element.after(after);
+    const drzElement = document.createElement('div');
+    drzElement.id = dz;
+    drzElement.classList.add('dropzone');
+    element[position](drzElement);
   }
 }
 
