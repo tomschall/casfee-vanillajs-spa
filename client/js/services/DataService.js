@@ -1,31 +1,17 @@
 import CONFIG from '../../config.js';
-// import {
-//   Observable,
-//   Subject,
-//   ReplaySubject,
-//   from,
-//   fromEvent,
-//   of,
-//   range,
-// } from 'https://dev.jspm.io/rxjs@6/_esm2015';
-
-// import {
-//   first,
-//   map,
-//   filter,
-//   switchMap,
-// } from 'https://dev.jspm.io/rxjs@6/_esm2015/operators';
 
 class DataService {
   constructor() {
     this.rxjs = rxjs;
     this.notes = [];
-    this.subject = new this.rxjs.BehaviorSubject();
-    this.subjectNewForm = new this.rxjs.BehaviorSubject();
   }
 
   async initData() {
     this.notes = await this.getAllNotes();
+    this.subject = new rxjs.BehaviorSubject(this.notes);
+    this.subjectNewForm = new rxjs.BehaviorSubject();
+    this.data$ = this.subject.asObservable();
+    this.form$ = this.subjectNewForm.asObservable();
   }
 
   static async create() {
@@ -218,24 +204,8 @@ class DataService {
     return this.subject.next(data);
   }
 
-  clearData() {
-    return this.subject.next();
-  }
-
-  getData() {
-    return this.subject.asObservable();
-  }
-
   sendNewFormData(data) {
     return this.subjectNewForm.next(data);
-  }
-
-  clearNewFormData() {
-    return this.subjectNewForm.next();
-  }
-
-  getNewFormData() {
-    return this.subjectNewForm.asObservable();
   }
 
   handleError(err) {

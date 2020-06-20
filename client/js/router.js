@@ -27,34 +27,24 @@ class Router {
       scope.detectChange(r);
     });
     this.detectChange(r);
+    this.initModal();
   }
 
   detectChange(r) {
     if (!window.location.hash.length > 0) {
       const defaultRouteTo = r.filter((r) => r.default === true);
-      this.initDataAndNavigate(defaultRouteTo[0]);
+      this.navigateTo(defaultRouteTo[0].component);
       return;
     }
     const locationHash = window.location.hash.split('/');
     const routeTo = r.filter((r) => r.isActiveRoute(locationHash[0].substr(1)));
     if (routeTo.length) {
-      this.initDataAndNavigate(routeTo[0]);
+      this.navigateTo(routeTo[0].component);
       return;
     }
 
     const routeNotFound = r.filter((r) => r.name === 'notFound');
-    this.initDataAndNavigate(routeNotFound[0]);
-  }
-
-  initDataAndNavigate(route) {
-    this.initDataStream(route.component);
-    this.initModal();
-    this.navigateTo(route.component);
-  }
-
-  initDataStream(component) {
-    if (!this.isInit) return;
-    component.dataService.sendData(component.dataService.notes);
+    this.navigateTo(routeNotFound[0].component);
   }
 
   navigateTo(component, filterBy) {
@@ -237,7 +227,7 @@ class Router {
 
     const route = this.routes.filter((r) => r.name === 'new');
 
-    route[0].component.dataService.getNewFormData().subscribe((data) => {
+    route[0].component.dataService.form$.subscribe((data) => {
       if (data) {
         this.navigateTo(this.routes[0].component);
       }

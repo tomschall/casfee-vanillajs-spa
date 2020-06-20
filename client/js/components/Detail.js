@@ -6,7 +6,7 @@ class Detail {
   }
 
   async initData() {
-    this.dataService.getData().subscribe((data) => {
+    this.dataService.data$.subscribe((data) => {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
