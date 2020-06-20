@@ -1,26 +1,27 @@
 import CONFIG from '../../config.js';
-import {
-  Observable,
-  Subject,
-  ReplaySubject,
-  from,
-  fromEvent,
-  of,
-  range,
-} from 'https://dev.jspm.io/rxjs@6/_esm2015';
+// import {
+//   Observable,
+//   Subject,
+//   ReplaySubject,
+//   from,
+//   fromEvent,
+//   of,
+//   range,
+// } from 'https://dev.jspm.io/rxjs@6/_esm2015';
 
-import {
-  first,
-  map,
-  filter,
-  switchMap,
-} from 'https://dev.jspm.io/rxjs@6/_esm2015/operators';
+// import {
+//   first,
+//   map,
+//   filter,
+//   switchMap,
+// } from 'https://dev.jspm.io/rxjs@6/_esm2015/operators';
 
 class DataService {
   constructor() {
+    this.rxjs = rxjs;
     this.notes = [];
-    this.subject = new Subject();
-    this.subjectNewForm = new Subject();
+    this.subject = new this.rxjs.BehaviorSubject();
+    this.subjectNewForm = new this.rxjs.BehaviorSubject();
   }
 
   async initData() {
