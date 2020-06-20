@@ -7,6 +7,11 @@ main {
   background-color: var(--background-color);
 }
 
+header {
+  background: var(--primary);
+  border-top: 1px solid var(--lighter-grey);
+}
+
 /* NOTES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 

@@ -27,6 +27,7 @@ class Router {
       scope.detectChange(r);
     });
     this.detectChange(r);
+    this.initSwitchDesign();
     this.initModal();
   }
 
@@ -317,16 +318,22 @@ class Router {
     }
   }
 
-  removeListeners(elements) {
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].removeEventListener) {
-        elements[i].removeEventListener('dragenter', () => {});
-        elements[i].removeEventListener('dragleave', () => {});
-        elements[i].removeEventListener('dragover', () => {});
-        elements[i].removeEventListener('drop', () => {});
-      }
+  initSwitchDesign() {
+    if (!this.isInit) return;
+    if (document.getElementById('switch') !== null) {
+      document
+        .getElementById('switch')
+        .addEventListener('click', async (event) => {
+          const body = document.getElementsByTagName('body')[0];
+          if (body.classList.contains('theme__dark')) {
+            body.classList.remove('theme__dark');
+            event.target.outerHTML = '<i class="fas fa-toggle-off fa-2x"></i>';
+          } else {
+            body.classList.add('theme__dark');
+            event.target.outerHTML = '<i class="fas fa-toggle-on fa-2x"></i>';
+          }
+        });
     }
-    return;
   }
 
   removeDropzone(elementId) {

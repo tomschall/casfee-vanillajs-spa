@@ -1,4 +1,5 @@
 :root {
+  --primary: #fff;
   --black: #1a1a1a;
   --grey: #353535;
   --white: #fff;
@@ -7,7 +8,7 @@
   --background-color: #ffffff;
 
   --font-color: rgba(0, 0, 0, 0.55);
-  --font-lighter: #ded6a8;
+  --font-light: #fff;
 
   --contrast-color: #079bab;
 
@@ -42,26 +43,46 @@
 }
 
 body.theme__dark {
-  --background-color: #ffc432;
-  --font-color: #614c18;
-  --font-lighter: #806a33;
+  --primary: rgba(79, 225, 39, 0.6);
+
+  --black: #1a1a1a;
+  --grey: #353535;
+  --white: #fff;
+  --green: #a0ca92;
+
+  --background-color: var(--white);
+
+  --font-color: rgba(0, 0, 0, 0.6);
+  --font-light: #fff;
 
   --contrast-color: #079bab;
 
-  --white-color: #222;
-  --light-grey: #f2f2f2;
+  --light-grey: rgb(242, 242, 242);
+  --light-black: rgb(26, 26, 26, 0.75);
+  --light-red: rgb(227, 44, 44, 0.6);
+  --light-green: rgba(79, 225, 39, 0.6);
 
-  --chromatic-light-color: #ffde8e;
-  --chromatic-light-color-2: #ffd56c;
-  --chromatic-light-color-3: #3e584b;
+  --lighter-red: rgb(227, 44, 44, 0.25);
+  --lighter-grey: rgb(255, 255, 255);
 
-  --success-color: #949e05;
+  --effect-grey: var(--white);
+  --effect-light-black-1: var(--white);
+  --effect-light-black-3: var(--white);
+  --effect-light-black-8: var(--white);
 
-  --button-hover-color: #73614c;
+  --dark-red: rgb(147, 20, 20);
 
-  --importance-1: #62bb00;
-  --importance-2: #96bb00;
-  --importance-3: #bbac00;
-  --importance-4: #bb3c00;
-  --importance-5: #bb002f;
+  --importance-1: rgb(181, 224, 221, 0.7);
+  --importance-2: rgb(249, 227, 170, 0.7);
+  --importance-3: rgb(195, 144, 92, 0.7);
+  --importance-4: rgb(169, 56, 86, 0.7);
+  --importance-5: rgb(240, 105, 43, 0.7);
+
+  --button-color: rgba(97, 211, 59, 0.6);
+  --button-hover-color: rgba(97, 211, 59, 0.4);
+
+  --note-background: rgba(250, 250, 250, 0.879);
+  --note-light-black: rgba(0, 0, 0, 0.1);
+
+  --navlink-grey: rgb(255, 255, 255);
 }

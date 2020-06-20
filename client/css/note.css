@@ -84,7 +84,7 @@
 
 .notes .note-categories a.green {
   background: var(--light-green);
-  color: var(--white);
+  color: var(--font-light);
 }
 
 .notes .note-categories a.red {
