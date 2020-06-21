@@ -13,6 +13,7 @@ class SpinnerService {
 
   showSpinner() {
     this.loadingDiv.style.visibility = 'visible';
+    this.container.classList.add('hidden');
   }
 }
 

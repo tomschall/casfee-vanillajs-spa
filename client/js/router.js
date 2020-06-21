@@ -32,6 +32,7 @@ class Router {
     this.detectChange(r);
     this.initSwitchDesign();
     this.initModal();
+    this.spinner.hideSpinner();
   }
 
   detectChange(r) {
@@ -70,8 +71,6 @@ class Router {
     this.rootElem.innerHTML = html;
     component.after_render();
     this.initEventListeners();
-    console.log('single');
-    this.spinner.hideSpinner();
   }
 
   async renderMultipleComponents(component, html, arr) {
@@ -86,8 +85,6 @@ class Router {
             c.after_render();
           });
           this.initEventListeners();
-          console.log('multi');
-          this.spinner.hideSpinner();
           return;
         }
       });
