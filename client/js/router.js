@@ -25,9 +25,9 @@ class Router {
 
   init() {
     const r = this.routes;
-    const scope = this;
+
     window.addEventListener('hashchange', (e) => {
-      scope.detectChange(r);
+      this.detectChange(r);
     });
     this.detectChange(r);
     this.initSwitchDesign();
