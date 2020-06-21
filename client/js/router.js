@@ -1,3 +1,5 @@
+import SpinnerService from './services/SpinnerService.js';
+
 class Router {
   constructor(routes) {
     try {
@@ -11,6 +13,7 @@ class Router {
     }
     this.routes = routes;
     this.rootElem = document.getElementById('root');
+    this.spinner = new SpinnerService();
     this.isInit = true;
     this.init();
   }
@@ -23,7 +26,7 @@ class Router {
   init() {
     const r = this.routes;
     const scope = this;
-    window.addEventListener('hashchange', function (e) {
+    window.addEventListener('hashchange', (e) => {
       scope.detectChange(r);
     });
     this.detectChange(r);
@@ -67,6 +70,8 @@ class Router {
     this.rootElem.innerHTML = html;
     component.after_render();
     this.initEventListeners();
+    console.log('single');
+    this.spinner.hideSpinner();
   }
 
   async renderMultipleComponents(component, html, arr) {
@@ -81,6 +86,8 @@ class Router {
             c.after_render();
           });
           this.initEventListeners();
+          console.log('multi');
+          this.spinner.hideSpinner();
           return;
         }
       });
