@@ -7,7 +7,7 @@
 @import './note.css';
 @import './modal.css';
 @import './draganddrop.css';
-@import './loading.css';
+@import './spinner.css';
 
 * {
   box-sizing: border-box;
