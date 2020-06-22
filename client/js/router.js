@@ -31,6 +31,7 @@ class Router {
     });
     this.detectChange(r);
     this.initDesignSwitch();
+    this.initNavigation();
     this.initModal();
     this.spinner.hideLoader();
   }
@@ -221,6 +222,33 @@ class Router {
     this.initDragAndDrop();
   }
 
+  initNavigation() {
+    if (!this.isInit) return;
+    const burger = document.querySelector('.burger i');
+    const nav = document.querySelector('.nav');
+
+    const toggleNav = () => {
+      burger.classList.toggle('fa-times');
+      burger.classList.toggle('fa-bars');
+      nav.classList.toggle('nav-active');
+    };
+
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleNav();
+    });
+
+    nav.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleNav();
+    });
+
+    window.onhashchange = (e) => {
+      e.stopPropagation();
+      burger.classList.contains('fa-times') ? toggleNav() : '';
+    };
+  }
+
   initModal() {
     if (!this.isInit) return;
 
@@ -310,12 +338,10 @@ class Router {
 
         for (let i = 0; i < draggable.length; i++) {
           if (draggable[i].getAttribute('id') === id) {
-            draggable[i].style.opacity = '0';
-            // draggable[i].parentNode.removeChild(draggable[i]);
+            draggable[i].style.opacity = 0;
 
             await this.routes[0].component.dataService.deleteNote(id);
-
-            // this.navigateTo(this.routes[0].component);
+            return;
           }
         }
       });
