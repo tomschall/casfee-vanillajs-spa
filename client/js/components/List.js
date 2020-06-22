@@ -1,4 +1,4 @@
-import FilterUtils from '../utils/FilterUtils.js';
+import FilterService from '../services/FilterService.js';
 
 class List {
   constructor() {}
@@ -8,7 +8,7 @@ class List {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
-        this.filterUtils = new FilterUtils(this.notes);
+        this.filterService = new FilterService(this.notes);
       }
     });
   }
@@ -26,7 +26,7 @@ class List {
     let [...notes] = this.notes;
 
     if (typeof filterBy !== 'undefined') {
-      notes = await this.filterUtils.filterNotes(filterBy);
+      notes = await this.filterService.filterNotes(filterBy);
     }
 
     const pic = this.getPictureNameArray();

@@ -1,20 +1,20 @@
-class SpinnerService {
+class LoaderService {
   constructor() {
     this.loadingDiv = document.getElementById('loading');
     this.container = document.getElementById('container');
   }
 
-  hideSpinner() {
+  hideLoader() {
     setTimeout(() => {
       this.loadingDiv.style.visibility = 'hidden';
       this.container.classList.remove('hidden');
     }, 300);
   }
 
-  showSpinner() {
+  showLoader() {
     this.loadingDiv.style.visibility = 'visible';
     this.container.classList.add('hidden');
   }
 }
 
-export default SpinnerService;
+export default LoaderService;

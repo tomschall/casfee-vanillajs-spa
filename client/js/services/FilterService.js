@@ -1,4 +1,4 @@
-class FilterUtils {
+class FilterService {
   constructor(notes) {
     this.notes = notes;
   }
@@ -31,4 +31,4 @@ class FilterUtils {
   }
 }
 
-export default FilterUtils;
+export default FilterService;

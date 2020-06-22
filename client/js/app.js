@@ -7,11 +7,11 @@ import Detail from './components/Detail.js';
 import Form from './components/Form.js';
 import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
-import SpinnerService from './services/SpinnerService.js';
+import LoaderService from './services/LoaderService.js';
 
 (async function () {
-  const spinner = new SpinnerService();
-  spinner.showSpinner();
+  const spinner = new LoaderService();
+  spinner.showLoader();
   const dataService = await DataService.create();
   const router = await Router.create([
     new Route('list', await List.create(dataService), true),

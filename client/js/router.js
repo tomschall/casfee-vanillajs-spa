@@ -1,4 +1,4 @@
-import SpinnerService from './services/SpinnerService.js';
+import LoaderService from './services/LoaderService.js';
 
 class Router {
   constructor(routes) {
@@ -13,7 +13,7 @@ class Router {
     }
     this.routes = routes;
     this.rootElem = document.getElementById('root');
-    this.spinner = new SpinnerService();
+    this.spinner = new LoaderService();
     this.isInit = true;
     this.init();
   }
@@ -30,9 +30,9 @@ class Router {
       this.detectChange(r);
     });
     this.detectChange(r);
-    this.initSwitchDesign();
+    this.initDesignSwitch();
     this.initModal();
-    this.spinner.hideSpinner();
+    this.spinner.hideLoader();
   }
 
   detectChange(r) {
@@ -322,7 +322,7 @@ class Router {
     }
   }
 
-  initSwitchDesign() {
+  initDesignSwitch() {
     if (!this.isInit) return;
     if (document.getElementById('switch') !== null) {
       document
