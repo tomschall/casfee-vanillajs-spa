@@ -30,7 +30,8 @@ class FilterService {
   }
 
   async filterByDate(filterBy) {
-    return this.notes.sort((a, b) => {
+    const [...notes] = this.notes;
+    return notes.sort((a, b) => {
       return (
         new moment(b[filterBy]).format('YYYYMMDD') -
         new moment(a[filterBy]).format('YYYYMMDD')
@@ -39,11 +40,14 @@ class FilterService {
   }
 
   async filterBy(prop) {
-    return this.notes.sort((a, b) => b[prop] - a[prop]);
+    const [...notes] = this.notes;
+    if (prop === 'id') return notes;
+    return notes.sort((a, b) => b[prop] - a[prop]);
   }
 
   async filterByFinished() {
-    return this.notes.filter((x) => x.finished == true);
+    const [...notes] = this.notes;
+    return notes.filter((x) => x.finished == true);
   }
 }
 
