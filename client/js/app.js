@@ -10,7 +10,7 @@ import NotFound from './components/NotFound.js';
 import LoaderService from './services/LoaderService.js';
 import FilterService from './services/FilterService.js';
 
-(async function () {
+(async function bootstrap() {
   const spinner = new LoaderService();
   spinner.showLoader();
   const dataService = await DataService.create();
