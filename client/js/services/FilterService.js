@@ -1,6 +1,22 @@
 class FilterService {
-  constructor(notes) {
-    this.notes = notes;
+  constructor() {
+    this.notes = [];
+  }
+
+  async initData() {
+    this.dataService.data$.subscribe((data) => {
+      if (data) {
+        // add message to local state if not empty
+        this.notes = data;
+      }
+    });
+  }
+
+  static async create(dataService) {
+    const obj = new FilterService();
+    obj.dataService = dataService;
+    await obj.initData();
+    return obj;
   }
 
   async filterNotes(filterBy) {

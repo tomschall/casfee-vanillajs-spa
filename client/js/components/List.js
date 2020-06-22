@@ -8,14 +8,14 @@ class List {
       if (data) {
         // add message to local state if not empty
         this.notes = data;
-        this.filterService = new FilterService(this.notes);
       }
     });
   }
 
-  static async create(dataService) {
+  static async create(dataService, filterService) {
     const obj = new List();
     obj.dataService = dataService;
+    obj.filterService = filterService;
     await obj.initData();
     return obj;
   }
