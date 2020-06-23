@@ -105,7 +105,7 @@ class List {
                       <figcaption>
                         <ol class="note-categories">
                           <li>
-                            <a href="#detail/${note.id}">
+                            <a data-detail="${note.id}">
                               <i class="far fa-calendar-plus"></i>
                               ${new moment(note.createDate).format(
                                 'DD-MM-YYYY',
@@ -113,7 +113,7 @@ class List {
                             </a>
                           </li>
                           <li>
-                            <a href="#detail/${note.id}">
+                            <a data-detail="${note.id}">
                               ${this.renderFinishedFlag(note)} 
                               ${new moment(note.finishDate).format(
                                 'DD-MM-YYYY',

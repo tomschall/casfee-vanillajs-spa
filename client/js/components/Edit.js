@@ -27,7 +27,13 @@ class Edit {
     }
 
     const [
-      { title, description, importance, finishDate, finished },
+      {
+        title = '',
+        description = '',
+        importance = '',
+        finishDate = '',
+        finished = '',
+      } = {},
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `

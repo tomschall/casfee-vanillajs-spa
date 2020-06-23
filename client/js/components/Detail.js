@@ -31,7 +31,14 @@ class Detail {
     if (!this.params.id && !id) return '';
 
     const [
-      { title, description, importance, createDate, finishDate, finished },
+      {
+        title = '',
+        description = '',
+        importance = '',
+        createDate = '',
+        finishDate = '',
+        finished = '',
+      } = {},
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
