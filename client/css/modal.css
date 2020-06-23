@@ -15,11 +15,12 @@
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  font-size: 16px;
+  background-color: var(--light-grey);
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 40%;
+  width: 55%;
 }
 
 /* The Close Button */

@@ -12,60 +12,63 @@ class Form {
 
   async render() {
     return `
-            <h1>New Note</h1>
-            <section class="section">
+            <section class="section form-container">
               <form id="form">
-                <fieldset>
-                  <label for="title">Title</label>
-                  <input
-                    id="title"
-                    class="input"
-                    name="title"
-                    type="text"
-                    placeholder="Title"
-                  />
-                </fieldset>
-
-                <fieldset>
-                  <label for="description">Description</label>
-                  <input
-                    id="description"
-                    class="input"
-                    name="description"
-                    type="text"
-                    placeholder="Description"
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="finishDate">Date for finishing</label>
-                  <input
-                    id="finishDate"
-                    class="input"
-                    name="finishDate"
-                    type="date"
-                    placeholder="Date"
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="importance">Importance</label>
-                  <select name="importance" id="importance">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </fieldset>
-                <button class="button is-primary" id="submit_btn">
-                  <span>
-                    <span>Save</span>
-                  </span>
-                </button>
-                <button class="button is-primary" id="cancel_btn">
-                  <span>
-                    <span>Cancel</span>
-                  </span>
-                </button>
+                <ul class="flex-outer">
+                  <li>
+                    <label>New Note</label>
+                  </li>
+                  <li>
+                    <label for="title">Title</label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      placeholder="What's the title of your note?"
+                    />
+                  </li>
+                  <li>
+                    <label for="description">Description</label>
+                    <input
+                      type="text"
+                      id="description"
+                      name="description"
+                      placeholder="What's the description of your note?"
+                    />
+                  </li>
+                  <li>
+                    <label for="finishDate">Finish Date</label>
+                    <input
+                      type="date"
+                      id="finishDate"
+                      placeholder="Select the date for finish..."
+                    />
+                  </li>
+                  <li>
+                    <label for="importance">Choose the importance</label>
+                    <select name="importance" id="importance">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </li>
+                  <li>
+                    <button class="button is-primary" id="submit_btn">
+                      <span>
+                        <span>Save</span>
+                      </span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button is-primary" id="cancel_btn">
+                      <span>
+                        <span>Cancel</span>
+                      </span>
+                    </button>
+                  </li>
+                </ul>
               </form>
             </section>
         `;
