@@ -37,39 +37,51 @@ class Edit {
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
-            <h1>Edit Form</h1>
-            <section class="section">
+            <section class="section form-container">
               <form id="form">
-                  <input id="id" type="hidden" value="${
-                    this.notes ? this.params.id : ''
-                  }"
-                  <div class="field">
-                      <p class="control has-icons-left has-icons-right">
-                          <input id="title" class="input" name="title" type="text" placeholder="Title" value="${
-                            this.notes ? title : ''
-                          }">
-                      </p>
-                  </div>
-                  <div class="field">
-                      <p class="control has-icons-left has-icons-right">
-                          <input id="description" class="input" name="description" type="text" placeholder="Description" value="${
-                            this.notes ? description : ''
-                          }">
-                      </p>
-                  </div>
-                  <div class="field">
-                      <p class="control has-icons-left has-icons-right">
-                          <label for="finishDate">Date for finishing</label>
-                          <input id="finishDate" class="input" name="finishDate" type="date" placeholder="Date" value="${
-                            this.notes
-                              ? new moment(finishDate).format('YYYY-MM-DD')
-                              : ''
-                          }">
-                      </p>
-                  </div>
-                  <div class="field">
-                      <label for="importance">Importance</label>
-                      <select name="importance" id="importance">
+                <ul class="flex-outer">
+                  <li>
+                    <label>Edit Note</label>
+                    <input id="id" type="hidden" value="${
+                      this.notes ? this.params.id : ''
+                    }"
+                  </li>
+                  <li>
+                    <label for="title">Title</label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      placeholder="What's the title of your note?"
+                      value="${this.notes ? title : ''}"
+                    />
+                  </li>
+                  <li>
+                    <label for="description">Description</label>
+                    <input
+                      type="text"
+                      id="description"
+                      name="description"
+                      placeholder="What's the description of your note?"
+                      value="${this.notes ? description : ''}"
+                    />
+                  </li>
+                  <li>
+                    <label for="finishDate">Finish Date</label>
+                    <input
+                      type="date"
+                      id="finishDate"
+                      placeholder="Select the date for finish..."
+                      value="${
+                        this.notes
+                          ? new moment(finishDate).format('YYYY-MM-DD')
+                          : ''
+                      }"
+                    />
+                  </li>
+                  <li>
+                    <label for="importance">Choose the importance</label>
+                    <select name="importance" id="importance">
                         <option value="1" ${
                           this.notes && importance == '1' ? 'selected' : ''
                         }>1</option>
@@ -86,27 +98,36 @@ class Edit {
                           this.notes && importance == '5' ? 'selected' : ''
                         }>5</option>
                       </select>
-                  </div>
-                  <div class="field">
-                      <p class="control has-icons-left has-icons-right">
-                          <label for="finished">Is finished</label>
-                          <input id="finished" class="input" name="finished" type="checkbox" placeholder="Is finished" ${
-                            this.notes && finished == true
-                              ? 'checked="checked"'
-                              : ''
-                          }>
-                      </p>
-                  </div>
-                  <button class="button is-primary" id="submit_btn">
-                    <span>
-                      <span>Save</span>
-                    </span>
-                  </button>
-                  <button class="button is-primary" id="cancel_btn">
-                    <span>
-                      <span>Cancel</span>
-                    </span>
-                  </button>   
+                  </li>
+                  <li>
+                    <label for="finished">Is finished</label>
+                      <input 
+                        id="finished" 
+                        class="input" 
+                        name="finished" 
+                        type="checkbox" 
+                        placeholder="Is finished" 
+                        ${
+                          this.notes && finished == true
+                            ? 'checked="checked"'
+                            : ''
+                        }>
+                  </li>
+                  <li>
+                    <button class="button is-primary" id="submit_btn">
+                      <span>
+                        <span>Save</span>
+                      </span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button is-primary" id="cancel_btn">
+                      <span>
+                        <span>Cancel</span>
+                      </span>
+                    </button>
+                  </li>
+                </ul>
               </form>
             </section>
         `;

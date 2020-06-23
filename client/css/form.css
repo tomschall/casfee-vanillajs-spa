@@ -7,6 +7,11 @@
   font-size: 17px;
 }
 
+.form-container input[type="checkbox"] {
+  height: 45px;
+  margin-right: 262px;
+}
+
 fieldset {
   border: medium none;
   margin: 0 0 10px;
@@ -97,6 +102,12 @@ fieldset {
 }
 
 main .form-container {
+  box-sizing: border-box;
   min-width: 900px;
   background-color: var(--light-grey);
+}
+
+main .form-container input[type="checkbox"] {
+  height: 45px;
+  margin-right: 0;
 }
