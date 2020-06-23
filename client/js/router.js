@@ -205,6 +205,20 @@ class Router {
               this.initEventListeners();
             }
           }
+
+          if (event.target.dataset.detail !== undefined) {
+            const routeDetail = this.routes.filter((r) => r.name === 'detail');
+            const modal = document.getElementById('notesModal');
+            const form = document.getElementById('modalForm');
+            modal.style.display = 'block';
+            if (routeDetail) {
+              form.innerHTML = await routeDetail[0].component.render(
+                event.target.dataset.detail,
+              );
+              await routeDetail[0].component.after_render();
+              this.initEventListeners();
+            }
+          }
         });
     }
     if (document.getElementById('cancel_btn') !== null) {
@@ -213,12 +227,21 @@ class Router {
         .addEventListener('click', async (event) => {
           event.preventDefault();
           const modal = document.getElementById('notesModal');
-          const form = document.getElementById('modalForm');
-          modal.style.display = 'none';
-          form.innerHTML = '';
-          window.location.replace('/#list');
+          if (
+            modal !== null &&
+            modal.style.display &&
+            modal.style.display === 'block'
+          ) {
+            const form = document.getElementById('modalForm');
+            modal.style.display = 'none';
+            form.innerHTML = '';
+            this.navigateTo(this.routes[0].component);
+          } else {
+            window.location.replace('/#list');
+          }
         });
     }
+
     this.initDragAndDrop();
   }
 

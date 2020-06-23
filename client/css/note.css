@@ -47,6 +47,11 @@
   text-decoration: none;
 }
 
+.notes .note-title a,
+.notes .note-desc a {
+  cursor: pointer;
+}
+
 .notes figcaption {
   padding: 1rem;
 }

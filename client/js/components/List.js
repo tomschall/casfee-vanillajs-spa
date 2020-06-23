@@ -131,13 +131,13 @@ class List {
                         </ol>
                         <h2 class="note-title">
                           <a
-                            href="#detail/${note.id}"
+                            data-detail="${note.id}"
                             >${note.title}
                           </a>
                         </h2>
                         <p class="note-desc">
                           <a
-                            href="#detail/${note.id}"
+                            data-detail="${note.id}"
                             >${note.description}
                           </a>
                         </p>

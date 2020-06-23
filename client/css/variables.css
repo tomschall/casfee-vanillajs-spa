@@ -63,7 +63,7 @@ body.theme__dark {
   --light-green: rgba(79, 225, 39, 0.6);
 
   --lighter-red: rgb(227, 44, 44, 0.25);
-  --lighter-grey: rgb(255, 255, 255);
+  --lighter-grey: var(--white);
 
   --effect-grey: var(--white);
   --effect-light-black-1: var(--white);

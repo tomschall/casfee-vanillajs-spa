@@ -21,49 +21,55 @@ class Detail {
     return obj;
   }
 
-  async render() {
+  async render(id) {
     this.params = RouterUtils.getParams();
-    if (!this.params.id) return '';
+
+    if (id !== undefined && this.params.id === undefined) {
+      this.params.id = id;
+    }
+
+    if (!this.params.id && !id) return '';
 
     const [
-      { id, title, description, importance, createDate, finishDate, finished },
+      { title, description, importance, createDate, finishDate, finished },
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
         <section class="section">
-            <h1>Notes Id : ${id}</h1>
+            <h1>Notes Id : ${this.params.id}</h1>
             <p> Notes Title : ${title} </p>
             <p> Notes Description : ${description} </p>
             <p> Notes Importance : ${importance} </p>
             <p> Notes Date Created : ${createDate} </p>
             <p> Notes Date Finished : ${finishDate} </p>
             <p> Is Finished : ${finished} </p>
-            <button class="button is-primary" id="edit_btn"><span><span>Edit</span></span></button>
             <button class="button is-primary" id="delete_btn"><span><span>Delete</span></span></button>
-            <button class="button is-primary" id="back_btn"><span><span>Back</span></span></button>
+            <button class="button is-primary" id="cancel_btn"><span><span>Back</span></span></button>
         </section>
       `;
   }
 
   async after_render() {
-    if (this.params.id) {
-      document
-        .getElementById('back_btn')
-        .addEventListener('click', async (event) => {
-          event.preventDefault();
-          window.location.replace('/#list');
-        });
-      document
-        .getElementById('edit_btn')
-        .addEventListener('click', async (event) => {
-          event.preventDefault();
-          window.location.replace('/#edit/' + this.params.id);
-        });
+    if (document.getElementById('delete_btn') !== null) {
       document
         .getElementById('delete_btn')
         .addEventListener('click', async (event) => {
           event.preventDefault();
-          await this.dataService.deleteNote(this.params.id);
+
+          const note = await this.dataService.deleteNote(this.params.id);
+
+          const modal = document.getElementById('notesModal');
+          if (
+            modal !== null &&
+            modal.style.display &&
+            modal.style.display === 'block'
+          ) {
+            this.dataService.sendNewFormData(note);
+            const form = document.getElementById('modalForm');
+            modal.style.display = 'none';
+            form.innerHTML = '';
+            return;
+          }
           window.location.replace('/#list');
         });
     }
