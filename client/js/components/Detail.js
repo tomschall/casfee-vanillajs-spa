@@ -28,8 +28,6 @@ class Detail {
       this.params.id = id;
     }
 
-    if (!this.params.id && !id) return '';
-
     const [
       {
         title = '',

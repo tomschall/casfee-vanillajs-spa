@@ -15,7 +15,7 @@ import FilterService from './services/FilterService.js';
   spinner.showLoader();
   const dataService = await DataService.create();
   const filterService = await FilterService.create(dataService);
-  const router = await Router.create([
+  await Router.create([
     new Route('list', await List.create(dataService, filterService), true),
     new Route('detail', await Detail.create(dataService)),
     new Route('new', await Form.create(dataService)),

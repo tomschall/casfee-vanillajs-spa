@@ -53,7 +53,7 @@ class Router {
     this.navigateTo(routeNotFound[0].component);
   }
 
-  navigateTo(component, filterBy) {
+  navigateTo(component, filterBy = 'id') {
     component.render(filterBy).then((html) => {
       this.render(component, html);
     });
