@@ -69,12 +69,14 @@ class Router {
   }
 
   renderSingleComponent(component, html) {
+    console.log('render single');
     this.rootElem.innerHTML = html;
     component.after_render();
     this.initEventListeners();
   }
 
   async renderMultipleComponents(component, html, arr) {
+    console.log('render multi');
     let compArr = this.fetchComponentClasses(arr);
     compArr.forEach((comp, i) => {
       comp.render().then((compHtml) => {
@@ -130,11 +132,11 @@ class Router {
 
   initEventListeners() {
     const map = {
-      filter_finish_date: 'finishDate',
-      filter_create_date: 'createDate',
-      filter_importance: 'importance',
-      filter_finished: 'finished',
-      filter_reset: 'id',
+      filterFinishDate: 'finishDate',
+      filterCreateDate: 'createDate',
+      filterImportance: 'importance',
+      filterFinished: 'finished',
+      filterReset: 'id',
     };
 
     for (let [key, value] of Object.entries(map)) {
@@ -378,11 +380,11 @@ class Router {
         .getElementById('switch')
         .addEventListener('click', async (event) => {
           const body = document.getElementsByTagName('body')[0];
-          if (body.classList.contains('theme__dark')) {
-            body.classList.remove('theme__dark');
+          if (body.classList.contains('theme_dark')) {
+            body.classList.remove('theme_dark');
             event.target.outerHTML = '<i class="fas fa-toggle-off fa-2x"></i>';
           } else {
-            body.classList.add('theme__dark');
+            body.classList.add('theme_dark');
             event.target.outerHTML = '<i class="fas fa-toggle-on fa-2x"></i>';
           }
         });

@@ -42,7 +42,7 @@
   --navlink-grey: rgb(179, 179, 179);
 }
 
-body.theme__dark {
+body.theme_dark {
   --primary: rgba(79, 225, 39, 0.6);
 
   --black: #1a1a1a;

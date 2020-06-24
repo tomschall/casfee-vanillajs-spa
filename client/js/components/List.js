@@ -35,13 +35,10 @@ class List {
         <div>
           <ul class="filters">
             <li>
-              <p id="filter_reset" ${this.filterIsActive(
-                filterBy,
-                'id',
-              )}>All</p>
+              <p id="filterReset" ${this.filterIsActive(filterBy, 'id')}>All</p>
             </li>
             <li>
-              <p id="filter_create_date" ${this.filterIsActive(
+              <p id="filterCreateDate" ${this.filterIsActive(
                 filterBy,
                 'createDate',
               )}>
@@ -49,7 +46,7 @@ class List {
               </p>
             </li>
             <li>
-              <p id="filter_finish_date" ${this.filterIsActive(
+              <p id="filterFinishDate" ${this.filterIsActive(
                 filterBy,
                 'finishDate',
               )}>
@@ -57,7 +54,7 @@ class List {
               </p>
             </li>
             <li>
-              <p id="filter_importance" ${this.filterIsActive(
+              <p id="filterImportance" ${this.filterIsActive(
                 filterBy,
                 'importance',
               )}>
@@ -65,7 +62,7 @@ class List {
               </p>
             </li>
             <li>
-              <p id="filter_finished" ${this.filterIsActive(
+              <p id="filterFinished" ${this.filterIsActive(
                 filterBy,
                 'finished',
               )}>

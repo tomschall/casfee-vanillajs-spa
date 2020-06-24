@@ -11,6 +11,7 @@ import LoaderService from './services/LoaderService.js';
 import FilterService from './services/FilterService.js';
 
 (async function bootstrap() {
+  console.log('init app');
   const spinner = new LoaderService();
   spinner.showLoader();
   const dataService = await DataService.create();

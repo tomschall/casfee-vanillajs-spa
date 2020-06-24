@@ -9,9 +9,9 @@ class DataService {
   async initData() {
     this.notes = await this.getAllNotes();
     this.subject = new rxjs.BehaviorSubject(this.notes);
-    this.subjectNewForm = new rxjs.BehaviorSubject();
+    this.subjectModal = new rxjs.BehaviorSubject();
     this.data$ = this.subject.asObservable();
-    this.form$ = this.subjectNewForm.asObservable();
+    this.form$ = this.subjectModal.asObservable();
   }
 
   static async create() {
@@ -205,7 +205,7 @@ class DataService {
   }
 
   sendNewFormData(data) {
-    return this.subjectNewForm.next(data);
+    return this.subjectModal.next(data);
   }
 
   handleError(err) {
