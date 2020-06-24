@@ -8,6 +8,7 @@
 @import './modal.css';
 @import './draganddrop.css';
 @import './spinner.css';
+@import './detail.css';
 
 * {
   box-sizing: border-box;
