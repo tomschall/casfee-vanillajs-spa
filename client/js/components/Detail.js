@@ -40,16 +40,20 @@ class Detail {
     ] = this.notes.filter((note) => note.id == this.params.id);
 
     return `
-        <section class="section">
-            <h1>Notes Id : ${this.params.id}</h1>
-            <p> Notes Title : ${title} </p>
-            <p> Notes Description : ${description} </p>
-            <p> Notes Importance : ${importance} </p>
-            <p> Notes Date Created : ${createDate} </p>
-            <p> Notes Date Finished : ${finishDate} </p>
-            <p> Is Finished : ${finished} </p>
-            <button class="button is-primary" id="delete_btn"><span><span>Delete</span></span></button>
-            <button class="button is-primary" id="cancel_btn"><span><span>Back</span></span></button>
+        <section class="section detail">
+            <h1>Title: ${title}</h1>
+            <p><span>Notes Id:</span> ${this.params.id}</p>
+            <p><span>Description:</span> ${description}</p>
+            <p><span>Importance:</span> ${importance}</p>
+            <p><span>Date Created:</span> ${
+              this.notes ? new moment(createDate).format('DD-MM-YYYY') : ''
+            } </p>
+            <p><span>Date Finished:</span> ${
+              this.notes ? new moment(createDate).format('DD-MM-YYYY') : ''
+            } </p>
+            <p><span>Is Finished:</span> ${finished}</p>
+            <p><button class="button is-primary" id="delete_btn">Delete</button>
+            <button class="button is-primary" id="cancel_btn">Back</button></p>
         </section>
       `;
   }
