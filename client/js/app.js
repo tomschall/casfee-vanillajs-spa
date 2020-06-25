@@ -14,12 +14,14 @@ import FilterService from './services/FilterService.js';
   const spinner = new LoaderService();
   spinner.showLoader();
   const dataService = await DataService.create();
-  const filterService = await FilterService.create(dataService);
-  await Router.create([
-    new Route('list', await List.create(dataService, filterService), true),
-    new Route('detail', await Detail.create(dataService)),
-    new Route('new', await Form.create(dataService)),
-    new Route('edit', await Edit.create(dataService)),
-    new Route('notFound', new NotFound()),
-  ]);
+  dataService.notes$.subscribe(async () => {
+    const filterService = await FilterService.create(dataService);
+    await Router.create([
+      new Route('list', await List.create(dataService, filterService), true),
+      new Route('detail', await Detail.create(dataService)),
+      new Route('new', await Form.create(dataService)),
+      new Route('edit', await Edit.create(dataService)),
+      new Route('notFound', new NotFound()),
+    ]);
+  });
 })();

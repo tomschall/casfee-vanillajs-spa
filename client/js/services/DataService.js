@@ -7,10 +7,14 @@ class DataService {
   }
 
   async initData() {
-    this.notes = await this.getAllNotes();
-    this.subject = new rxjs.BehaviorSubject(this.notes);
-    this.subjectModal = new rxjs.BehaviorSubject();
+    this.notes$ = this.getAllNotes();
+    this.notes$.subscribe((notes) => {
+      this.notes = notes.data.data.notes;
+      this.sendData(this.notes);
+    });
+    this.subject = new rxjs.BehaviorSubject();
     this.data$ = this.subject.asObservable();
+    this.subjectModal = new rxjs.BehaviorSubject();
     this.form$ = this.subjectModal.asObservable();
   }
 
@@ -53,13 +57,14 @@ class DataService {
     }
   }
 
-  async getAllNotes() {
+  getAllNotes() {
     try {
-      const response = await axios({
-        url: CONFIG.graphqlApiHost,
-        method: 'POST',
-        data: {
-          query: `
+      return this.rxjs.from(
+        axios({
+          url: CONFIG.graphqlApiHost,
+          method: 'POST',
+          data: {
+            query: `
             query {
               notes 
               {
@@ -73,9 +78,9 @@ class DataService {
               }
             }
           `,
-        },
-      });
-      return response.data.data.notes;
+          },
+        }),
+      );
     } catch (err) {
       this.handleError(err);
     }
