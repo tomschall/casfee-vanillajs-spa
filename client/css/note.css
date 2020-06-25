@@ -138,7 +138,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 5%; /*100%*/
+  width: 5%;
   height: 165px;
   background: rgba(91, 91, 91, 0.15);
   transition: 0.5s;

@@ -69,14 +69,12 @@ class Router {
   }
 
   renderSingleComponent(component, html) {
-    console.log('render single');
     this.rootElem.innerHTML = html;
     component.after_render();
     this.initEventListeners();
   }
 
   async renderMultipleComponents(component, html, arr) {
-    console.log('render multi');
     let compArr = this.fetchComponentClasses(arr);
     compArr.forEach((comp, i) => {
       comp.render().then((compHtml) => {

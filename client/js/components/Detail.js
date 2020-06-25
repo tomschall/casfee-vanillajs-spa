@@ -66,7 +66,6 @@ class Detail {
           event.preventDefault();
 
           const note = await this.dataService.deleteNote(this.params.id);
-          console.log('delete', this.params.id);
 
           const modal = document.getElementById('notesModal');
           if (
