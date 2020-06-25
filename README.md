@@ -60,21 +60,27 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## GraphQL Mutation for creating a bunch of Notes
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+After installing the app please go to http://localhost:3000/graphql and run the following mutation to create a bunch of notes.
 
-## Stay in touch
+```
+mutation {
+  insertNotes{
+    id,
+    title,
+    description,
+    finishDate,
+    createDate,
+    importance,
+    finished
+  }
+}
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## GraphQL Test Queries/Mutations for Notes
 
-## License
-
-Nest is [MIT licensed](LICENSE).
-
-## GraphQL Test Queries for Notes
+You could also test the graphql api on the graphql playground with the following queries/mutations. Just visit http://localhost:3000/graphql and copy/paste the mutation/query that you want to run.
 
 ```
 mutation {
@@ -142,3 +148,17 @@ mutation {
   }
 }
 ```
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
