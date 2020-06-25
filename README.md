@@ -17,6 +17,8 @@ A simple notes application. The frontend is built with vanillajs and the backend
 * Sorting by different criteria
 * Drag and drop - Delete Notes with drag and drop, just drag the note that you want to delete to the left or the right side and release it, if the color switches to dark red. After deleting the note, the notes stay as they were before deleting. The get ordered new at the next action. I thought this behaviour is more natural.
 * Modal for creating and editing notes.
+* Component based architecture
+* Router which handles rendering and most of the event handling
 * Routes for creating and editing notes.\
 example-routes: http://localhost:3000/#new or http://localhost:3000/#edit/5ef4ba7fb61567f337d8eb12
 
