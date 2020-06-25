@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Note as NoteObj } from './schemas/note.schema';
 import { UpdateNoteInput } from './dto/update-note.input';
+import getNotes from './data/fake.data';
 
 @Injectable()
 export class NotesService {
@@ -14,6 +15,13 @@ export class NotesService {
   async create(newNoteInput: NewNoteInput): Promise<Note> {
     const note = new this.noteModel(newNoteInput);
     return (await note.save()) as Note;
+  }
+
+  async createNotes(): Promise<Note[]> {
+    const obj = getNotes();
+    const data = obj.map((note) => new this.noteModel(note));
+    const notes = await this.noteModel.collection.insertMany(data);
+    return notes.ops as Note[];
   }
 
   async findOneById(id: string): Promise<Note> {

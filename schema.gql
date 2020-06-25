@@ -9,6 +9,7 @@ scalar DateTime
 
 type Mutation {
   addNote(newNoteData: NewNoteInput!): Note!
+  insertNotes: [Note!]!
   update(updateNoteData: UpdateNoteInput!): Note!
   removeNote(id: String!): Boolean!
 }

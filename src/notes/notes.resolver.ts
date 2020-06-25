@@ -34,6 +34,12 @@ export class NotesResolver {
     return note;
   }
 
+  @Mutation((returns) => [Note])
+  async insertNotes(): Promise<Note[]> {
+    const notes = await this.notesService.createNotes();
+    return notes;
+  }
+
   @Mutation((returns) => Note)
   async update(
     @Args('updateNoteData') updateNoteData: UpdateNoteInput,
