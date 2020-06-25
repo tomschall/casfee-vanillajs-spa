@@ -24,9 +24,29 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+# MyNotes App
+
 ## Description
 
+A simple notes application. The frontend is built with vanillajs and the backend with nest.js. The backend uses graphql for querying and a mongodb to save the data.
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Features
+* CRUD operations - add, show, edit and delete notes.
+* Notes are colored by importance, each color has also it's own Pokemon.
+* Theme toggler - Switch theme design.
+* Sorting by different criteria
+* Drag and drop - Delete Notes with drag and drop, just drag the note that you want to delete to the left or the right side and release it, if the color switches to dark red. After deleting the note, the notes stay as they were before deleting. The get ordered new at the next action. I thought this behaviour is more natural.
+* Modal for creating and editing notes.
+* Routes for creating and editing notes.
+
+## Sort notes by different criteria
+* init state (All)
+* create date (Create Date)
+* finish date (Finish Date)
+* importance (Importance)
+* finished (Is Finished)
 
 ## Installation
 
@@ -47,22 +67,9 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
 ## GraphQL Mutation for creating a bunch of Notes
 
-After installing the app please go to http://localhost:3000/graphql and run the following mutation to create a bunch of notes.
+After installing the app please go to http://localhost:3000/graphql and run the following mutation to create a bunch of notes. After that you can surfe to http://localhost:3000/ where the notes will be shown.
 
 ```
 mutation {
@@ -149,16 +156,14 @@ mutation {
 }
 ```
 
-## Support
+## Versioning
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```sh
+Node Version: v12.6.0
+NPM Version: 6.9.0
+MongoDB Version: 4.0.6 Community Edition
+```
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - [Thomas Schallert](https://github.com/tomschall/)
