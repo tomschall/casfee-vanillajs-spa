@@ -12,13 +12,13 @@ A simple notes application. The frontend is built with vanillajs and the backend
 
 ## Features
 * CRUD operations - add, show, edit and delete notes.
-* Notes are colored by importance, each color has also it's own Pokemon.
-* Theme toggler - Switch theme design.
-* Sorting by different criteria
-* Drag and drop - Delete Notes with drag and drop, just drag the note that you want to delete to the left or the right side and release it, if the color switches to dark red. After deleting the note, the notes stay as they were before deleting. The get ordered new at the next action. I thought this behaviour is more natural.
+* Notes are colored by importance, each color has also it's own Pokémon.
+* Theme toggler - switch theme design.
+* Sorting by different criteria.
+* Drag and drop - delete notes with drag and drop.
 * Modal for creating and editing notes.
-* Component based architecture
-* Router which handles rendering and most of the event handling
+* Component based architecture.
+* Router which handles rendering and most of the event handling.
 * Routes for creating and editing notes.\
 example-routes: http://localhost:3000/#new or http://localhost:3000/#edit/5ef4ba7fb61567f337d8eb12
 
@@ -142,6 +142,10 @@ mutation {
   }
 }
 ```
+
+## Deleting notes with drag and drop
+
+Just drag the note that you want to delete to the left or the right side, of the browser window. When you drag it, a red box appears on the right and left side of the browser window. If you drag the note over the red box, the color switches to dark red and you can drop the note - it will get deleted.  After deleting the note, the notes stay as they were before deleting. Th notes get ordered new at the next action. I thought this behaviour is more natural.
 
 ## Versioning
 

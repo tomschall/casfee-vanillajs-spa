@@ -11,7 +11,7 @@ class DataService {
     this.notes$ = this.getAllNotes();
     this.notes$.subscribe((notes) => {
       this.notes = notes;
-      this.sendData(this.notes);
+      this.sendData(notes);
     });
     this.subject = new BehaviorSubject();
     this.data$ = this.subject.asObservable();
