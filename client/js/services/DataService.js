@@ -1,20 +1,21 @@
 import CONFIG from '../../config.js';
+const { BehaviorSubject, from } = rxjs;
+const { map, catchError } = rxjs.operators;
 
 class DataService {
   constructor() {
-    this.rxjs = rxjs;
     this.notes = [];
   }
 
   async initData() {
     this.notes$ = this.getAllNotes();
     this.notes$.subscribe((notes) => {
-      this.notes = notes.data.data.notes;
+      this.notes = notes;
       this.sendData(this.notes);
     });
-    this.subject = new rxjs.BehaviorSubject();
+    this.subject = new BehaviorSubject();
     this.data$ = this.subject.asObservable();
-    this.subjectModal = new rxjs.BehaviorSubject();
+    this.subjectModal = new BehaviorSubject();
     this.form$ = this.subjectModal.asObservable();
   }
 
@@ -58,13 +59,12 @@ class DataService {
   }
 
   getAllNotes() {
-    try {
-      return this.rxjs.from(
-        axios({
-          url: CONFIG.graphqlApiHost,
-          method: 'POST',
-          data: {
-            query: `
+    return from(
+      axios({
+        url: CONFIG.graphqlApiHost,
+        method: 'POST',
+        data: {
+          query: `
             query {
               notes 
               {
@@ -78,12 +78,12 @@ class DataService {
               }
             }
           `,
-          },
-        }),
-      );
-    } catch (err) {
-      this.handleError(err);
-    }
+        },
+      }),
+    ).pipe(
+      map((response) => response.data.data.notes),
+      catchError((err) => this.handleError(err)),
+    );
   }
 
   async createNote(data) {
