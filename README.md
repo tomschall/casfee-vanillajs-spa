@@ -145,7 +145,7 @@ mutation {
 
 ## Deleting notes with drag and drop
 
-Just drag the note that you want to delete to the left or the right side, of the browser window. When you drag it, a red box appears on the right and left side of the browser window. If you drag the note over the red box, the color switches to dark red and you can drop the note - it will get deleted.  After deleting the note, the notes stay as they were before deleting. Th notes get ordered new at the next action. I thought this behaviour is more natural.
+Just drag the note that you want to delete to the left or the right side of the browser window. When you drag it, a red box appears on the right and left side of the browser window. If you drag the note over the red box, the color switches to dark red and you can drop the note - it will get deleted.  After deleting the note, the notes stay as they were before deleting. The notes get ordered new at the next action. I thought this behavior is more natural.
 
 ## Versioning
 
