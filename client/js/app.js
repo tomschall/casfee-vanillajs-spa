@@ -9,6 +9,7 @@ import Edit from './components/Edit.js';
 import NotFound from './components/NotFound.js';
 import LoaderService from './services/LoaderService.js';
 import FilterService from './services/FilterService.js';
+import About from './components/About.js';
 
 (async function bootstrap() {
   const spinner = new LoaderService();
@@ -21,6 +22,7 @@ import FilterService from './services/FilterService.js';
       new Route('detail', await Detail.create(dataService)),
       new Route('new', await Form.create(dataService)),
       new Route('edit', await Edit.create(dataService)),
+      new Route('about', new About()),
       new Route('notFound', new NotFound()),
     ]);
   });
